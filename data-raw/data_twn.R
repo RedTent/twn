@@ -14,6 +14,10 @@ twn_bestand_recent <- twn_bestanden %>%
   filter(datum == max(datum, na.rm = TRUE)) %>% 
   pull(twn_bestanden)
 
+datum_twn_bestand_recent <- twn_bestanden %>% 
+  filter(datum == max(datum, na.rm = TRUE)) %>% 
+  pull(datum)
+
 # TWN-lijst ---------------------------------------------------------------
 
 twn_orig <- readxl::read_excel(paste0("data-raw/", twn_bestand_recent)) %>% mutate(date = as.Date(date))
@@ -21,6 +25,7 @@ twn_orig <- readxl::read_excel(paste0("data-raw/", twn_bestand_recent)) %>% muta
 taxonlevel_volgorde <- readr::read_csv2("data-raw/volgorde_taxonlevels.csv") %>% .$taxonlevel
 
 twn_lijst <- twn_orig %>% mutate(taxonlevel = factor(taxonlevel, levels = taxonlevel_volgorde, ordered = TRUE))
+attr(twn_lijst, "datum_twn_lijst") <- datum_twn_bestand_recent
 
 use_data(twn_lijst, overwrite = TRUE)
 

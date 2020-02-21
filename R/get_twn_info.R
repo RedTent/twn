@@ -27,11 +27,13 @@
 #'   geval de parent van de voorkeurnaam.
 #'
 #' @examples
-#' get_twn_voorkeurnaam(c("Bufo calamita", "Bufo"))
-#' get_twn_parent(c("Bufo calamita", "Bufo"))
-#' get_twn_status(c("Bufo calamita", "Bufo"))
-#' get_twn_localname(c("Bufo calamita", "Bufo"))
-#' get_twn_taxonlevel(c("Bufo calamita", "Bufo"))
+#' taxa <- c("Bufo calamita", "Bufo")
+#' 
+#' get_twn_voorkeurnaam(taxa)
+#' get_twn_parent(taxa)
+#' get_twn_status(taxa)
+#' get_twn_localname(taxa)
+#' get_twn_taxonlevel(taxa)
 #'
 #' @name twn_info
 #' @seealso Deze functies werken op basis van de tabel [twn_lijst]

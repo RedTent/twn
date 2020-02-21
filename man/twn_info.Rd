@@ -52,11 +52,13 @@ zoals de parent van het taxon. De functie \code{get_twn_parent} zoekt in dat
 geval de parent van de voorkeurnaam.
 }
 \examples{
-get_twn_voorkeurnaam(c("Bufo calamita", "Bufo"))
-get_twn_parent(c("Bufo calamita", "Bufo"))
-get_twn_status(c("Bufo calamita", "Bufo"))
-get_twn_localname(c("Bufo calamita", "Bufo"))
-get_twn_taxonlevel(c("Bufo calamita", "Bufo"))
+taxa <- c("Bufo calamita", "Bufo")
+
+get_twn_voorkeurnaam(taxa)
+get_twn_parent(taxa)
+get_twn_status(taxa)
+get_twn_localname(taxa)
+get_twn_taxonlevel(taxa)
 
 }
 \seealso{

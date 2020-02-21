@@ -26,23 +26,15 @@
 #'    - `91` - TWN-fout - Niet gebruiken
 #'    - `92` - Verandering van interpretatie - Niet gebruiken
 #' 
-#' @note De TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins verouderd zijn.
+#' @note De TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins verouderd zijn. 
+#' De datum van de gebruikte TWN-lijst kan worden opgevraagd met de code `attr(twn_lijst, "datum_twn_lijst")`.
 #' 
 #' De volgorde van de taxonlevels is op detailniveau (met name lager dan genus) soms enigszins arbitrair. 
 #' Is een Cultivar bijv. een hoger niveau dan een Subspecies? Toch is er voor gekozen om de taxonlevels 
 #' op te nemen als een geordende factor omdat dit nuttig kan zijn o.a. bij het filteren van de lijst.
 #' 
-#' @section Metadata dataset: 
 #' 
-#' - **Naam:** Taxa Waterbeheer Nederland
-#' - **Bronhouder:** Informatiehuis Water
-#' - **Beheer:** Rijkswaterstaat
-#' - **Leverancier:** EcoSys
-#' - **Datum dataset:** 
-#' - **Datum opname dataset:** 24 Mei 2019
-#' - **Gebruiksrechten:** Geen beperkingen
-#' - **Soortgroep:** Alle
-#'
+#' 
 #' @source 
 #' [https://twnlist.aquadesk.nl/](https://twnlist.aquadesk.nl/)
 #' 
@@ -50,7 +42,13 @@
 #' @examples 
 #' 
 #' head(twn_lijst)
+#' 
+#' # de datum van de gebruikte TWN-lijst.
+#' attr(twn_lijst, "datum_twn_lijst")
 "twn_lijst"
+
+
+
 
 
 

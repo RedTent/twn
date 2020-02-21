@@ -1,5 +1,5 @@
 Package: twn
-Title: Packacge voor de TWN-lijst en bijbehorende functies
+Title: Package voor de TWN-lijst en bijbehorende functies
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Johan",
@@ -15,5 +15,8 @@ RoxygenNote: 6.1.1
 Depends: 
     R (>= 2.10)
 Suggests: 
-    testthat,
+    testthat (>= 2.1.0),
     covr
+Imports: 
+    tibble,
+    dplyr
