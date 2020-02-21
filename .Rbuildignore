@@ -1,9 +1,10 @@
 ^\.travis\.yml$
 ^data-raw$
 ^LICENSE\.md$
-^autecodata\.Rproj$
+^twn\.Rproj$
 ^\.Rproj\.user$
-DEV/
+^DEV$
 docs
 ^codecov\.yml$
 ^README\.Rmd$
+

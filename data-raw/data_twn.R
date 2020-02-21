@@ -4,12 +4,21 @@
 
 library(tidyverse)
 library(readxl)
+library(lubridate)
+
+twn_bestanden <- 
+  tibble(twn_bestanden = list.files("data-raw/", pattern = "^TwnList")) %>% 
+  mutate(datum = ymd(str_extract(twn_bestanden, "\\d{4}-\\d{2}-\\d{2}")))
+
+twn_bestand_recent <- twn_bestanden %>% 
+  filter(datum == max(datum, na.rm = TRUE)) %>% 
+  pull(twn_bestanden)
 
 # TWN-lijst ---------------------------------------------------------------
 
-twn_orig <- readxl::read_excel("data-raw/twn/twn_lijst.xlsx") %>% mutate(date = as.Date(date))
+twn_orig <- readxl::read_excel(paste0("data-raw/", twn_bestand_recent)) %>% mutate(date = as.Date(date))
 
-taxonlevel_volgorde <- readr::read_csv2("data-raw/twn/volgorde_taxonlevels.csv") %>% .$taxonlevel
+taxonlevel_volgorde <- readr::read_csv2("data-raw/volgorde_taxonlevels.csv") %>% .$taxonlevel
 
 twn_lijst <- twn_orig %>% mutate(taxonlevel = factor(taxonlevel, levels = taxonlevel_volgorde, ordered = TRUE))
 

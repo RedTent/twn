@@ -1,4 +1,4 @@
 library(testthat)
-library(autecodata)
+library(twn)
 
-test_check("autecodata")
+test_check("twn")
