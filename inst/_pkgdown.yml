@@ -1,0 +1,26 @@
+title: "Package met autecologische data - autecodata"
+
+reference:
+  - title: Tabellen
+    desc: Tabellen met autecologische informatie en aanverwante informatie
+    contents:
+      - '`twn_lijst`'
+      - '`twn_lijst_oud`'
+      
+      - '`wew_mafa_data`'
+      - '`wew_mafa_zeldzaamheid`'
+      - '`wew_mafa_toelichting`'
+      
+      - '`krw_mafy_categorie`'
+      - '`krw_mafy_score`'
+      - '`krw_mafy_constanten`'
+  - title: TWN-functies
+    desc: Diverse functies om TWN-informatie op te zoeken
+    contents:
+      - '`get_twn_voorkeurnaam`'
+      - '`get_twn_parent`'
+      - '`get_twn_status`'
+      - '`get_twn_localname`'
+      - '`get_twn_taxonlevel`'
+
+
