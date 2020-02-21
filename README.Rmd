@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
 # autecodata
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/RedTent/autecodata.svg?branch=master)](https://travis-ci.org/RedTent/autecodata)
-[![Codecov test coverage](https://codecov.io/gh/RedTent/autecodata/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/autecodata?branch=master)
+[![Travis build status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.org/RedTent/twn)
+[![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master)
 <!-- badges: end -->
 
 Het doel van *twn* is tweeledig. 
@@ -27,14 +27,14 @@ De development version is te installeren van [GitHub](https://github.com/) met:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("RedTent/autecodata")
+devtools::install_github("RedTent/twn")
 ```
 ## TWN-functies
 
 De `twn_lijst` bevat de complete TWN-lijst. De `get_twn_*`-functies maken het makkelijk om informatie uit de TWN-lijst op te zoeken op basis van de taxonnaam.
 
 ```{r}
-library(autecodata)
+library(twn)
 
 dplyr::glimpse(twn_lijst)
 
@@ -62,12 +62,12 @@ Een veel voorkomende vraag bij het gebruik van biologische data is de vraag of h
 Eerst moeten we geschikte data set laden. Voor het voorbeeld wordt gebruik gemaakt van data van  [HHSK](https://www.schielandendekrimpenerwaard.nl/ons-werk/waterkwaliteit/metingen-waterkwaliteit):
 
 ```{r laad_voorbeeld data, message=FALSE}
-library(tidyverse)
-library(autecodata)
-## basic example code
-biologie_metingen <- readr::read_csv2(file = "data-raw/README_example/Biologische_meetgegevens_HHSK.csv") 
-
-head(biologie_metingen)
+# library(tidyverse)
+# library(autecodata)
+# ## basic example code
+# biologie_metingen <- readr::read_csv2(file = "data-raw/README_example/Biologische_meetgegevens_HHSK.csv") 
+# 
+# head(biologie_metingen)
 
 ```
 
@@ -75,9 +75,9 @@ Als eerst is handig om te weten of alle taxa wel voorkomen in de TWN-lijst. De T
 
 ```{r}
 # Hoeveel taxa komen niet voor in de TWN-lijst?
-taxa_twn_lijst <- twn_lijst$taxonname
-
-(!biologie_metingen$naam %in% taxa_twn_lijst) %>% sum()
+# taxa_twn_lijst <- twn_lijst$taxonname
+# 
+# (!biologie_metingen$naam %in% taxa_twn_lijst) %>% sum()
 
 
 ```
@@ -86,10 +86,10 @@ Welke status hebben mijn taxa?
 
 ```{r}
 
-biologie_metingen %>% 
-  mutate(status = get_twn_status(naam)) %>% 
-  group_by(status) %>% 
-  summarise(aantal = n())
+# biologie_metingen %>% 
+#   mutate(status = get_twn_status(naam)) %>% 
+#   group_by(status) %>% 
+#   summarise(aantal = n())
 
 ```
 
@@ -102,11 +102,11 @@ Het is ook mogelijk om de voorkeurnamen toe te voegen met `get_twn_voorkeurnaam(
 
 
 # status van taxa als ze de voorkeurnaam krijgen
-biologie_metingen %>% 
-  mutate(voorkeurnaam = get_twn_voorkeurnaam(naam),
-         status = get_twn_status(voorkeurnaam)) %>% 
-  group_by(status) %>% 
-  summarise(aantal = n())
+# biologie_metingen %>% 
+#   mutate(voorkeurnaam = get_twn_voorkeurnaam(naam),
+#          status = get_twn_status(voorkeurnaam)) %>% 
+#   group_by(status) %>% 
+#   summarise(aantal = n())
 
 ```
 
