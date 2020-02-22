@@ -26,8 +26,9 @@
 #'    - `91` - TWN-fout - Niet gebruiken
 #'    - `92` - Verandering van interpretatie - Niet gebruiken
 #' 
-#' @note De TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins verouderd zijn. 
-#' De datum van de gebruikte TWN-lijst kan worden opgevraagd met de code `attr(twn_lijst, "datum_twn_lijst")`.
+#' @note De TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins 
+#' verouderd zijn. De datum van de gebruikte TWN-lijst is opgeslagen in het attribuut 
+#' `datum_twn_lijst` en kan worden opgevraagd met de code `attr(twn_lijst, "datum_twn_lijst")`.
 #' 
 #' De volgorde van de taxonlevels is op detailniveau (met name lager dan genus) soms enigszins arbitrair. 
 #' Is een Cultivar bijv. een hoger niveau dan een Subspecies? Toch is er voor gekozen om de taxonlevels 
