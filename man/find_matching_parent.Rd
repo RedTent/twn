@@ -4,30 +4,30 @@
 \alias{find_matching_parent}
 \title{Vind een matching parent in een referentielijst}
 \usage{
-find_matching_parent(soorten, ref_soorten, n_parents = 5,
-  verbose = FALSE)
+find_matching_parent(taxa, ref_taxa, n_parents = 5, verbose = FALSE)
 }
 \arguments{
-\item{soorten}{Een vector met soorten}
+\item{taxa}{Een vector met taxa}
 
-\item{ref_soorten}{Een vector met referentie-soorten}
+\item{ref_taxa}{Een vector met referentie-taxa}
 
 \item{n_parents}{Het aantal parentniveau's dat gecheckt wordt. Default is 5.}
 
-\item{verbose}{Als \code{TRUE} geeft the functie een message met de \code{soorten} waar geen match voor is.}
+\item{verbose}{Als \code{TRUE} geeft the functie een message met de \code{taxa} waar geen match voor is.}
 }
 \value{
-Een vector met soorten die in de referentiesoortenlijst voorkomen.
+Een vector met taxa die in de lijst met referentie-taxa voorkomen.
 \itemize{
-\item Als de soort in de referentiesoorten wordt gevonden, dan wordt deze geretourneerd.
-\item Als de soort niet maar wel een parent is gevonden in de referentiesoortenlijst wordt deze geretourneerd.
-\item Als de soort of parent niet is gevonden in de referentiesoortenlijst wordt \code{NA}  gertourneerd.
+\item Als de soort in de referentie-taxa wordt gevonden, dan wordt deze geretourneerd.
+\item Als de soort niet, maar wel een parent is gevonden in de lijst met referentie-taxa wordt deze geretourneerd.
+\item Als de soort of parent niet is gevonden in de lijst met referentie-taxa wordt \code{NA}  gertourneerd.
 }
 }
 \description{
-Met deze functie is met mogelijk om van een taxon een parent in de TWN-lijst te vinden die in een referentielijst voorkomt.
-Dit kan bijv. nuttig zijn als het taxon een ondersoort is van een soort die in een beoordelingssysteem voorkomt.
-De functie kan dan worden gebruikt om de soortenlijst geschikt te maken voor een beoordelingssysteem.
+Met deze functie is met mogelijk om van een taxon een parent in de TWN-lijst te vinden die in een lijst met
+referentie-taxa voorkomt. Dit kan bijv. nuttig zijn als het taxon een ondersoort is van een soort die in
+een beoordelingssysteem voorkomt.De functie kan dan worden gebruikt om de soortenlijst geschikt te maken
+voor een beoordelingssysteem.
 }
 \examples{
 

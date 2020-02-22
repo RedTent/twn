@@ -4,7 +4,17 @@
 \name{twn}
 \alias{twn}
 \alias{twn-package}
-\title{twn : Een package voor de TWN-lijst}
+\title{twn - Een package voor de TWN-lijst}
 \description{
-Package voor de TWN-lijst en bijbehorende functies. Zie verder: \url{https://redtent.github.io/twn/}
+De bedoeling van \code{twn} is om de TWN-lijst beschikbaar te maken in R en om er makkelijk mee te kunnen werken.
+De package biedt diverse functies die het eenvoudig maken om informatie van een taxon op te vragen.
+
+Zie ook:
+\itemize{
+\item \link{twn_lijst} en \link{twn_statuscodes}
+\item \link{get_twn_info}
+\item \code{\link[=find_matching_parent]{find_matching_parent()}}
+}
+
+Voor meer informatie zie de package website: \url{https://redtent.github.io/twn/}
 }

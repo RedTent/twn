@@ -1,4 +1,4 @@
-library(dplyr)
+suppressWarnings(library(dplyr))
 
 test_that("get_matching_parent works", {
   ref <- c("Bufonidae", "kameel")

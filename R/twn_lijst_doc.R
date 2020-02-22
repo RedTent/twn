@@ -48,8 +48,26 @@
 #' attr(twn_lijst, "datum_twn_lijst")
 "twn_lijst"
 
-
-
+#' TWN statuscodes
+#' 
+#' De TWN-lijst heeft aan ieder taxon een statuscode toegekend. De betekenis van deze codes is opgenomen in 
+#' de tabel `twn_statuscodes`
+#' 
+#' @format 
+#' 
+#' Dataframe met 2 kolommen
+#' 
+#'- `status`  - TWN-statuscode
+#'- `omschrijving`- Omschrijving van de betekenis van de statuscode
+#' 
+#' @source 
+#' [http://www.aquo.nl/faq/faq-twn/](http://www.aquo.nl/faq/faq-twn/)
+#'
+#' @examples 
+#' 
+#' twn_statuscodes
+#' 
+"twn_statuscodes"
 
 
 

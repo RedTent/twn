@@ -1,7 +1,16 @@
-#' twn : Een package voor de TWN-lijst
+#' twn - Een package voor de TWN-lijst
 #'
-#' Package voor de TWN-lijst en bijbehorende functies. Zie verder: [https://redtent.github.io/twn/](https://redtent.github.io/twn/)
+#' @description 
+#' De bedoeling van `twn` is om de TWN-lijst beschikbaar te maken in R en om er makkelijk mee te kunnen werken.
+#' De package biedt diverse functies die het eenvoudig maken om informatie van een taxon op te vragen. 
 #' 
+#' Zie ook:
+#' - [twn_lijst] en [twn_statuscodes]
+#' - [get_twn_info] 
+#' - [find_matching_parent()]
+#' 
+#' 
+#' Voor meer informatie zie de package website: [https://redtent.github.io/twn/](https://redtent.github.io/twn/)
 #'
 #' @docType package
 #' @name twn

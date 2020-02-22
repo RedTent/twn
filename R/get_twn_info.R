@@ -1,6 +1,6 @@
 #' Opzoeken van de TWN informatie
 #'
-#' De `get_twn_*`-functies zoeken informatie uit de TWN-lijst op.
+#' De `get_twn_*` - functies zoeken informatie uit de TWN-lijst op.
 #'
 #' @details Deze functies accepteren een vector met taxonnamen en retourneren de
 #'   betreffende informatie uit de TWN-lijst. Als de taxonnaam niet in de
@@ -9,7 +9,7 @@
 #'   - `get_twn_voorkeurnaam`: Geeft de voorkeurnaam van het taxon. Als het al de
 #'   voorkeurnaam is wordt de originele naam teruggegeven.
 #'   - `get_twn_parent`: Geeft de parent van het taxon. 
-#'   - `get_twn_status`: Geeft de status van het taxon. 
+#'   - `get_twn_status`: Geeft de status van het taxon. Zie ook [twn_statuscodes].
 #'   - `get_twn_localname`: Geeft de Nederlandse naam van het taxon. 
 #'   - `get_twn_taxonlevel`: Geeft het taxonlevel van het taxon.
 #'
@@ -35,37 +35,37 @@
 #' get_twn_localname(taxa)
 #' get_twn_taxonlevel(taxa)
 #'
-#' @name twn_info
+#' @name get_twn_info
 #' @seealso Deze functies werken op basis van de tabel [twn_lijst]
 #'   
 NULL
 
 
-#' @rdname twn_info
+#' @rdname get_twn_info
 #' @export
 get_twn_voorkeurnaam <- function(namen){
   unname(opzoektabel_twn_voorkeur[as.character(namen)])
 }
 
-#' @rdname twn_info
+#' @rdname get_twn_info
 #' @export
 get_twn_parent <- function(namen){
   unname(opzoektabel_twn_parent[as.character(namen)])
 }
 
-#' @rdname twn_info
+#' @rdname get_twn_info
 #' @export
 get_twn_status <- function(namen){
   unname(opzoektabel_twn_status[as.character(namen)])
 }
 
-#' @rdname twn_info
+#' @rdname get_twn_info
 #' @export
 get_twn_localname <- function(namen){
   unname(opzoektabel_twn_localname[as.character(namen)])
 }
 
-#' @rdname twn_info
+#' @rdname get_twn_info
 #' @export
 get_twn_taxonlevel <- function(namen){
   unname(opzoektabel_twn_taxonlevel[as.character(namen)])

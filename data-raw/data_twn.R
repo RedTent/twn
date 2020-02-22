@@ -27,7 +27,23 @@ taxonlevel_volgorde <- readr::read_csv2("data-raw/volgorde_taxonlevels.csv") %>%
 twn_lijst <- twn_orig %>% mutate(taxonlevel = factor(taxonlevel, levels = taxonlevel_volgorde, ordered = TRUE))
 attr(twn_lijst, "datum_twn_lijst") <- datum_twn_bestand_recent
 
-use_data(twn_lijst, overwrite = TRUE)
+usethis::use_data(twn_lijst, overwrite = TRUE)
+
+
+# Statuscodes -------------------------------------------------------------------
+
+twn_statuscodes <- 
+  tibble::tribble(
+      ~status,                           ~omschrijving,
+           10,                        "Preferred name",
+           20,                               "Synonym",
+           30,                 "Dubious taxon concept",
+           80,           "Non-taxonomic species group",
+           91,                "TWN error (do not use)",
+           92, "Change of interpretation (do not use)"
+  )
+
+usethis::use_data(twn_statuscodes, overwrite = TRUE)
 
 # opzoektabellen - internal -----------------------------------------------
 
