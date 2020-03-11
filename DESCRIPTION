@@ -7,6 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "tentvanjohan@hotmail.com")
 Description: Dit package bevat de TWN-lijst en functies om de informatie uit de TWN-lijst te kunnen benutten.
+Language: NL
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
