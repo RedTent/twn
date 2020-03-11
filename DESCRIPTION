@@ -21,4 +21,5 @@ Suggests:
 Imports: 
     tibble,
     dplyr,
-    crayon
+    crayon,
+    rlang
