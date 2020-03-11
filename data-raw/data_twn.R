@@ -108,9 +108,11 @@ opzoektabel_twn_taxonlevel <-
   dplyr::distinct() %>% 
   tibble::deframe()
 
+taxonlevels <- factor(taxonlevel_volgorde, levels = taxonlevel_volgorde, ordered = TRUE)
 
 # save in sysdata ---------------------------------------------------------
 print("x")
+# Het gebruik van sysdata.R borgt dat er geen interne bestanden verloren gaan.
 source("data-raw/sysdata.R")
 
 # 901.4 kb

@@ -5,6 +5,7 @@ use_data(
   opzoektabel_twn_status,
   opzoektabel_twn_taxonlevel,
   opzoektabel_twn_localname,
+  taxonlevels,
   internal = TRUE,
   overwrite = TRUE
 )
