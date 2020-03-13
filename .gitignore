@@ -5,3 +5,5 @@ inst/doc
 .Ruserdata
 *.Rproj
 DEV/
+twn_checks/rsconnect
+

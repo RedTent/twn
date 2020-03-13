@@ -7,4 +7,5 @@
 docs
 ^codecov\.yml$
 ^README\.Rmd$
+twn_checks
 

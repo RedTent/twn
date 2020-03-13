@@ -1,0 +1,294 @@
+---
+title: "TWN checks"
+author: "Johan van Tent (HHSK)"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    css: CSS/markdown_JT.css
+    #code_folding: hide
+    code_download: TRUE
+    toc: TRUE
+    toc_float:
+      collapsed: TRUE
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, echo = FALSE)
+options(OutDec = ",")
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(DT)
+library(twn)
+
+options(DT.options = list(
+  language = list(
+    paginate = list(previous = 'Vorige', `next` = 'Volgende'),
+    search = "Zoeken",
+    decimal = ",",
+    info = 'Rij _START_ tot _END_ Totaal: _TOTAL_ rijen',
+    lengthMenu = "Toon _MENU_ rijen"
+  )))
+
+my_datatable <- function(df, ...) {
+  datatable(df, ..., extensions = 'Buttons', 
+           options = list(dom = 'lfirtpB', buttons = c('csv', 'excel', 'pdf')))
+}
+
+```
+
+Dit document is een rapportage van een aantal geautomatiseerde checks op de TWN-lijst. De TWN-lijst bevat vaak inconsistenties die met deze rapportage worden geïdentificeerd.
+
+Deze rapportage geldt voor de TWN-lijst van `r attr(twn_lijst, "datum_twn_lijst")`.
+
+---
+
+## Fouten in taxonname
+
+In de onderstaande tabel staan enkele taxa waarvan (spel)fouten in de taxonname staan.
+
+```{r fouten_in_taxonname}
+twn_lijst %>% 
+  filter(taxonname %in% c("Pokaryota", 
+                          "Gonatozygon brebissonii var. vulgare [2]]",
+                          "Gyrysta [1]")) %>% 
+  select(taxontype, taxonname, taxonlevel) %>% 
+  my_datatable()
+```
+
+---
+
+## Synoniemen
+
+### Synoniemen die verwijzen naar andere synoniemen
+
+In onderstaande tabel wordt weergegeven welke taxa met status 20 (Synoniem) verwijzen naar een synoniem in plaats van naar de correcte voorkeursnaam.
+
+```{r synoniemen_naar_synoniemen}
+
+twn_lijst %>% 
+  filter(status == "20") %>% 
+  mutate(taxonnaam_voorkeur = twn_voorkeurnaam(taxonname), 
+         status_voorkeur = twn_status(taxonnaam_voorkeur)) %>% 
+  filter(status_voorkeur == "20") %>% 
+  select(taxontype, taxonname, status, taxonnaam_voorkeur, status_voorkeur) %>% 
+  my_datatable()
+
+```
+
+### Synoniemen die verwijzen naar fouten
+
+In onderstaande tabel wordt weergegeven welke taxa met status 20 (Synoniem) verwijzen naar TWN-fouten (status 91 of 92). Als de voorkeursnaam niet gebruikt dient te worden volgt daaruit dat het synoniem evenmin gebruikt dient te worden. Het zou daarom logisch zijn als deze ook de status 91 of 92 kreeg, ondanks het feit dat het betreffende taxon *ook* een synoniem is.
+
+```{r synoniemen_naar_fouten}
+twn_lijst %>% 
+  filter(status == "20") %>% 
+  mutate(taxonnaam_voorkeur = twn_voorkeurnaam(taxonname), 
+         status_voorkeur = twn_status(taxonnaam_voorkeur)) %>% 
+  filter(status_voorkeur %in% c("91", "92")) %>% 
+  select(taxontype, taxonname, status, taxonnaam_voorkeur, status_voorkeur) %>% 
+  my_datatable()
+```
+
+
+
+
+
+---
+
+## Duplicaten 
+
+```{r lijst_duplicaten}
+duplicaten <- twn_lijst %>% group_by(taxonname) %>% count() %>% filter(n > 1) %>% .$taxonname
+
+twn_dupl <- twn_lijst %>% filter(taxonname %in% duplicaten)
+
+```
+
+In de TWN-lijst is een taxonnaam zelf niet uniek. Alleen de combinatie taxontype en taxonnaam is uniek. Hierdoor is het mogelijk dat een taxon bij verschillende taxontypen voorkomt waarbij de metadata van het taxon verschillend is. Dat kan leiden tot verwarring en is in een aantal gevallen ook een fout. Het zou zeer wenselijk zijn dat ieder taxon slechts eenmaal in de TWN-lijst voorkwam, omdat dit duidelijkheid schept. Dit beeld wordt verder versterkt door de grote hoeveelheid inconsistenties die voorkomen in de ca. 400 taxonnamen die meer dan 1 keer voorkomen.
+
+- De TWN-lijst bevat **`r nrow(twn_lijst)`** records.
+- In de TWN-lijst zijn **`r twn_lijst %>% select(taxontype, taxonname) %>% distinct() %>% nrow()`** unieke combinaties van taxontype en taxonname aanwezig.
+- Er zijn in de TWN-lijst **`r length(unique(twn_lijst$taxonname))`** unieke taxa aanwezig.
+- **`r length(duplicaten)`** taxa komen meer dan 1 keer voor in de TWN-lijst.
+
+
+
+### Afwijkende status
+
+In onderstaande tabel is weergegeven welke taxa dubbel in de TWN-lijst voorkomen met een verschillende status. Een veel voorkomende reden hiervoor lijkt te zijn dat een bepaald taxon niet thuis hoort bij een bepaald taxontype. Dan is het taxon onder een ander taxontype ingedeeld en heeft het taxon onder het "verkeerde" taxontype de status 91 (TWN error - Do not use) gekregen. Dit wekt ten onrechte de suggestie dat je het taxon niet zou moeten gebruiken.
+
+```{r afwijkende_status}
+afwijkende_status <- 
+  twn_dupl %>% 
+  select(taxonname, status) %>% 
+  distinct() %>% 
+  group_by(taxonname) %>% 
+  mutate(n  = n() - 1) %>% 
+  filter(n > 0) %>% 
+  spread(status, value = n)
+
+my_datatable(afwijkende_status)
+```
+
+Dat veel taxa die dubbel voorkomen vaak de status 91 hebben lijkt een bewuste keuze te zijn. Er zijn ook nog enkele andere afwijkingen in de status van taxa die meer dan 1 keer voorkomen. Deze zijn voor de duidelijkheid nogmaals in onderstaande tabel weergegeven.
+
+```{r afwijkende_status2}
+afwijkende_status %>% 
+  filter(is.na(`91`)) %>% 
+  my_datatable()
+
+```
+
+### Afwijkende taxongroup
+
+```{r afwijkende_taxongroup}
+twn_dupl %>% 
+  select(taxonname, taxongroup) %>% 
+  distinct() %>% 
+  group_by(taxonname) %>% 
+  mutate(n  = n() - 1) %>% 
+  filter(n > 0) %>% 
+  select(-n) %>% 
+  my_datatable()
+
+```
+
+### Afwijkend taxonlevel
+
+```{r afwijkend_taxonlevel}
+twn_dupl %>% 
+  select(taxonname, taxonlevel) %>% 
+  distinct() %>% 
+  group_by(taxonname) %>% 
+  mutate(n  = n() - 1) %>% 
+  filter(n > 0) %>% 
+  select(-n) %>% 
+  my_datatable()
+
+```
+
+### Afwijkende parentname
+
+```{r afwijkende_parent}
+twn_dupl %>% 
+  select(taxonname, parentname) %>% 
+  distinct() %>% 
+  group_by(taxonname) %>% 
+  mutate(n  = n() - 1) %>% 
+  filter(n > 0) %>% 
+  select(-n) %>% 
+  my_datatable()
+
+```
+
+### Afwijkende voorkeurnaam
+
+```{r afwijkende_voorkeurnaam}
+twn_dupl %>% 
+  select(taxonname, refername) %>% 
+  distinct() %>% 
+  group_by(taxonname) %>% 
+  mutate(n  = n() - 1) %>% 
+  filter(n > 0) %>% 
+  select(-n) %>% 
+  my_datatable()
+
+```
+
+### Afwijkende literatuur
+
+```{r afwijkende_literatuur}
+twn_dupl %>% 
+  select(taxonname, literature) %>% 
+  distinct() %>% 
+  group_by(taxonname) %>% 
+  mutate(n  = n() - 1) %>% 
+  filter(n > 0) %>% 
+  select(-n) %>% 
+  my_datatable()
+
+```
+
+### Afwijkende Nederlandse naam
+
+```{r afwijkende_localname}
+twn_dupl %>% 
+  select(taxonname, localname) %>% 
+  distinct() %>% 
+  group_by(taxonname) %>% 
+  mutate(n  = n() - 1) %>% 
+  filter(n > 0) %>% 
+  select(-n) %>% 
+  my_datatable()
+
+```
+
+
+### Afwijkende auteur
+
+```{r afwijkende_auteur}
+twn_dupl %>% 
+  select(taxonname, author) %>% 
+  distinct() %>% 
+  group_by(taxonname) %>% 
+  mutate(n  = n() - 1) %>% 
+  filter(n > 0) %>% 
+  select(-n) %>% 
+  my_datatable()
+
+```
+
+##
+
+---
+
+## Parents
+
+### Check geldigheid namen
+
+Worden er in de TWN-lijst parents genoemd die zelf niet in de TWN-lijst staan? 
+
+```{r check_parentnames}
+
+twn_names <- twn_lijst$taxonname
+
+twn_lijst %>% 
+  filter(!is.na(parentname)) %>% 
+  filter(!parentname %in% twn_names) %>% 
+  select(taxontype, taxonname, parentname) %>% 
+  my_datatable()
+
+```
+
+### Check levels
+
+Een parent van een taxon moet altijd een hoger taxonlevel hebben dan het taxon zelf. 
+```{r check_parentlevels}
+# taxonlevel_volgorde <- readr::read_csv2("../../data-raw/twn/volgorde_taxonlevels.csv") %>% .$taxonlevel
+# twn_lijst <- twn_lijst %>% mutate(taxonlevel = factor(taxonlevel, levels = taxonlevel_volgorde, ordered = TRUE))
+
+twn_lijst %>% 
+  mutate(parentlevel = twn_taxonlevel(parentname)) %>% 
+  filter(taxonlevel >= parentlevel) %>% 
+  select(taxontype, taxonname, taxonlevel, parentname, parentlevel) %>% 
+  my_datatable()
+
+```
+
+
+### Check status parents
+
+Parents zouden in principe status 10 moeten hebben. Als een parent status 20 heeft wordt naar de verkeerde parent verwezen. Als de parent status 91 en 92 wordt naar een ongeldige parent verwezen. Een parent met status 30 of 80 dient nader onderzocht te worden.
+
+```{r check_parent_status}
+
+twn_lijst %>% 
+  filter(!is.na(parentname)) %>% 
+  mutate(parent_status = twn_status(parentname)) %>% 
+  filter(parent_status != 10) %>% 
+  select(taxontype, taxonname, parentname, parent_status) %>% 
+  my_datatable()
+    
+  ```
+
