@@ -75,24 +75,24 @@ is_valid_twn(invalid)
 
 ## TWN informatie opzoeken
 
-De `twn_lijst` bevat de complete TWN-lijst. De `get_twn_*`-functies
-maken het makkelijk om informatie uit de TWN-lijst op te zoeken op basis
-van de taxonnaam.
+De `twn_lijst` bevat de complete TWN-lijst. De twn\_info-functies
+(`twn_*`) maken het makkelijk om informatie uit de TWN-lijst op te
+zoeken op basis van de taxonnaam.
 
 ``` r
-get_twn_status(c("Bufo calamita", "Bufo bufo"))
+twn_status(c("Bufo calamita", "Bufo bufo"))
 #> [1] "20" "10"
 
-get_twn_voorkeurnaam(c("Bufo calamita", "Bufo bufo"))
+twn_voorkeurnaam(c("Bufo calamita", "Bufo bufo"))
 #> [1] "Epidalea calamita" "Bufo bufo"
 
-get_twn_parent(c("Bufo calamita", "Bufo bufo"))
+twn_parent(c("Bufo calamita", "Bufo bufo"))
 #> [1] "Epidalea" "Bufo"
 
-get_twn_localname(c("Bufo calamita", "Bufo bufo"))
+twn_localname(c("Bufo calamita", "Bufo bufo"))
 #> [1] "Rugstreeppad" "Gewone pad"
 
-get_twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
+twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
 #> [1] Species Species
 #> 36 Levels: Subforma < Forma < Varietas < Subspecies < ... < Superimperium
 

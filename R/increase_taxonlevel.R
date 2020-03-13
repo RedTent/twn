@@ -39,8 +39,8 @@ increase_taxonlevel <- function(namen, taxonlevel = c("Species", "Genus", "Famil
   for (i in c(1:18)) {
     
     df <- df %>% 
-      dplyr::mutate(level = get_twn_taxonlevel(nieuwe_naam),
-                    parent = get_twn_parent(nieuwe_naam),
+      dplyr::mutate(level = twn_taxonlevel(nieuwe_naam),
+                    parent = twn_parent(nieuwe_naam),
                     nieuwe_naam = ifelse(!is.na(level) & !is.na(parent) & level < taxonlevel, 
                                          parent,
                                          nieuwe_naam))

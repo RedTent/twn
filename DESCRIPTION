@@ -6,7 +6,10 @@ Authors@R:
            family = "van Tent",
            role = c("aut", "cre"),
            email = "tentvanjohan@hotmail.com")
-Description: Dit package bevat de TWN-lijst en functies om de informatie uit de TWN-lijst te kunnen benutten.
+Description: Het doel van twn is tweeledig. Ten eerste maakt twn het eenvoudig 
+    om de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft twn 
+    diverse functies die het gemakkelijk maken om de TWN-lijst te gebruiken bij 
+    de analyse van ecologische data.
 Language: NL
 License: MIT + file LICENSE
 Encoding: UTF-8

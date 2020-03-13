@@ -38,5 +38,5 @@ is_twn <- function(namen){
 #' @rdname is_twn
 #' @export
 is_valid_twn <- function(namen){
-  namen %in% twn_lijst$taxonname & get_twn_status(namen) %in% c("10", "20", "80")
+  namen %in% twn_lijst$taxonname & twn_status(namen) %in% c("10", "20", "80")
 }

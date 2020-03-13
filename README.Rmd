@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master)
 <!-- badges: end -->
 
-Het doel van *twn* is tweeledig. 
+Het doel van `twn` is tweeledig. Ten eerste maakt `twn` het eenvoudig om de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft `twn` diverse functies die het gemakkelijk maken om de TWN-lijst te gebruiken bij de analyse van ecologische data.
 
 ## Installatie
 
@@ -31,7 +31,7 @@ devtools::install_github("RedTent/twn")
 ```
 ## TWN lijst
 
-`twn` bevat de complete TWN-lijst (`twn_lijst`). De datum van de TWN-lijst wordt getoond bij het laden van de package. De datum is ook een attribuut `twn_lijst`.
+`twn` bevat de complete TWN-lijst (`twn_lijst`). De datum van de TWN-lijst wordt getoond bij het laden van de package. De datum is ook een attribuut `twn_lijst`. 
 
 ```{r}
 library(twn)
@@ -45,7 +45,7 @@ attr(twn_lijst, "datum_twn_lijst")
 
 De functies `is_twn` en `is_valid_twn` kunnen gebruikt worden om te controleren of taxa voorkomen in de TWN-lijst. Ook kan worden gecheckt of ze een geldige statuscode hebben.
 
-```{r}
+```{r is-twn}
 taxa <- c("Bufo calamita", "Bufo", "Ezel", NA)
 
 is_twn(taxa)
@@ -62,18 +62,18 @@ is_valid_twn(invalid)
 
 ## TWN informatie opzoeken
 
-De `twn_lijst` bevat de complete TWN-lijst. De `get_twn_*`-functies maken het makkelijk om informatie uit de TWN-lijst op te zoeken op basis van de taxonnaam.
+De `twn_lijst` bevat de complete TWN-lijst. De twn_info-functies (`twn_*`) maken het makkelijk om informatie uit de TWN-lijst op te zoeken op basis van de taxonnaam.
 
-```{r}
-get_twn_status(c("Bufo calamita", "Bufo bufo"))
+```{r twn-info}
+twn_status(c("Bufo calamita", "Bufo bufo"))
 
-get_twn_voorkeurnaam(c("Bufo calamita", "Bufo bufo"))
+twn_voorkeurnaam(c("Bufo calamita", "Bufo bufo"))
 
-get_twn_parent(c("Bufo calamita", "Bufo bufo"))
+twn_parent(c("Bufo calamita", "Bufo bufo"))
 
-get_twn_localname(c("Bufo calamita", "Bufo bufo"))
+twn_localname(c("Bufo calamita", "Bufo bufo"))
 
-get_twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
+twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
 
 # taxonlevels zijn een geordende factor. Zo is het makkelijk om 
 # alles boven of onder een bepaald taxonomisch niveau te filteren.

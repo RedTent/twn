@@ -1,17 +1,17 @@
 #' Opzoeken van de TWN informatie
 #'
-#' De `get_twn_*` - functies zoeken informatie uit de TWN-lijst op.
+#' De `twn_*` - functies zoeken informatie uit de TWN-lijst op.
 #'
 #' @details Deze functies accepteren een vector met taxonnamen en retourneren de
 #'   betreffende informatie uit de TWN-lijst. Als de taxonnaam niet in de
 #'   TWN-lijst voorkomt retourneert de functie `NA`
 #'
-#'   - `get_twn_voorkeurnaam`: Geeft de voorkeurnaam van het taxon. Als het al de
+#'   - `twn_voorkeurnaam`: Geeft de voorkeurnaam van het taxon. Als het al de
 #'   voorkeurnaam is wordt de originele naam teruggegeven.
-#'   - `get_twn_parent`: Geeft de parent van het taxon. 
-#'   - `get_twn_status`: Geeft de status van het taxon. Zie ook [twn_statuscodes].
-#'   - `get_twn_localname`: Geeft de Nederlandse naam van het taxon. 
-#'   - `get_twn_taxonlevel`: Geeft het taxonlevel van het taxon.
+#'   - `twn_parent`: Geeft de parent van het taxon. 
+#'   - `twn_status`: Geeft de status van het taxon. Zie ook [twn_statuscodes].
+#'   - `twn_localname`: Geeft de Nederlandse naam van het taxon. 
+#'   - `twn_taxonlevel`: Geeft het taxonlevel van het taxon.
 #'
 #' @param namen Een vector met taxonnamen.
 #'
@@ -23,50 +23,50 @@
 #'   geretourneerd.
 #'   
 #'   Als een taxon niet de voorkeurnaam is dan ontbreekt er vaak informatie 
-#'   zoals de parent van het taxon. De functie `get_twn_parent` zoekt in dat
+#'   zoals de parent van het taxon. De functie `twn_parent` zoekt in dat
 #'   geval de parent van de voorkeurnaam.
 #'
 #' @examples
 #' taxa <- c("Bufo calamita", "Bufo")
 #' 
-#' get_twn_voorkeurnaam(taxa)
-#' get_twn_parent(taxa)
-#' get_twn_status(taxa)
-#' get_twn_localname(taxa)
-#' get_twn_taxonlevel(taxa)
+#' twn_voorkeurnaam(taxa)
+#' twn_parent(taxa)
+#' twn_status(taxa)
+#' twn_localname(taxa)
+#' twn_taxonlevel(taxa)
 #'
-#' @name get_twn_info
+#' @name twn_info
 #' @seealso Deze functies werken op basis van de tabel [twn_lijst]
 #'   
 NULL
 
 
-#' @rdname get_twn_info
+#' @rdname twn_info
 #' @export
-get_twn_voorkeurnaam <- function(namen){
+twn_voorkeurnaam <- function(namen){
   unname(opzoektabel_twn_voorkeur[as.character(namen)])
 }
 
-#' @rdname get_twn_info
+#' @rdname twn_info
 #' @export
-get_twn_parent <- function(namen){
+twn_parent <- function(namen){
   unname(opzoektabel_twn_parent[as.character(namen)])
 }
 
-#' @rdname get_twn_info
+#' @rdname twn_info
 #' @export
-get_twn_status <- function(namen){
+twn_status <- function(namen){
   unname(opzoektabel_twn_status[as.character(namen)])
 }
 
-#' @rdname get_twn_info
+#' @rdname twn_info
 #' @export
-get_twn_localname <- function(namen){
+twn_localname <- function(namen){
   unname(opzoektabel_twn_localname[as.character(namen)])
 }
 
-#' @rdname get_twn_info
+#' @rdname twn_info
 #' @export
-get_twn_taxonlevel <- function(namen){
+twn_taxonlevel <- function(namen){
   unname(opzoektabel_twn_taxonlevel[as.character(namen)])
 }

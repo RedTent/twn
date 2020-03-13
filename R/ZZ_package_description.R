@@ -6,8 +6,8 @@
 #' 
 #' Zie ook:
 #' - [twn_lijst] en [twn_statuscodes]
-#' - [get_twn_info] 
-#' - [find_matching_parent()]
+#' - [twn_info] 
+#' - [match_parent()]
 #' 
 #' 
 #' Voor meer informatie zie de package website: [https://redtent.github.io/twn/](https://redtent.github.io/twn/)

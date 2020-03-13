@@ -12,8 +12,8 @@ De package biedt diverse functies die het eenvoudig maken om informatie van een 
 Zie ook:
 \itemize{
 \item \link{twn_lijst} en \link{twn_statuscodes}
-\item \link{get_twn_info}
-\item \code{\link[=find_matching_parent]{find_matching_parent()}}
+\item \link{twn_info}
+\item \code{\link[=match_parent]{match_parent()}}
 }
 
 Voor meer informatie zie de package website: \url{https://redtent.github.io/twn/}

@@ -22,16 +22,16 @@
 #' ref <- c("Bufonidae", "kameel")
 #' namen <- c("Bufo calamita", "Bufo", "Bufonidae", "Bufo bufo", "Buf", NA, "zebra")
 #' 
-#' find_matching_parent(namen, ref)
+#' match_parent(namen, ref)
 #' 
-find_matching_parent <- function(taxa, ref_taxa, n_parents = 5, verbose = FALSE){
+match_parent <- function(taxa, ref_taxa, n_parents = 5, verbose = FALSE){
   
   df <- tibble::tibble(orig = taxa, matching = taxa)
   
   for(i in seq(1, n_parents)) {
   df <- dplyr::mutate(df, matching = ifelse(matching %in% ref_taxa, 
                 matching,
-                get_twn_parent(matching)))
+                twn_parent(matching)))
   }
   
   df <- df %>% dplyr::mutate(matching = ifelse(matching %in% ref_taxa, matching, NA_character_))

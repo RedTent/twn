@@ -5,10 +5,10 @@ test_that("get_matching_parent works", {
   namen <- c("Bufo calamita", "Bufo", "Bufonidae", "Bufo bufo", "Buf", NA, "Bufonidae", "zebra")
   result <- c("Bufonidae","Bufonidae","Bufonidae","Bufonidae",NA,NA,"Bufonidae", NA)
   
-  expect_equal(find_matching_parent(namen, ref), result)
-  expect_message(find_matching_parent(namen, ref, verbose = TRUE))
+  expect_equal(match_parent(namen, ref), result)
+  expect_message(match_parent(namen, ref, verbose = TRUE))
   expect_equal({tibble::tibble(namen) %>% 
-                dplyr::mutate(matchparent = find_matching_parent(namen, ref)) %>% 
+                dplyr::mutate(matchparent = match_parent(namen, ref)) %>% 
                 .$matchparent}, 
                result)
   
