@@ -11,12 +11,15 @@ status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.
 coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master)
 <!-- badges: end -->
 
-Het doel van *twn* is tweeledig.
+Het doel van `twn` is tweeledig. Ten eerste maakt `twn` het eenvoudig om
+de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft
+`twn` diverse functies die het gemakkelijk maken om de TWN-lijst te
+gebruiken bij de analyse van ecologische data.
 
 ## Installatie
 
 De development version is te installeren van
-[GitHub](https://github.com/) met:
+[GitHub](https://github.com/Redtent/twn) met:
 
 ``` r
 # install.packages("devtools")
@@ -26,16 +29,15 @@ devtools::install_github("RedTent/twn")
 ## TWN lijst
 
 `twn` bevat de complete TWN-lijst (`twn_lijst`). De datum van de
-TWN-lijst wordt getoond bij het laden van de package. De datum is ook
-een attribuut `twn_lijst`.
+TWN-lijst wordt getoond bij het laden van de package.
 
 ``` r
 library(twn)
-#> twn gebruikt de TWN-lijst van 2020-03-11
+#> twn gebruikt de TWN-lijst van 2020-07-25
 
 dplyr::glimpse(twn_lijst)
-#> Observations: 26,627
-#> Variables: 11
+#> Rows: 26,701
+#> Columns: 11
 #> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macro...
 #> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nor...
 #> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon e...
@@ -49,28 +51,7 @@ dplyr::glimpse(twn_lijst)
 #> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10...
 
 attr(twn_lijst, "datum_twn_lijst")
-#> [1] "2020-03-11"
-```
-
-## TWN controle
-
-De functies `is_twn` en `is_valid_twn` kunnen gebruikt worden om te
-controleren of taxa voorkomen in de TWN-lijst. Ook kan worden gecheckt
-of ze een geldige statuscode hebben.
-
-``` r
-taxa <- c("Bufo calamita", "Bufo", "Ezel", NA)
-
-is_twn(taxa)
-#> [1]  TRUE  TRUE FALSE FALSE
-
-# Een taxon uit de TWN met status 91 (TWN error do not use)
-invalid <- "Abies veitchii 1861"
-
-is_twn(invalid)
-#> [1] TRUE
-is_valid_twn(invalid)
-#> [1] FALSE
+#> [1] "2020-07-25"
 ```
 
 ## TWN informatie opzoeken
@@ -98,4 +79,25 @@ twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
 
 # taxonlevels zijn een geordende factor. Zo is het makkelijk om 
 # alles boven of onder een bepaald taxonomisch niveau te filteren.
+```
+
+## TWN controle
+
+De functies `is_twn` en `is_valid_twn` kunnen gebruikt worden om te
+controleren of taxa voorkomen in de TWN-lijst. Ook kan worden gecheckt
+of ze een geldige statuscode hebben.
+
+``` r
+taxa <- c("Bufo calamita", "Bufo", "Ezel", NA)
+
+is_twn(taxa)
+#> [1]  TRUE  TRUE FALSE FALSE
+
+# Een taxon uit de TWN met status 91 (TWN error do not use)
+invalid <- "Abies veitchii 1861"
+
+is_twn(invalid)
+#> [1] TRUE
+is_valid_twn(invalid)
+#> [1] FALSE
 ```

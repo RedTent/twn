@@ -23,7 +23,7 @@ Het doel van `twn` is tweeledig. Ten eerste maakt `twn` het eenvoudig om de TWN-
 
 ## Installatie
 
-De development version is te installeren van [GitHub](https://github.com/) met:
+De development version is te installeren van [GitHub](https://github.com/Redtent/twn) met:
 
 ``` r
 # install.packages("devtools")
@@ -31,7 +31,7 @@ devtools::install_github("RedTent/twn")
 ```
 ## TWN lijst
 
-`twn` bevat de complete TWN-lijst (`twn_lijst`). De datum van de TWN-lijst wordt getoond bij het laden van de package. De datum is ook een attribuut `twn_lijst`. 
+`twn` bevat de complete TWN-lijst (`twn_lijst`). De datum van de TWN-lijst wordt getoond bij het laden van de package. 
 
 ```{r}
 library(twn)
@@ -39,6 +39,25 @@ library(twn)
 dplyr::glimpse(twn_lijst)
 
 attr(twn_lijst, "datum_twn_lijst")
+```
+
+## TWN informatie opzoeken
+
+De `twn_lijst` bevat de complete TWN-lijst. De twn_info-functies (`twn_*`) maken het makkelijk om informatie uit de TWN-lijst op te zoeken op basis van de taxonnaam.
+
+```{r twn-info}
+twn_status(c("Bufo calamita", "Bufo bufo"))
+
+twn_voorkeurnaam(c("Bufo calamita", "Bufo bufo"))
+
+twn_parent(c("Bufo calamita", "Bufo bufo"))
+
+twn_localname(c("Bufo calamita", "Bufo bufo"))
+
+twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
+
+# taxonlevels zijn een geordende factor. Zo is het makkelijk om 
+# alles boven of onder een bepaald taxonomisch niveau te filteren.
 ```
 
 ## TWN controle
@@ -60,23 +79,6 @@ is_valid_twn(invalid)
 ```
 
 
-## TWN informatie opzoeken
 
-De `twn_lijst` bevat de complete TWN-lijst. De twn_info-functies (`twn_*`) maken het makkelijk om informatie uit de TWN-lijst op te zoeken op basis van de taxonnaam.
-
-```{r twn-info}
-twn_status(c("Bufo calamita", "Bufo bufo"))
-
-twn_voorkeurnaam(c("Bufo calamita", "Bufo bufo"))
-
-twn_parent(c("Bufo calamita", "Bufo bufo"))
-
-twn_localname(c("Bufo calamita", "Bufo bufo"))
-
-twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
-
-# taxonlevels zijn een geordende factor. Zo is het makkelijk om 
-# alles boven of onder een bepaald taxonomisch niveau te filteren.
-```
 
 
