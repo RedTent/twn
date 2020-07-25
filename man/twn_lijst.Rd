@@ -35,10 +35,10 @@ twn_lijst
 \description{
 De TWN-lijst bevat de standaardlijst met namen van taxa zoals deze worden gebruikt binnen het
 Nederlandse waterbeheer. Deze dataset bevat de complete TWN-lijst zoals deze aangeboden wordt
-op \url{https://twnlist.aquadesk.nl/}
+op \url{https://twnlist.aquadesk.nl/}.
 }
 \note{
-De TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins
+De centrale TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins
 verouderd zijn. De datum van de gebruikte TWN-lijst is opgeslagen in het attribuut
 \code{datum_twn_lijst} en kan worden opgevraagd met de code \code{attr(twn_lijst, "datum_twn_lijst")}.
 

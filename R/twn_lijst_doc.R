@@ -1,8 +1,10 @@
+# TWN-lijst ---------------------------------------------------------------
+
 #' Taxa Waterbeheer Nederland (TWN)
 #' 
 #' De TWN-lijst bevat de standaardlijst met namen van taxa zoals deze worden gebruikt binnen het 
 #' Nederlandse waterbeheer. Deze dataset bevat de complete TWN-lijst zoals deze aangeboden wordt 
-#' op [https://twnlist.aquadesk.nl/](https://twnlist.aquadesk.nl/)
+#' op [https://twnlist.aquadesk.nl/](https://twnlist.aquadesk.nl/). 
 #' 
 #' @format 
 #' 
@@ -26,7 +28,7 @@
 #'    - `91` - TWN-fout - Niet gebruiken
 #'    - `92` - Verandering van interpretatie - Niet gebruiken
 #' 
-#' @note De TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins 
+#' @note De centrale TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins 
 #' verouderd zijn. De datum van de gebruikte TWN-lijst is opgeslagen in het attribuut 
 #' `datum_twn_lijst` en kan worden opgevraagd met de code `attr(twn_lijst, "datum_twn_lijst")`.
 #' 
@@ -47,6 +49,9 @@
 #' # de datum van de gebruikte TWN-lijst.
 #' attr(twn_lijst, "datum_twn_lijst")
 "twn_lijst"
+
+
+# TWN-statuscodes -------------------------------------------------------------
 
 #' TWN statuscodes
 #' 
@@ -70,7 +75,37 @@
 "twn_statuscodes"
 
 
+# TWN-literatuurlijst -----------------------------------------------------
 
-
-
+#' TWN literatuurlijst
+#' 
+#' In de TWN-lijst worden de referenties naar de literatuur gegeven in codes. In deze lijst zijn alle
+#' TWN-literatuurreferenties opgenomen
+#' 
+#' 
+#' @format 
+#' 
+#' Dataframe met 3 kolommen
+#' 
+#'- `literature`       - Literatuurcode conform de `twn_lijst`
+#'- `short_reference`  - Korte literatuurreferentie
+#'- `full_reference`   - Volledige literatuurreferentie
+#'
+#' @note De centrale TWN-literatuurlijst wordt regelmatig van updates voorzien. Deze 
+#' TWN-literatuurlijst kan daarom enigszins verouderd zijn. De datum van de gebruikte 
+#' TWN-literatuurlijst is opgeslagen in het attribuut `datum_twn_literatuur` en kan 
+#' worden opgevraagd met de code `attr(twn_literatuur, "datum_twn_literatuur")`.
+#'
+#' @source 
+#' [https://twnlist.aquadesk.nl/](https://twnlist.aquadesk.nl/)
+#'
+#' @examples 
+#' 
+#' head(twn_literatuur)
+#' 
+#' # de datum van de gebruikte TWN-literatuurlijst.
+#' attr(twn_literatuur, "datum_twn_literatuur")
+#'
+#'
+"twn_literatuur"
 

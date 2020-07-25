@@ -18,6 +18,18 @@ datum_twn_bestand_recent <- twn_bestanden %>%
   filter(datum == max(datum, na.rm = TRUE)) %>% 
   pull(datum)
 
+twn_lit_bestanden <- 
+  tibble(twn_bestanden = list.files("data-raw/", pattern = "^TWN literature")) %>% 
+  mutate(datum = ymd(str_extract(twn_bestanden, "\\d{4}-\\d{2}-\\d{2}")))
+
+twn_lit_recent <- twn_lit_bestanden %>% 
+  filter(datum == max(datum, na.rm = TRUE)) %>% 
+  pull(twn_bestanden)
+
+datum_twn_lit_recent <- twn_lit_bestanden %>% 
+  filter(datum == max(datum, na.rm = TRUE)) %>% 
+  pull(datum)
+
 # TWN-lijst ---------------------------------------------------------------
 
 twn_orig <- readxl::read_excel(paste0("data-raw/", twn_bestand_recent)) %>% mutate(date = as.Date(date))
@@ -29,6 +41,16 @@ attr(twn_lijst, "datum_twn_lijst") <- datum_twn_bestand_recent
 
 usethis::use_data(twn_lijst, overwrite = TRUE)
 
+
+# TWN literatuur ----------------------------------------------------------
+
+twn_literatuur <- readxl::read_excel(paste0("data-raw/", twn_lit_recent)) %>% 
+  dplyr::rename(literature = `Taxabase code`, 
+                short_reference = `Short reference`, 
+                full_reference = `Reference literature`)
+attr(twn_literatuur, "datum_twn_literatuur") <- datum_twn_lit_recent
+
+usethis::use_data(twn_literatuur, overwrite = TRUE)
 
 # Statuscodes -------------------------------------------------------------------
 
@@ -45,68 +67,7 @@ twn_statuscodes <-
 
 usethis::use_data(twn_statuscodes, overwrite = TRUE)
 
-# opzoektabellen - internal -----------------------------------------------
-
-### Voorkeurnaam
-
-# opzoektabel_twn_voorkeur <- 
-#   twn_lijst %>% 
-#   dplyr::arrange(status) %>% 
-#   dplyr::mutate(refername = ifelse(is.na(refername), taxonname, refername)) %>% 
-#   dplyr::select(taxonname, refername) %>% 
-#   dplyr::filter(!is.na(refername)) %>% 
-#   dplyr::distinct() %>% 
-#   tibble::deframe()
-# 
-# ### Parent
-# 
-# #twn_parent_1 is een opzoeklijst om soorten die niet de voorkeurnaam hebben toch een parent te geven.
-# twn_parent_1 <- 
-#   twn_lijst %>% 
-#   dplyr::arrange(status) %>% 
-#   dplyr::select(taxonname, parentname) %>% 
-#   dplyr::distinct() %>% 
-#   tibble::deframe()
-# 
-# opzoektabel_twn_parent <- 
-#   twn_lijst %>% 
-#   dplyr::arrange(status) %>% 
-#   mutate(voorkeurnaam = unname(opzoektabel_twn_voorkeur[taxonname]),
-#          parentname = ifelse(is.na(parentname), unname(twn_parent_1[voorkeurnaam]), parentname)) %>% 
-#   dplyr::select(taxonname, parentname) %>% 
-#   dplyr::filter(!is.na(parentname)) %>% 
-#   dplyr::distinct() %>% 
-#   tibble::deframe()
-# 
-# ### Status
-# 
-# opzoektabel_twn_status <- 
-#   twn_lijst %>% 
-#   dplyr::arrange(status) %>% 
-#   dplyr::select(taxonname, status) %>% 
-#   dplyr::filter(!is.na(status)) %>% 
-#   dplyr::distinct() %>% 
-#   tibble::deframe()
-# 
-# ### Nederlandse naam
-# 
-# opzoektabel_twn_localname <- 
-#   twn_lijst %>% 
-#   dplyr::arrange(status) %>% 
-#   dplyr::select(taxonname, localname) %>% 
-#   dplyr::filter(!is.na(localname)) %>% 
-#   dplyr::distinct() %>% 
-#   tibble::deframe()
-# 
-# ### Taxonlevel
-# 
-# opzoektabel_twn_taxonlevel <- 
-#   twn_lijst %>% 
-#   dplyr::arrange(status) %>% 
-#   dplyr::select(taxonname, taxonlevel) %>% 
-#   dplyr::filter(!is.na(taxonlevel)) %>% 
-#   dplyr::distinct() %>% 
-#   tibble::deframe()
+# internals -----------------------------------------------
 
 taxonlevels <- factor(taxonlevel_volgorde, levels = taxonlevel_volgorde, ordered = TRUE)
 
@@ -114,6 +75,3 @@ taxonlevels <- factor(taxonlevel_volgorde, levels = taxonlevel_volgorde, ordered
 print("x")
 # Het gebruik van sysdata.R borgt dat er geen interne bestanden verloren gaan.
 source("data-raw/sysdata.R")
-
-# 901.4 kb
-# 765.1 kb
