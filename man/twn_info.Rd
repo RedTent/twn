@@ -13,7 +13,7 @@ twn_voorkeurnaam(namen)
 
 twn_parent(namen)
 
-twn_status(namen)
+twn_status(namen, code = TRUE)
 
 twn_localname(namen)
 
@@ -21,6 +21,8 @@ twn_taxonlevel(namen)
 }
 \arguments{
 \item{namen}{Een vector met taxonnamen.}
+
+\item{code}{Logisch. Geeft aan of de code of de omschrijving wordt geretourneerd.}
 }
 \value{
 Een vector met TWN-informatie. Namen die niet in de TWN worden

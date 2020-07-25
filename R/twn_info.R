@@ -14,6 +14,7 @@
 #'   - `twn_taxonlevel`: Geeft het taxonlevel van het taxon.
 #'
 #' @param namen Een vector met taxonnamen.
+#' @param code Logisch. Geeft aan of de code of de omschrijving wordt geretourneerd.
 #'
 #' @return Een vector met TWN-informatie. Namen die niet in de TWN worden
 #'   gevonden krijgen `NA`.
@@ -55,8 +56,9 @@ twn_parent <- function(namen){
 
 #' @rdname twn_info
 #' @export
-twn_status <- function(namen){
-  unname(fun_twn_status()[as.character(namen)])
+twn_status <- function(namen, code = TRUE){
+  if (code) unname(fun_twn_status()[as.character(namen)])
+  else unname(fun_twn_status_tekst()[as.character(namen)])
 }
 
 #' @rdname twn_info
