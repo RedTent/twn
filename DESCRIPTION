@@ -25,4 +25,5 @@ Imports:
     tibble,
     dplyr,
     crayon,
-    rlang
+    rlang,
+    memoise

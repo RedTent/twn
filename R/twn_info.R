@@ -44,29 +44,29 @@ NULL
 #' @rdname twn_info
 #' @export
 twn_voorkeurnaam <- function(namen){
-  unname(opzoektabel_twn_voorkeur[as.character(namen)])
+  unname(fun_twn_voorkeur()[as.character(namen)])
 }
 
 #' @rdname twn_info
 #' @export
 twn_parent <- function(namen){
-  unname(opzoektabel_twn_parent[as.character(namen)])
+  unname(fun_twn_parent()[as.character(namen)])
 }
 
 #' @rdname twn_info
 #' @export
 twn_status <- function(namen){
-  unname(opzoektabel_twn_status[as.character(namen)])
+  unname(fun_twn_status()[as.character(namen)])
 }
 
 #' @rdname twn_info
 #' @export
 twn_localname <- function(namen){
-  unname(opzoektabel_twn_localname[as.character(namen)])
+  unname(fun_twn_localname()[as.character(namen)])
 }
 
 #' @rdname twn_info
 #' @export
 twn_taxonlevel <- function(namen){
-  unname(opzoektabel_twn_taxonlevel[as.character(namen)])
+  unname(fun_twn_taxonlevel()[as.character(namen)])
 }
