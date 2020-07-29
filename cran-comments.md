@@ -12,8 +12,8 @@ There was one NOTE.
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Johan van Tent <tentvanjohan@hotmail.com>'
 
-This is the first submission of this package.
+This is my first submission of this package.
 
 
 ## Downstream dependencies
-There are currently no downstream dependencies for this package
+There are currently no downstream dependencies for this package.
