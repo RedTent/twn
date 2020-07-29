@@ -9,27 +9,27 @@
 \alias{twn_taxonlevel}
 \title{Opzoeken van de TWN informatie}
 \usage{
-twn_voorkeurnaam(namen)
+twn_voorkeurnaam(taxa)
 
-twn_parent(namen)
+twn_parent(taxa)
 
-twn_status(namen, code = TRUE)
+twn_status(taxa, code = TRUE)
 
-twn_localname(namen)
+twn_localname(taxa)
 
-twn_taxonlevel(namen)
+twn_taxonlevel(taxa)
 }
 \arguments{
-\item{namen}{Een vector met taxonnamen.}
+\item{taxa}{Een vector met taxonnamen.}
 
 \item{code}{Logisch. Geeft aan of de code of de omschrijving wordt geretourneerd.}
 }
 \value{
-Een vector met TWN-informatie. Namen die niet in de TWN worden
+Een vector met TWN-informatie. Taxonnamen die niet in de TWN worden
 gevonden krijgen \code{NA}.
 }
 \description{
-De \code{twn_*} - functies zoeken informatie uit de TWN-lijst op.
+De \verb{twn_*} - functies zoeken informatie uit de TWN-lijst op.
 }
 \details{
 Deze functies accepteren een vector met taxonnamen en retourneren de
@@ -39,9 +39,9 @@ TWN-lijst voorkomt retourneert de functie \code{NA}
 \item \code{twn_voorkeurnaam}: Geeft de voorkeurnaam van het taxon. Als het al de
 voorkeurnaam is wordt de originele naam teruggegeven.
 \item \code{twn_parent}: Geeft de parent van het taxon.
-\item \code{twn_status}: Geeft de status van het taxon. Zie ook \link{twn_statuscodes}.
+\item \code{twn_status}: Geeft de status(code) van het taxon.
 \item \code{twn_localname}: Geeft de Nederlandse naam van het taxon.
-\item \code{twn_taxonlevel}: Geeft het taxonlevel van het taxon.
+\item \code{twn_taxonlevel}: Geeft het taxonomische niveau van het taxon.
 }
 }
 \note{

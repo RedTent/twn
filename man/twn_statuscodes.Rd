@@ -4,11 +4,13 @@
 \name{twn_statuscodes}
 \alias{twn_statuscodes}
 \title{TWN statuscodes}
-\format{Dataframe met 2 kolommen
+\format{
+Dataframe met 2 kolommen
 \itemize{
 \item \code{status}  - TWN-statuscode
 \item \code{omschrijving}- Omschrijving van de betekenis van de statuscode
-}}
+}
+}
 \source{
 \url{http://www.aquo.nl/faq/faq-twn/}
 }

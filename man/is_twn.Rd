@@ -3,14 +3,14 @@
 \name{is_twn}
 \alias{is_twn}
 \alias{is_valid_twn}
-\title{Controleer of namen in de TWN voorkomen}
+\title{Controleer of taxonnamen in de TWN voorkomen}
 \usage{
-is_twn(namen)
+is_twn(taxa)
 
-is_valid_twn(namen)
+is_valid_twn(taxa)
 }
 \arguments{
-\item{namen}{Een vector met taxonnamen.}
+\item{taxa}{Een vector met taxonnamen.}
 }
 \value{
 Logical

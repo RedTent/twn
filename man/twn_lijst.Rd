@@ -4,7 +4,8 @@
 \name{twn_lijst}
 \alias{twn_lijst}
 \title{Taxa Waterbeheer Nederland (TWN)}
-\format{Dataframe met 12 kolommen
+\format{
+Dataframe met 12 kolommen
 \itemize{
 \item \code{taxontype}  - Het type taxon bijv Macrophytes
 \item \code{taxonname}  - Naam van het taxon
@@ -25,7 +26,8 @@
 \item \code{91} - TWN-fout - Niet gebruiken
 \item \code{92} - Verandering van interpretatie - Niet gebruiken
 }
-}}
+}
+}
 \source{
 \url{https://twnlist.aquadesk.nl/}
 }

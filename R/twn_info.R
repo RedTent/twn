@@ -9,14 +9,14 @@
 #'   - `twn_voorkeurnaam`: Geeft de voorkeurnaam van het taxon. Als het al de
 #'   voorkeurnaam is wordt de originele naam teruggegeven.
 #'   - `twn_parent`: Geeft de parent van het taxon. 
-#'   - `twn_status`: Geeft de status van het taxon. Zie ook [twn_statuscodes].
+#'   - `twn_status`: Geeft de status(code) van het taxon. 
 #'   - `twn_localname`: Geeft de Nederlandse naam van het taxon. 
-#'   - `twn_taxonlevel`: Geeft het taxonlevel van het taxon.
+#'   - `twn_taxonlevel`: Geeft het taxonomische niveau van het taxon.
 #'
-#' @param namen Een vector met taxonnamen.
+#' @param taxa Een vector met taxonnamen.
 #' @param code Logisch. Geeft aan of de code of de omschrijving wordt geretourneerd.
 #'
-#' @return Een vector met TWN-informatie. Namen die niet in de TWN worden
+#' @return Een vector met TWN-informatie. Taxonnamen die niet in de TWN worden
 #'   gevonden krijgen `NA`.
 #'   
 #' @note De TWN-lijst is niet altijd volledig consistent. Diverse taxa staan
@@ -44,31 +44,31 @@ NULL
 
 #' @rdname twn_info
 #' @export
-twn_voorkeurnaam <- function(namen){
-  unname(fun_twn_voorkeur()[as.character(namen)])
+twn_voorkeurnaam <- function(taxa){
+  unname(fun_twn_voorkeur()[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
-twn_parent <- function(namen){
-  unname(fun_twn_parent()[as.character(namen)])
+twn_parent <- function(taxa){
+  unname(fun_twn_parent()[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
-twn_status <- function(namen, code = TRUE){
-  if (code) unname(fun_twn_status()[as.character(namen)])
-  else unname(fun_twn_status_tekst()[as.character(namen)])
+twn_status <- function(taxa, code = TRUE){
+  if (code) unname(fun_twn_status()[as.character(taxa)])
+  else unname(fun_twn_status_tekst()[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
-twn_localname <- function(namen){
-  unname(fun_twn_localname()[as.character(namen)])
+twn_localname <- function(taxa){
+  unname(fun_twn_localname()[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
-twn_taxonlevel <- function(namen){
-  unname(fun_twn_taxonlevel()[as.character(namen)])
+twn_taxonlevel <- function(taxa){
+  unname(fun_twn_taxonlevel()[as.character(taxa)])
 }

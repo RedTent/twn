@@ -3,7 +3,6 @@
 \docType{package}
 \name{twn}
 \alias{twn}
-\alias{twn-package}
 \title{twn - Een package voor de TWN-lijst}
 \description{
 De bedoeling van \code{twn} is om de TWN-lijst beschikbaar te maken in R en om er makkelijk mee te kunnen werken.

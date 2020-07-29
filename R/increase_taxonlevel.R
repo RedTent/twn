@@ -1,12 +1,12 @@
 #' Verhoog het taxonomische niveau
 #'
 #' Voor sommige toepassingen kan het nuttig zijn om taxonomische gegevens op een hoger niveau
-#' dan het oorspronkelijke niveau te analyseren. Deze functie probeert de namen op te schalen naar
+#' dan het oorspronkelijke niveau te analyseren. Deze functie probeert de taxa op te schalen naar
 #' het gewenste taxonomische niveau.
 #'
-#' @param namen Een vector met taxonnamen.
+#' @param taxa Een vector met taxonnamen.
 #' @param taxonlevel Het gewenste taxonomische niveau. De namen van de taxonomische niveau's zijn 
-#' zoals deze in de TWN-lijst worden gebruikt.
+#' zoals deze in de TWN-lijst worden gebruikt (Species, Genus, enz.).
 #'
 #' @return Een vector met taxonnamen.
 #' @export
@@ -20,7 +20,7 @@
 #' - Het taxon komt niet voor in de TWN-lijst 
 #'     - het originele taxon wordt geretourneerd.
 #' - Het taxon heeft in de TWN-lijst geen parent op het gevraagde niveau
-#'     - het taxon wat het dichtst onder het gevraagde niveau zit wordt geretoruneerd.
+#'     - het taxon wat het dichtst onder het gevraagde niveau zit wordt geretourneerd.
 #' - De taxonnaam heeft de waarde `NA`
 #'     - De waarde `NA` wordt geretourneerd.
 #'
@@ -30,11 +30,11 @@
 #' 
 #' increase_taxonlevel(taxa, "Familia")
 #' 
-increase_taxonlevel <- function(namen, taxonlevel = c("Species", "Genus", "Familia", "Ordo", "Classis", "Phylum", "Regnum", "Imperium")) {
+increase_taxonlevel <- function(taxa, taxonlevel = c("Species", "Genus", "Familia", "Ordo", "Classis", "Phylum", "Regnum", "Imperium")) {
   
   taxonlevel <- rlang::arg_match(taxonlevel, as.character(taxonlevels))
   
-  df <- tibble::tibble(nieuwe_naam = namen)
+  df <- tibble::tibble(nieuwe_naam = taxa)
   
   for (i in c(1:18)) {
     

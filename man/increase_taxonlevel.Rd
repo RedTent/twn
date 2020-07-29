@@ -4,21 +4,24 @@
 \alias{increase_taxonlevel}
 \title{Verhoog het taxonomische niveau}
 \usage{
-increase_taxonlevel(namen, taxonlevel = c("Species", "Genus", "Familia",
-  "Ordo", "Classis", "Phylum", "Regnum", "Imperium"))
+increase_taxonlevel(
+  taxa,
+  taxonlevel = c("Species", "Genus", "Familia", "Ordo", "Classis", "Phylum", "Regnum",
+    "Imperium")
+)
 }
 \arguments{
-\item{namen}{Een vector met taxonnamen.}
+\item{taxa}{Een vector met taxonnamen.}
 
 \item{taxonlevel}{Het gewenste taxonomische niveau. De namen van de taxonomische niveau's zijn
-zoals deze in de TWN-lijst worden gebruikt.}
+zoals deze in de TWN-lijst worden gebruikt (Species, Genus, enz.).}
 }
 \value{
 Een vector met taxonnamen.
 }
 \description{
 Voor sommige toepassingen kan het nuttig zijn om taxonomische gegevens op een hoger niveau
-dan het oorspronkelijke niveau te analyseren. Deze functie probeert de namen op te schalen naar
+dan het oorspronkelijke niveau te analyseren. Deze functie probeert de taxa op te schalen naar
 het gewenste taxonomische niveau.
 }
 \details{
@@ -34,7 +37,7 @@ resultaten mogelijk.
 }
 \item Het taxon heeft in de TWN-lijst geen parent op het gevraagde niveau
 \itemize{
-\item het taxon wat het dichtst onder het gevraagde niveau zit wordt geretoruneerd.
+\item het taxon wat het dichtst onder het gevraagde niveau zit wordt geretourneerd.
 }
 \item De taxonnaam heeft de waarde \code{NA}
 \itemize{

@@ -38,17 +38,17 @@ library(twn)
 dplyr::glimpse(twn_lijst)
 #> Rows: 26,701
 #> Columns: 11
-#> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macro...
-#> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nor...
-#> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon e...
-#> $ taxongroup <chr> "Gymnospermae", "Gymnospermae", "Angiospermae", "Gy...
-#> $ taxonlevel <ord> Genus, Species, Species, Species, Species, Species,...
-#> $ parentname <chr> "Pinaceae", "Abies", "Abies", "Abies", "Abies", "Ab...
-#> $ refername  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-#> $ literature <chr> "M0001", "M0001", NA, "M0001", NA, "M0001", "M0001"...
-#> $ localname  <chr> NA, "Gewone zilverspar", NA, "Kaukasische zilverspa...
-#> $ date       <date> 2009-09-11, 2009-12-17, 2009-12-04, 2009-12-17, 20...
-#> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10...
+#> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophyte...
+#> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nordmann...
+#> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon et R. ...
+#> $ taxongroup <chr> "Gymnospermae", "Gymnospermae", "Angiospermae", "Gymnosp...
+#> $ taxonlevel <ord> Genus, Species, Species, Species, Species, Species, Spec...
+#> $ parentname <chr> "Pinaceae", "Abies", "Abies", "Abies", "Abies", "Abies",...
+#> $ refername  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ...
+#> $ literature <chr> "M0001", "M0001", NA, "M0001", NA, "M0001", "M0001", "I0...
+#> $ localname  <chr> NA, "Gewone zilverspar", NA, "Kaukasische zilverspar", N...
+#> $ date       <date> 2009-09-11, 2009-12-17, 2009-12-04, 2009-12-17, 2009-12...
+#> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "1...
 
 attr(twn_lijst, "datum_twn_lijst")
 #> [1] "2020-07-25"
@@ -75,7 +75,7 @@ twn_localname(c("Bufo calamita", "Bufo bufo"))
 
 twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
 #> [1] Species Species
-#> 36 Levels: Subforma < Forma < Varietas < Subspecies < ... < Superimperium
+#> 36 Levels: Subforma < Forma < Varietas < Subspecies < Cultivar < ... < Superimperium
 
 # taxonlevels zijn een geordende factor. Zo is het makkelijk om 
 # alles boven of onder een bepaald taxonomisch niveau te filteren.
@@ -88,10 +88,10 @@ controleren of taxa voorkomen in de TWN-lijst. Ook kan worden gecheckt
 of ze een geldige statuscode hebben.
 
 ``` r
-taxa <- c("Bufo calamita", "Bufo", "Ezel", NA)
+taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
 
 is_twn(taxa)
-#> [1]  TRUE  TRUE FALSE FALSE
+#> [1]  TRUE  TRUE  TRUE FALSE FALSE
 
 # Een taxon uit de TWN met status 91 (TWN error do not use)
 invalid <- "Abies veitchii 1861"
@@ -100,4 +100,22 @@ is_twn(invalid)
 #> [1] TRUE
 is_valid_twn(invalid)
 #> [1] FALSE
+```
+
+## Hogere taxonlevels
+
+In sommige gevallen is het handig om soorten te aggregeren naar hogere
+taxonlevels. `twn` heeft twee functies die hierbij kunnen helpen:
+`increase_taxonlevel` aggregeert naar een gespecificeerd niveau,
+`match_parent` aggreggeert o.b.v. een referentielijst. Deze laatste
+functie is nuttig bij het gebruik van maatlatten en autecologische data.
+
+``` r
+
+increase_taxonlevel(taxa, "Familia")
+#> [1] "Bufonidae" "Bufonidae" "Bufonidae" "Ezel"      NA
+
+ref <- c("Bufonidae", "Epidalea")
+match_parent(taxa, ref)
+#> [1] "Epidalea"  "Bufonidae" "Bufonidae" NA          NA
 ```

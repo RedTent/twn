@@ -30,16 +30,16 @@ match_parent <- function(taxa, ref_taxa, n_parents = 5, verbose = FALSE){
   
   for(i in seq(1, n_parents)) {
   df <- dplyr::mutate(df, matching = ifelse(matching %in% ref_taxa, 
-                matching,
-                twn_parent(matching)))
+                                            matching,
+                                            twn_parent(matching)))
   }
   
   df <- df %>% dplyr::mutate(matching = ifelse(matching %in% ref_taxa, matching, NA_character_))
   
   if(verbose){
     not_matched <- dplyr::filter(df, is.na(matching)) %>% .$orig %>% unique()
-    if (length(not_matched > 0)) message(paste("Voor de volgende taxa is geen matching parent gevonden:", 
-                                               paste(not_matched, collapse = " ")))
+    if (length(not_matched > 0)) message(paste("Voor de volgende taxa is geen `matching parent` gevonden:", 
+                                               paste(crayon::cyan(not_matched), collapse = " - ")))
   }
   
   df$matching

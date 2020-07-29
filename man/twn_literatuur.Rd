@@ -4,12 +4,14 @@
 \name{twn_literatuur}
 \alias{twn_literatuur}
 \title{TWN literatuurlijst}
-\format{Dataframe met 3 kolommen
+\format{
+Dataframe met 3 kolommen
 \itemize{
 \item \code{literature}       - Literatuurcode conform de \code{twn_lijst}
 \item \code{short_reference}  - Korte literatuurreferentie
 \item \code{full_reference}   - Volledige literatuurreferentie
-}}
+}
+}
 \source{
 \url{https://twnlist.aquadesk.nl/}
 }
@@ -18,7 +20,7 @@ twn_literatuur
 }
 \description{
 In de TWN-lijst worden de referenties naar de literatuur gegeven in codes. In deze lijst zijn alle
-TWN-literatuurreferenties opgenomen
+TWN-literatuurreferenties opgenomen.
 }
 \note{
 De centrale TWN-literatuurlijst wordt regelmatig van updates voorzien. Deze

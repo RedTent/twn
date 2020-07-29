@@ -80,7 +80,7 @@
 #' TWN literatuurlijst
 #' 
 #' In de TWN-lijst worden de referenties naar de literatuur gegeven in codes. In deze lijst zijn alle
-#' TWN-literatuurreferenties opgenomen
+#' TWN-literatuurreferenties opgenomen.
 #' 
 #' 
 #' @format 

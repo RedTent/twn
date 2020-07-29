@@ -65,7 +65,7 @@ twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
 De functies `is_twn` en `is_valid_twn` kunnen gebruikt worden om te controleren of taxa voorkomen in de TWN-lijst. Ook kan worden gecheckt of ze een geldige statuscode hebben.
 
 ```{r is-twn}
-taxa <- c("Bufo calamita", "Bufo", "Ezel", NA)
+taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
 
 is_twn(taxa)
 
@@ -78,6 +78,19 @@ is_valid_twn(invalid)
 
 ```
 
+## Hogere taxonlevels
+
+In sommige gevallen is het handig om soorten te aggregeren naar hogere taxonlevels. `twn` heeft twee functies die hierbij kunnen helpen: `increase_taxonlevel` aggregeert naar een gespecificeerd niveau, `match_parent` aggreggeert o.b.v. een referentielijst. Deze laatste functie is nuttig bij het gebruik van maatlatten en autecologische data.
+
+```{r increase-taxonlevels}
+taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
+
+increase_taxonlevel(taxa, "Familia")
+
+referentie_taxa <- c("Bufonidae", "Epidalea")
+match_parent(taxa, referentie_taxa)
+
+```
 
 
 

@@ -1,9 +1,9 @@
-#' Controleer of namen in de TWN voorkomen
+#' Controleer of taxonnamen in de TWN voorkomen
 #' 
 #' Deze functies kunnen gebruikt worden om te checken of taxa in de TWN-lijst voorkomen
 #' en of het taxa zijn met een valide status (10, 20 of 80).
 #'
-#' @param namen Een vector met taxonnamen.
+#' @param taxa Een vector met taxonnamen.
 #'
 #' @details Deze functies checken of taxa voorkomen in de TWN-lijst en of de status 
 #' valide is
@@ -30,13 +30,13 @@ NULL
 
 #' @rdname is_twn
 #' @export
-is_twn <- function(namen){
-  namen %in% twn_lijst$taxonname
+is_twn <- function(taxa){
+  taxa %in% twn_lijst$taxonname
   
 }
 
 #' @rdname is_twn
 #' @export
-is_valid_twn <- function(namen){
-  namen %in% twn_lijst$taxonname & twn_status(namen) %in% c("10", "20", "80")
+is_valid_twn <- function(taxa){
+  taxa %in% twn_lijst$taxonname & twn_status(taxa) %in% c("10", "20", "80")
 }
