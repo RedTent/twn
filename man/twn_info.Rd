@@ -46,8 +46,8 @@ voorkeurnaam is wordt de originele naam teruggegeven.
 }
 \note{
 De TWN-lijst is niet altijd volledig consistent. Diverse taxa staan
-meerdere malen in de lijst. In dat geval wordt het eerste resultaat
-geretourneerd.
+meerdere malen in de lijst. In dat geval wordt het eerste resultaat met
+de laagste statuscode geretourneerd.
 
 Als een taxon niet de voorkeurnaam is dan ontbreekt er vaak informatie
 zoals de parent van het taxon. De functie \code{twn_parent} zoekt in dat

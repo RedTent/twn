@@ -11,3 +11,4 @@ twn_checks
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+cran-comments.md
