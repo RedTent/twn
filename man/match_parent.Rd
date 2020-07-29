@@ -2,7 +2,7 @@
 % Please edit documentation in R/match_parent.R
 \name{match_parent}
 \alias{match_parent}
-\title{Vind een matching parent in een referentielijst}
+\title{Vind een matchende parent in een referentielijst}
 \usage{
 match_parent(taxa, ref_taxa, n_parents = 5, verbose = FALSE)
 }
@@ -20,13 +20,13 @@ Een vector met taxa die in de lijst met referentie-taxa voorkomen.
 \itemize{
 \item Als de soort in de referentie-taxa wordt gevonden, dan wordt deze geretourneerd.
 \item Als de soort niet, maar wel een parent is gevonden in de lijst met referentie-taxa wordt deze geretourneerd.
-\item Als de soort of parent niet is gevonden in de lijst met referentie-taxa wordt \code{NA}  gertourneerd.
+\item Als de soort of parent niet is gevonden in de lijst met referentie-taxa wordt \code{NA}  geretourneerd.
 }
 }
 \description{
 Met deze functie is met mogelijk om van een taxon een parent in de TWN-lijst te vinden die in een lijst met
 referentie-taxa voorkomt. Dit kan bijv. nuttig zijn als het taxon een ondersoort is van een soort die in
-een beoordelingssysteem voorkomt.De functie kan dan worden gebruikt om de soortenlijst geschikt te maken
+een beoordelingssysteem voorkomt. De functie kan dan worden gebruikt om de soortenlijst geschikt te maken
 voor een beoordelingssysteem.
 }
 \examples{
