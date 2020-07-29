@@ -1,15 +1,17 @@
 Package: twn
-Title: Package voor de TWN-lijst en bijbehorende functies
+Title: Taxa Waterbeheer Nederland (TWN) - TWN-list and functions
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Johan",
            family = "van Tent",
            role = c("aut", "cre"),
            email = "tentvanjohan@hotmail.com")
-Description: Het doel van twn is tweeledig. Ten eerste maakt twn het eenvoudig 
-    om de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft twn 
-    diverse functies die het gemakkelijk maken om de TWN-lijst te gebruiken bij 
-    de analyse van ecologische data.
+Description: The TWN-list (Taxa Waterbeheer Nederland) is the Dutch standard for naming 
+    taxons in Dutch Watermanagement. The goal of twn is to make it easier to use the 
+    TWN-list for ecological analyses. twn consists of two parts. First it makes the 
+    TWN-list itself available in R. Second, twn has a few functions that make it 
+    easy to perform some basic and often recurring tasks for checking and consulting
+    taxonomic data from the TWN-list. 
 Language: NL
 License: MIT + file LICENSE
 Encoding: UTF-8
