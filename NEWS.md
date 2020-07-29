@@ -1,3 +1,7 @@
+# twn 0.1.0
+
+First release on CRAN
+
 # twn 0.0.0.9000
 
 - Nieuwe TWN-lijst (2020-07-25)
