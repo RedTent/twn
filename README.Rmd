@@ -12,14 +12,14 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# twn
+# twn - TWN-lijst voor R
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.org/RedTent/twn)
 [![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master)
 <!-- badges: end -->
 
-Het doel van `twn` is tweeledig. Ten eerste maakt `twn` het eenvoudig om de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft `twn` diverse functies die het gemakkelijk maken om de TWN-lijst te gebruiken bij de analyse van ecologische data.
+Het doel van *twn* is tweeledig. Ten eerste maakt *twn* het eenvoudig om de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft *twn* diverse functies die het gemakkelijk maken om de TWN-lijst te gebruiken bij de analyse van ecologische data.
 
 ## Installatie
 
@@ -29,9 +29,12 @@ De development version is te installeren van [GitHub](https://github.com/Redtent
 # install.packages("devtools")
 devtools::install_github("RedTent/twn")
 ```
+
+
+
 ## TWN lijst
 
-`twn` bevat de complete TWN-lijst (`twn_lijst`). De datum van de TWN-lijst wordt getoond bij het laden van de package. 
+*twn* bevat de complete TWN-lijst (`twn_lijst`). De datum van de TWN-lijst wordt getoond bij het laden van de package. 
 
 ```{r}
 library(twn)
@@ -80,7 +83,7 @@ is_valid_twn(invalid)
 
 ## Hogere taxonlevels
 
-In sommige gevallen is het handig om soorten te aggregeren naar hogere taxonlevels. `twn` heeft twee functies die hierbij kunnen helpen: `increase_taxonlevel` aggregeert naar een gespecificeerd niveau, `match_parent` aggreggeert o.b.v. een referentielijst. Deze laatste functie is nuttig bij het gebruik van maatlatten en autecologische data.
+In sommige gevallen is het handig om soorten te aggregeren naar hogere taxonlevels. *twn* heeft twee functies die hierbij kunnen helpen: `increase_taxonlevel` aggregeert naar een gespecificeerd niveau, `match_parent` aggreggeert o.b.v. een referentielijst. Deze laatste functie is nuttig bij het gebruik van ecologische maatlatten en autecologische data.
 
 ```{r increase-taxonlevels}
 taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
@@ -88,7 +91,7 @@ taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
 increase_taxonlevel(taxa, "Familia")
 
 referentie_taxa <- c("Bufonidae", "Epidalea")
-match_parent(taxa, referentie_taxa)
+match_parent(taxa = taxa, ref_taxa = referentie_taxa)
 
 ```
 

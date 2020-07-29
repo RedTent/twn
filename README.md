@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# twn
+# twn - TWN-lijst voor R
 
 <!-- badges: start -->
 
@@ -11,9 +11,9 @@ status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.
 coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master)
 <!-- badges: end -->
 
-Het doel van `twn` is tweeledig. Ten eerste maakt `twn` het eenvoudig om
+Het doel van *twn* is tweeledig. Ten eerste maakt *twn* het eenvoudig om
 de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft
-`twn` diverse functies die het gemakkelijk maken om de TWN-lijst te
+*twn* diverse functies die het gemakkelijk maken om de TWN-lijst te
 gebruiken bij de analyse van ecologische data.
 
 ## Installatie
@@ -28,7 +28,7 @@ devtools::install_github("RedTent/twn")
 
 ## TWN lijst
 
-`twn` bevat de complete TWN-lijst (`twn_lijst`). De datum van de
+*twn* bevat de complete TWN-lijst (`twn_lijst`). De datum van de
 TWN-lijst wordt getoond bij het laden van de package.
 
 ``` r
@@ -105,17 +105,19 @@ is_valid_twn(invalid)
 ## Hogere taxonlevels
 
 In sommige gevallen is het handig om soorten te aggregeren naar hogere
-taxonlevels. `twn` heeft twee functies die hierbij kunnen helpen:
+taxonlevels. *twn* heeft twee functies die hierbij kunnen helpen:
 `increase_taxonlevel` aggregeert naar een gespecificeerd niveau,
 `match_parent` aggreggeert o.b.v. een referentielijst. Deze laatste
-functie is nuttig bij het gebruik van maatlatten en autecologische data.
+functie is nuttig bij het gebruik van ecologische maatlatten en
+autecologische data.
 
 ``` r
+taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
 
 increase_taxonlevel(taxa, "Familia")
 #> [1] "Bufonidae" "Bufonidae" "Bufonidae" "Ezel"      NA
 
-ref <- c("Bufonidae", "Epidalea")
-match_parent(taxa, ref)
+referentie_taxa <- c("Bufonidae", "Epidalea")
+match_parent(taxa = taxa, ref_taxa = referentie_taxa)
 #> [1] "Epidalea"  "Bufonidae" "Bufonidae" NA          NA
 ```
