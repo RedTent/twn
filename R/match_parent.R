@@ -1,8 +1,8 @@
-#' Vind een matching parent in een referentielijst
+#' Vind een matchende parent in een referentielijst
 #'
 #' Met deze functie is met mogelijk om van een taxon een parent in de TWN-lijst te vinden die in een lijst met 
 #' referentie-taxa voorkomt. Dit kan bijv. nuttig zijn als het taxon een ondersoort is van een soort die in 
-#' een beoordelingssysteem voorkomt.De functie kan dan worden gebruikt om de soortenlijst geschikt te maken 
+#' een beoordelingssysteem voorkomt. De functie kan dan worden gebruikt om de soortenlijst geschikt te maken 
 #' voor een beoordelingssysteem.
 #'
 #' @param taxa Een vector met taxa
@@ -13,7 +13,7 @@
 #' @return Een vector met taxa die in de lijst met referentie-taxa voorkomen. 
 #' - Als de soort in de referentie-taxa wordt gevonden, dan wordt deze geretourneerd. 
 #' - Als de soort niet, maar wel een parent is gevonden in de lijst met referentie-taxa wordt deze geretourneerd. 
-#' - Als de soort of parent niet is gevonden in de lijst met referentie-taxa wordt `NA`  gertourneerd.
+#' - Als de soort of parent niet is gevonden in de lijst met referentie-taxa wordt `NA`  geretourneerd.
 #' 
 #' @export
 #'
