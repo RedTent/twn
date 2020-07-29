@@ -1,0 +1,23 @@
+
+
+reference:
+  - title: TWN data
+    desc: Datatabellen van de TWN-lijst
+    contents:
+      - '`twn_lijst`'
+      - '`twn_literatuur`'
+      - '`twn_statuscodes`'
+  - title: TWN informatie
+    desc: Functies voor het opzoeken van TWN-informatie
+    contents:
+      - '`is_twn`'
+      - '`twn_info`'
+  - title: Verhogen taxonomisch niveau
+    desc: Functies om het taxonomische niveau te verhogen
+    contents:
+      - '`increase_taxonlevel`'
+      - '`match_parent`'
+  - title: twn
+    desc: Beschrijving van het package twn
+    contents:
+      - '`twn`'

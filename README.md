@@ -113,11 +113,11 @@ autecologische data.
 
 ``` r
 taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
+referentie_taxa <- c("Bufonidae", "Epidalea")
 
 increase_taxonlevel(taxa, "Familia")
 #> [1] "Bufonidae" "Bufonidae" "Bufonidae" "Ezel"      NA
 
-referentie_taxa <- c("Bufonidae", "Epidalea")
 match_parent(taxa = taxa, ref_taxa = referentie_taxa)
 #> [1] "Epidalea"  "Bufonidae" "Bufonidae" NA          NA
 ```

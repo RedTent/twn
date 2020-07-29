@@ -8,4 +8,6 @@ docs
 ^codecov\.yml$
 ^README\.Rmd$
 twn_checks
-
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

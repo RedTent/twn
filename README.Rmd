@@ -87,10 +87,10 @@ In sommige gevallen is het handig om soorten te aggregeren naar hogere taxonleve
 
 ```{r increase-taxonlevels}
 taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
+referentie_taxa <- c("Bufonidae", "Epidalea")
 
 increase_taxonlevel(taxa, "Familia")
 
-referentie_taxa <- c("Bufonidae", "Epidalea")
 match_parent(taxa = taxa, ref_taxa = referentie_taxa)
 
 ```
