@@ -12,3 +12,4 @@ twn_checks
 ^docs$
 ^pkgdown$
 cran-comments.md
+^CRAN-RELEASE$

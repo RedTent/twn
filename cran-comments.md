@@ -17,3 +17,6 @@ This is my first submission of this package.
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.
+
+## Bugfixes
+Repaired missing single quotes around package name in the description.
