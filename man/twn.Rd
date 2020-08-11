@@ -3,9 +3,9 @@
 \docType{package}
 \name{twn}
 \alias{twn}
-\title{twn - Een package voor de TWN-lijst}
+\title{Een package voor de TWN-lijst}
 \description{
-De bedoeling van \code{twn} is om de TWN-lijst beschikbaar te maken in R en om er makkelijk mee te kunnen werken.
+De bedoeling van 'twn' is om de TWN-lijst beschikbaar te maken in R en om er makkelijk mee te kunnen werken.
 De package biedt diverse functies die het eenvoudig maken om informatie van een taxon op te vragen.
 
 Zie ook:
