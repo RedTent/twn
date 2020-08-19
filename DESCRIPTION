@@ -29,3 +29,5 @@ Imports:
     crayon,
     rlang,
     memoise
+URL: https://github.com/RedTent/twn
+BugReports: https://github.com/RedTent/twn/issues
