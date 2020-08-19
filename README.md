@@ -9,6 +9,11 @@
 status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.org/RedTent/twn)
 [![Codecov test
 coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/twn)](https://CRAN.R-project.org/package=twn)
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/twn)
 <!-- badges: end -->
 
 Het doel van *twn* is tweeledig. Ten eerste maakt *twn* het eenvoudig om
@@ -18,7 +23,13 @@ gebruiken bij de analyse van ecologische data.
 
 ## Installatie
 
-De development version is te installeren van
+‘twn’ is te installeren vanaf CRAN.
+
+``` r
+install.packages("twn")
+```
+
+De ontwikkelversie is te installeren van
 [GitHub](https://github.com/Redtent/twn) met:
 
 ``` r
@@ -33,7 +44,7 @@ TWN-lijst wordt getoond bij het laden van de package.
 
 ``` r
 library(twn)
-#> twn gebruikt de TWN-lijst van 2020-07-25
+#> twn gebruikt de TWN-lijst van 2020-08-11
 
 dplyr::glimpse(twn_lijst)
 #> Rows: 26,701
@@ -51,7 +62,7 @@ dplyr::glimpse(twn_lijst)
 #> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "1...
 
 attr(twn_lijst, "datum_twn_lijst")
-#> [1] "2020-07-25"
+#> [1] "2020-08-11"
 ```
 
 ## TWN informatie opzoeken
@@ -108,8 +119,8 @@ In sommige gevallen is het handig om soorten te aggregeren naar hogere
 taxonlevels. *twn* heeft twee functies die hierbij kunnen helpen:
 `increase_taxonlevel` aggregeert naar een gespecificeerd niveau,
 `match_parent` aggreggeert o.b.v. een referentielijst. Deze laatste
-functie is nuttig bij het gebruik van ecologische maatlatten en
-autecologische data.
+functie is nuttig om soortenlijsten te kunnen matchen. Dit is handig bij
+het gebruik van ecologische maatlatten en autecologische data.
 
 ``` r
 taxa <- c("Bufo calamita", "Bufo bufo", "Bufo", "Ezel", NA)
