@@ -1,5 +1,9 @@
 # twn (development version)
 
+## Bugfixes
+
+- Issue opgelost waarbij functies niet werkten als het package niet geladen was. [Issue #1](https://github.com/RedTent/twn/issues/1#issue-682498150)
+
 # twn 0.1.0
 
 First release on CRAN
