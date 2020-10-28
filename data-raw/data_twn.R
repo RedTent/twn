@@ -36,7 +36,10 @@ twn_orig <- readxl::read_excel(paste0("data-raw/", twn_bestand_recent)) %>% muta
 
 taxonlevel_volgorde <- readr::read_csv2("data-raw/volgorde_taxonlevels.csv") %>% .$taxonlevel
 
-twn_lijst <- twn_orig %>% mutate(taxonlevel = factor(taxonlevel, levels = taxonlevel_volgorde, ordered = TRUE))
+twn_lijst <- twn_orig %>% 
+  mutate(taxonlevel = factor(taxonlevel, levels = taxonlevel_volgorde, ordered = TRUE),
+         author = stringi::stri_escape_unicode(author))
+
 attr(twn_lijst, "datum_twn_lijst") <- datum_twn_bestand_recent
 
 usethis::use_data(twn_lijst, overwrite = TRUE)
@@ -47,7 +50,10 @@ usethis::use_data(twn_lijst, overwrite = TRUE)
 twn_literatuur <- readxl::read_excel(paste0("data-raw/", twn_lit_recent)) %>% 
   dplyr::rename(literature = `Taxabase code`, 
                 short_reference = `Short reference`, 
-                full_reference = `Reference literature`)
+                full_reference = `Reference literature`) %>% 
+  mutate(short_reference = stringi::stri_escape_unicode(short_reference),
+         full_reference = stringi::stri_escape_unicode(full_reference))
+
 attr(twn_literatuur, "datum_twn_literatuur") <- datum_twn_lit_recent
 
 usethis::use_data(twn_literatuur, overwrite = TRUE)
