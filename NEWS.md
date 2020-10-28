@@ -1,5 +1,11 @@
 # twn (development version)
 
+
+## Wijzigingen
+
+- Nieuwe TWN-lijst en literatuurlijst (28-10-2020)
+- Achter de schermen wordt `memoise()` gebruikt. Om problemen met de cache te voorkomen is een timeout opgenomen. De timeout-periode (seconden) kan worden ingesteld met `options(twn.memoise_timeout = 120)`.
+
 ## Bugfixes
 
 - Issue opgelost waarbij functies niet werkten als het package niet geladen was. [Issue #1](https://github.com/RedTent/twn/issues/1#issue-682498150)
