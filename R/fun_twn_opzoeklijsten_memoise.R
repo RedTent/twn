@@ -5,6 +5,10 @@
 #' 
 #' @name opzoeklijsten
 #' 
+#' @details De opzoeklijsten maken gebruik van memoise. Om eventuele problemen met de cache 
+#' te voorkomen wordt de cache na 120 seconden gereset. Dit is aan te passen met 
+#' `options(twn.memoise_timeout = 120)`
+#' 
 #' 
 NULL
 
@@ -13,21 +17,21 @@ NULL
 #' @rdname opzoeklijsten
 fun_twn_voorkeur <- memoise::memoise(
   function() {
-    twn_lijst %>% 
+    twn::twn_lijst %>% 
       dplyr::arrange(status) %>% 
       dplyr::mutate(refername = ifelse(is.na(refername), taxonname, refername)) %>% 
       dplyr::select(taxonname, refername) %>% 
       dplyr::filter(!is.na(refername)) %>% 
       dplyr::distinct() %>% 
       tibble::deframe()
-  })
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 #' @rdname opzoeklijsten
 fun_twn_parent <- memoise::memoise(
   function() {
     #twn_parent_1 is een opzoeklijst om soorten die niet de voorkeurnaam hebben toch een parent te geven.
     twn_parent_1 <- 
-      twn_lijst %>% 
+      twn::twn_lijst %>% 
       dplyr::arrange(status) %>% 
       dplyr::select(taxonname, parentname) %>% 
       dplyr::distinct() %>% 
@@ -35,7 +39,7 @@ fun_twn_parent <- memoise::memoise(
     
     opzoektabel_twn_voorkeur <- fun_twn_voorkeur()
     
-    twn_lijst %>% 
+    twn::twn_lijst %>% 
       dplyr::arrange(status) %>% 
       dplyr::mutate(voorkeurnaam = unname(opzoektabel_twn_voorkeur[taxonname]),
              parentname = ifelse(is.na(parentname), unname(twn_parent_1[voorkeurnaam]), parentname)) %>% 
@@ -43,7 +47,7 @@ fun_twn_parent <- memoise::memoise(
       dplyr::filter(!is.na(parentname)) %>% 
       dplyr::distinct() %>% 
       tibble::deframe()
-  })
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 
 ### Status 
@@ -51,51 +55,51 @@ fun_twn_parent <- memoise::memoise(
 #' @rdname opzoeklijsten
 fun_twn_status <- memoise::memoise(
   function() {
-    twn_lijst %>%
+    twn::twn_lijst %>%
       dplyr::arrange(status) %>%
       dplyr::select(taxonname, status) %>%
       dplyr::filter(!is.na(status)) %>%
       dplyr::distinct() %>%
       tibble::deframe()
-  })
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 #' @rdname opzoeklijsten
 fun_twn_status_tekst <- memoise::memoise(
   function() {
-    twn_lijst %>%
+    twn::twn_lijst %>%
       dplyr::arrange(status) %>%
-      dplyr::left_join(twn_statuscodes, by = "status") %>% 
+      dplyr::left_join(twn::twn_statuscodes, by = "status") %>% 
       dplyr::select(taxonname, omschrijving) %>%
       dplyr::filter(!is.na(omschrijving)) %>%
       dplyr::distinct() %>%
       tibble::deframe()
-  })
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 ### Nederlandse naam
 
 #' @rdname opzoeklijsten
 fun_twn_localname <- memoise::memoise(
   function() {
-    twn_lijst %>%
+    twn::twn_lijst %>%
       dplyr::arrange(status) %>%
       dplyr::select(taxonname, localname) %>%
       dplyr::filter(!is.na(localname)) %>%
       dplyr::distinct() %>%
       tibble::deframe()
-  })
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 ### Taxonlevel
 
 #' @rdname opzoeklijsten
 fun_twn_taxonlevel <- memoise::memoise(
   function() {
-    twn_lijst %>%
+    twn::twn_lijst %>%
       dplyr::arrange(status) %>%
       dplyr::select(taxonname, taxonlevel) %>%
       dplyr::filter(!is.na(taxonlevel)) %>%
       dplyr::distinct() %>%
       tibble::deframe()
-  })
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 
 
