@@ -71,6 +71,73 @@ usethis::use_data(twn_statuscodes, overwrite = TRUE)
 
 taxonlevels <- factor(taxonlevel_volgorde, levels = taxonlevel_volgorde, ordered = TRUE)
 
+opzoektabel_twn_voorkeur <- 
+  twn_lijst %>% 
+  dplyr::arrange(status) %>% 
+  dplyr::mutate(refername = ifelse(is.na(refername), taxonname, refername)) %>% 
+  dplyr::select(taxonname, refername) %>% 
+  dplyr::filter(!is.na(refername)) %>% 
+  dplyr::distinct() %>% 
+  tibble::deframe()
+
+
+#twn_parent_1 is een opzoeklijst om soorten die niet de voorkeurnaam hebben toch een parent te geven.
+twn_parent_1 <- 
+  twn_lijst %>% 
+  dplyr::arrange(status) %>% 
+  dplyr::select(taxonname, parentname) %>% 
+  dplyr::distinct() %>% 
+  tibble::deframe()
+
+opzoektabel_twn_parent <-   
+  twn_lijst %>% 
+  dplyr::arrange(status) %>% 
+  dplyr::mutate(voorkeurnaam = unname(opzoektabel_twn_voorkeur[taxonname]),
+                parentname = ifelse(is.na(parentname), unname(twn_parent_1[voorkeurnaam]), parentname)) %>% 
+  dplyr::select(taxonname, parentname) %>% 
+  dplyr::filter(!is.na(parentname)) %>% 
+  dplyr::distinct() %>% 
+  tibble::deframe()
+
+
+### Status 
+opzoektabel_twn_status <- 
+  twn_lijst %>%
+  dplyr::arrange(status) %>%
+  dplyr::select(taxonname, status) %>%
+  dplyr::filter(!is.na(status)) %>%
+  dplyr::distinct() %>%
+  tibble::deframe()
+
+
+opzoektabel_twn_status_tekst <- 
+  twn_lijst %>%
+  dplyr::arrange(status) %>%
+  dplyr::left_join(twn_statuscodes, by = "status") %>% 
+  dplyr::select(taxonname, omschrijving) %>%
+  dplyr::filter(!is.na(omschrijving)) %>%
+  dplyr::distinct() %>%
+  tibble::deframe()
+
+### Nederlandse naam
+opzoektabel_twn_localname <- 
+  twn_lijst %>%
+  dplyr::arrange(status) %>%
+  dplyr::select(taxonname, localname) %>%
+  dplyr::filter(!is.na(localname)) %>%
+  dplyr::distinct() %>%
+  tibble::deframe()
+
+### Taxonlevel
+opzoektabel_twn_taxonlevel <- 
+  twn_lijst %>%
+  dplyr::arrange(status) %>%
+  dplyr::select(taxonname, taxonlevel) %>%
+  dplyr::filter(!is.na(taxonlevel)) %>%
+  dplyr::distinct() %>%
+  tibble::deframe()
+
+
 # save in sysdata ---------------------------------------------------------
 print("x")
 # Het gebruik van sysdata.R borgt dat er geen interne bestanden verloren gaan.

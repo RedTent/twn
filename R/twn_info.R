@@ -45,30 +45,30 @@ NULL
 #' @rdname twn_info
 #' @export
 twn_voorkeurnaam <- function(taxa){
-  unname(fun_twn_voorkeur()[as.character(taxa)])
+  unname(opzoektabel_twn_voorkeur[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
 twn_parent <- function(taxa){
-  unname(fun_twn_parent()[as.character(taxa)])
+  unname(opzoektabel_twn_parent[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
 twn_status <- function(taxa, code = TRUE){
-  if (code) unname(fun_twn_status()[as.character(taxa)])
-  else unname(fun_twn_status_tekst()[as.character(taxa)])
+  if (code) unname(opzoektabel_twn_status[as.character(taxa)])
+  else unname(opzoektabel_twn_status_tekst[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
 twn_localname <- function(taxa){
-  unname(fun_twn_localname()[as.character(taxa)])
+  unname(opzoektabel_twn_localname[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
 twn_taxonlevel <- function(taxa){
-  unname(fun_twn_taxonlevel()[as.character(taxa)])
+  unname(opzoektabel_twn_taxonlevel[as.character(taxa)])
 }

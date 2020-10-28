@@ -4,7 +4,7 @@
 ## Wijzigingen
 
 - Nieuwe TWN-lijst en literatuurlijst (28-10-2020)
-- Achter de schermen wordt `memoise()` gebruikt. Om problemen met de cache te voorkomen is een timeout opgenomen. De timeout-periode (seconden) kan worden ingesteld met `options(twn.memoise_timeout = 120)`.
+- Memoise wordt niet meer gebruikt achter de schermen.
 
 ## Bugfixes
 

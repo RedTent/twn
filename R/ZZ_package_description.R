@@ -26,4 +26,12 @@ if (getRversion() >= "2.15.1")  utils::globalVariables(c("matching",
                                                          "nieuwe_naam",
                                                          "level",
                                                          "parent"
+                                                         # "status",
+                                                         # "refername",
+                                                         # "taxonname",
+                                                         # "parentname",
+                                                         # "localname",
+                                                         # "voorkeurnaam",
+                                                         # "omschrijving",
+                                                         # "taxonlevel"
                                                          ))
