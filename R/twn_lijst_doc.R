@@ -66,7 +66,7 @@
 #'- `omschrijving`- Omschrijving van de betekenis van de statuscode
 #' 
 #' @source 
-#' [http://www.aquo.nl/faq/faq-twn/](http://www.aquo.nl/faq/faq-twn/)
+#' [https://www.aquo.nl/faq/faq-twn/](https://www.aquo.nl/faq/faq-twn/)
 #'
 #' @examples 
 #' 
