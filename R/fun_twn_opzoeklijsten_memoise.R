@@ -5,6 +5,10 @@
 #' 
 #' @name opzoeklijsten
 #' 
+#' @details De opzoeklijsten maken gebruik van memoise. Om eventuele problemen met de cache 
+#' te voorkomen wordt de cache na 120 seconden gereset. Dit is aan te passen met 
+#' `options(twn.memoise_timeout = 120)`
+#' 
 #' 
 NULL
 
@@ -20,7 +24,7 @@ fun_twn_voorkeur <- memoise::memoise(
       dplyr::filter(!is.na(refername)) %>% 
       dplyr::distinct() %>% 
       tibble::deframe()
-  }, ~memoise::timeout(120))
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 #' @rdname opzoeklijsten
 fun_twn_parent <- memoise::memoise(
@@ -43,7 +47,7 @@ fun_twn_parent <- memoise::memoise(
       dplyr::filter(!is.na(parentname)) %>% 
       dplyr::distinct() %>% 
       tibble::deframe()
-  }, ~memoise::timeout(120))
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 
 ### Status 
@@ -57,7 +61,7 @@ fun_twn_status <- memoise::memoise(
       dplyr::filter(!is.na(status)) %>%
       dplyr::distinct() %>%
       tibble::deframe()
-  }, ~memoise::timeout(120))
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 #' @rdname opzoeklijsten
 fun_twn_status_tekst <- memoise::memoise(
@@ -69,7 +73,7 @@ fun_twn_status_tekst <- memoise::memoise(
       dplyr::filter(!is.na(omschrijving)) %>%
       dplyr::distinct() %>%
       tibble::deframe()
-  }, ~memoise::timeout(120))
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 ### Nederlandse naam
 
@@ -82,7 +86,7 @@ fun_twn_localname <- memoise::memoise(
       dplyr::filter(!is.na(localname)) %>%
       dplyr::distinct() %>%
       tibble::deframe()
-  }, ~memoise::timeout(120))
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 ### Taxonlevel
 
@@ -95,7 +99,7 @@ fun_twn_taxonlevel <- memoise::memoise(
       dplyr::filter(!is.na(taxonlevel)) %>%
       dplyr::distinct() %>%
       tibble::deframe()
-  }, ~memoise::timeout(120))
+  }, ~memoise::timeout(getOption("twn.memoise_timeout")))
 
 
 

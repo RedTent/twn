@@ -26,3 +26,8 @@ fun_twn_taxonlevel()
 Deze functies maken gebruik van de TWN-lijst en memoise om opzoeklijsten te maken t.b.v de
 twn_info-functies. Uitsluitend voor intern gebruik
 }
+\details{
+De opzoeklijsten maken gebruik van memoise. Om eventuele problemen met de cache
+te voorkomen wordt de cache na 120 seconden gereset. Dit is aan te passen met
+\code{options(twn.memoise_timeout = 120)}
+}
