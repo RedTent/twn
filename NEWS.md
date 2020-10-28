@@ -9,6 +9,7 @@
 ## Bugfixes
 
 - Issue opgelost waarbij functies niet werkten als het package niet geladen was. [Issue #1](https://github.com/RedTent/twn/issues/1#issue-682498150)
+- Unicodetekst wordt ge-escaped (bijzondere tekens in auteursnamen)
 
 # twn 0.1.0
 
