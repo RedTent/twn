@@ -13,4 +13,4 @@ There are currently no downstream dependencies for this package.
 
 ## Bugfixes
 
-None
+Fixed two NOTEs that occurred in the previous version (0.1.0)
