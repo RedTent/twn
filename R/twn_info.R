@@ -12,6 +12,7 @@
 #'   - `twn_status`: Geeft de status(code) van het taxon. 
 #'   - `twn_localname`: Geeft de Nederlandse naam van het taxon. 
 #'   - `twn_taxonlevel`: Geeft het taxonomische niveau van het taxon.
+#'   - `twn_taxontype`: Geeft het taxontype van het taxon. 
 #'
 #' @param taxa Een vector met taxonnamen.
 #' @param code Logisch. Geeft aan of de code of de omschrijving wordt geretourneerd.
@@ -22,6 +23,10 @@
 #' @note De TWN-lijst is niet altijd volledig consistent. Diverse taxa staan
 #'   meerdere malen in de lijst. In dat geval wordt het eerste resultaat met 
 #'   de laagste statuscode geretourneerd.
+#'   
+#'   NB sommige taxa hebben meer dan 1 taxontype. In dat geval zijn de 
+#'   taxontypen gecombineerd in een string in alfabetische volgorde 
+#'   gescheiden door een spaties.
 #'   
 #'   Als een taxon niet de voorkeurnaam is dan ontbreekt er vaak informatie 
 #'   zoals de parent van het taxon. De functie `twn_parent` zoekt in dat
@@ -35,6 +40,7 @@
 #' twn_status(taxa)
 #' twn_localname(taxa)
 #' twn_taxonlevel(taxa)
+#' twn_taxontype(taxa)
 #'
 #' @name twn_info
 #' @seealso Deze functies werken op basis van de tabel [twn_lijst]
@@ -71,4 +77,10 @@ twn_localname <- function(taxa){
 #' @export
 twn_taxonlevel <- function(taxa){
   unname(opzoektabel_twn_taxonlevel[as.character(taxa)])
+}
+
+#' @rdname twn_info
+#' @export
+twn_taxontype <- function(taxa){
+  unname(opzoektabel_twn_taxontype[as.character(taxa)])
 }

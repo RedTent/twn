@@ -143,6 +143,13 @@ opzoektabel_twn_taxonlevel <-
   dplyr::distinct() %>%
   tibble::deframe()
 
+opzoektabel_twn_taxontype <- 
+  twn_lijst %>% 
+  dplyr::group_by(taxonname) %>% 
+  dplyr::arrange(taxontype) %>% 
+  dplyr::summarise(paste(taxontype, collapse = " ")) %>% 
+  tibble::deframe()
+
 
 # save in sysdata ---------------------------------------------------------
 print("x")

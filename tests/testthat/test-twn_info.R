@@ -1,4 +1,4 @@
-context("twn_info functies ex zonder library(twn)")
+context("twn_info functies zonder library(twn)")
 
 test_that("twn_info functies werken", {
   on.exit(library(twn))
@@ -27,6 +27,7 @@ test_that("twn_info functies werken", {
   expect_equal(twn_status(namen), c("20", "10", "10", NA, NA))
   expect_equal(twn_status(namen, code = FALSE), c("Synonym", "Preferred name", "Preferred name", NA, NA))
   expect_equal(as.character(twn_taxonlevel(namen)), c("Species", "Genus", "Species", NA, NA))
+  expect_equal(twn_taxontype(c("Bufo", "Plantae")), c("Amphibia", "Macroalgae Macrophytes Phytoplankton"))
   
   expect_is(twn_taxonlevel(namen), "factor")
 })
