@@ -1,5 +1,12 @@
 # twn (development version)
 
+## Nieuw
+
+- `twn_taxontype()` toegevoegd om het taxontype op te vragen. (NB sommige taxa hebben meer dan 1 taxontype)
+- `get_children()` - IN ONTWIKKELING
+
+## Wijzigingen
+
 # twn 0.1.1
 
 
