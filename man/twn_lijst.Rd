@@ -44,6 +44,9 @@ De centrale TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan 
 verouderd zijn. De datum van de gebruikte TWN-lijst is opgeslagen in het attribuut
 \code{datum_twn_lijst} en kan worden opgevraagd met de code \code{attr(twn_lijst, "datum_twn_lijst")}.
 
+De auteursnamen bevatten veel non-ASCII-tekens. Deze zijn geconverteerd naar het format uxxxx.
+De originele tekens kunnen verkregen worden met de functie \code{stringi::stri_unescape_unicode()}
+
 De volgorde van de taxonlevels is op detailniveau (met name lager dan genus) soms enigszins arbitrair.
 Is een Cultivar bijv. een hoger niveau dan een Subspecies? Toch is er voor gekozen om de taxonlevels
 op te nemen als een geordende factor omdat dit nuttig kan zijn o.a. bij het filteren van de lijst.
