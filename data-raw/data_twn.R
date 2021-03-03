@@ -73,6 +73,13 @@ twn_statuscodes <-
 
 usethis::use_data(twn_statuscodes, overwrite = TRUE)
 
+
+# Taxonlevels -------------------------------------------------------------
+
+twn_taxonlevels <- factor(taxonlevel_volgorde, levels = taxonlevel_volgorde, ordered = TRUE)
+
+usethis::use_data(twn_taxonlevels, overwrite = TRUE)
+
 # internals -----------------------------------------------
 
 taxonlevels <- factor(taxonlevel_volgorde, levels = taxonlevel_volgorde, ordered = TRUE)
