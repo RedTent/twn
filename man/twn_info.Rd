@@ -69,6 +69,7 @@ twn_parent(taxa)
 twn_status(taxa)
 twn_localname(taxa)
 twn_taxonlevel(taxa)
+twn_taxontype(taxa)
 
 }
 \seealso{
