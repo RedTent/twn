@@ -28,6 +28,7 @@ Imports:
     dplyr,
     crayon,
     rlang,
-    stringr
+    stringr,
+    stats
 URL: https://github.com/RedTent/twn
 BugReports: https://github.com/RedTent/twn/issues
