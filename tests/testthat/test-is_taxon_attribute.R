@@ -10,3 +10,20 @@ test_that("is_taxonlevel werkt", {
   expect_error(is_taxonlevel(taxa, "species Comb"))
   expect_equal(is_taxonlevel(taxa, "Familia"), c(FALSE, FALSE, TRUE, NA, NA))
 })
+
+
+test_that("is_taxontype werkt", {
+  
+  # taxa <- twn_lijst$taxonname
+  taxa <- c("Bufo bufo", "Abies", "Bufonidae", "Buf", NA)
+  
+  expect_true(is_taxontype("Bufo", "Amphibia"))
+  expect_equal(is_taxontype(taxa, "Amphibia"), c(TRUE, FALSE, TRUE, NA, NA))
+  expect_equal(is_taxontype(taxa, "amphibia"), c(TRUE, FALSE, TRUE, NA, NA))
+  expect_equal(is_taxontype(taxa, "Macrophytes"), c(FALSE, TRUE, FALSE, NA, NA))
+  
+  expect_error(is_taxontype(taxa, "Amphibi"))
+  expect_error(is_taxontype(taxa))
+  
+})
+
