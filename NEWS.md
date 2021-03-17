@@ -8,6 +8,8 @@
 
 ## Wijzigingen
 
+- Nieuwe TWN-lijst (17-3-2021)
+
 ## TODO
 
 - `twn_synonyms`
