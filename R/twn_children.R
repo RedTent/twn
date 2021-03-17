@@ -64,12 +64,12 @@ twn_children <- function(parent,
 #' }
 twn_children_rec <- function(parent, child_tabel) {
   
-  rec <- unname(child_tabel[names(child_tabel) %in% parent])
+  temp_res <- unname(child_tabel[names(child_tabel) %in% parent])
   
-  if(length(rec) == 0) {
+  if(length(temp_res) == 0) {
     return(NULL)
   } else {
-    res <- c(rec, twn_children_rec(rec, child_tabel))
+    res <- c(temp_res, twn_children_rec(temp_res, child_tabel))
     return(res)
   }
 }
