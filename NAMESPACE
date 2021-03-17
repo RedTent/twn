@@ -2,6 +2,7 @@
 
 export(increase_taxonlevel)
 export(is_taxonlevel)
+export(is_taxontype)
 export(is_twn)
 export(is_valid_twn)
 export(match_parent)
