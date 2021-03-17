@@ -73,6 +73,13 @@ twn_statuscodes <-
 
 usethis::use_data(twn_statuscodes, overwrite = TRUE)
 
+
+# Taxonlevels -------------------------------------------------------------
+
+twn_taxonlevels <- factor(taxonlevel_volgorde, levels = taxonlevel_volgorde, ordered = TRUE)
+
+usethis::use_data(twn_taxonlevels, overwrite = TRUE)
+
 # internals -----------------------------------------------
 
 taxonlevels <- factor(taxonlevel_volgorde, levels = taxonlevel_volgorde, ordered = TRUE)
@@ -141,6 +148,13 @@ opzoektabel_twn_taxonlevel <-
   dplyr::select(taxonname, taxonlevel) %>%
   dplyr::filter(!is.na(taxonlevel)) %>%
   dplyr::distinct() %>%
+  tibble::deframe()
+
+opzoektabel_twn_taxontype <- 
+  twn_lijst %>% 
+  dplyr::group_by(taxonname) %>% 
+  dplyr::arrange(taxontype) %>% 
+  dplyr::summarise(paste(taxontype, collapse = " ")) %>% 
   tibble::deframe()
 
 

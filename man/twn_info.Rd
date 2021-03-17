@@ -7,6 +7,7 @@
 \alias{twn_status}
 \alias{twn_localname}
 \alias{twn_taxonlevel}
+\alias{twn_taxontype}
 \title{Opzoeken van de TWN informatie}
 \usage{
 twn_voorkeurnaam(taxa)
@@ -18,6 +19,8 @@ twn_status(taxa, code = TRUE)
 twn_localname(taxa)
 
 twn_taxonlevel(taxa)
+
+twn_taxontype(taxa)
 }
 \arguments{
 \item{taxa}{Een vector met taxonnamen.}
@@ -42,12 +45,17 @@ voorkeurnaam is wordt de originele naam teruggegeven.
 \item \code{twn_status}: Geeft de status(code) van het taxon.
 \item \code{twn_localname}: Geeft de Nederlandse naam van het taxon.
 \item \code{twn_taxonlevel}: Geeft het taxonomische niveau van het taxon.
+\item \code{twn_taxontype}: Geeft het taxontype van het taxon.
 }
 }
 \note{
 De TWN-lijst is niet altijd volledig consistent. Diverse taxa staan
 meerdere malen in de lijst. In dat geval wordt het eerste resultaat met
 de laagste statuscode geretourneerd.
+
+NB sommige taxa hebben meer dan 1 taxontype. In dat geval zijn de
+taxontypen gecombineerd in een string in alfabetische volgorde
+gescheiden door een spaties.
 
 Als een taxon niet de voorkeurnaam is dan ontbreekt er vaak informatie
 zoals de parent van het taxon. De functie \code{twn_parent} zoekt in dat
@@ -61,6 +69,7 @@ twn_parent(taxa)
 twn_status(taxa)
 twn_localname(taxa)
 twn_taxonlevel(taxa)
+twn_taxontype(taxa)
 
 }
 \seealso{
