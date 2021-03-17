@@ -1,20 +1,33 @@
-#' Test of een taxon een bepaald taxonlevel heeft
-#' 
-#' Deze functie kijkt of een taxon een bepaald taxonlevel heeft en retourneert een logische vector.
+#' Test of een taxon een bepaald attribuut heeft
+#'  
+#' Deze functies kijken of taxa een bepaald taxonlevel, taxontype of status hebben en 
+#' retourneert een logische vector.
 #'
 #' @param taxa Een vector met taxonnamen
 #' @param taxonlevel Het taxonlevel dat getest moet worden. Als het niet wordt opgegeven dan
 #' wordt het taxonlevel op "Species gezet". Zie `twn::taxonlevels` voor alle mogelijke taxonlevels.
 #' Het taxonlevel is niet hoofdlettergevoelig
+#' @param taxontype Het taxontype dat getest moet worden. Zie `unique(twn_lijst$taxontype)` 
+#' voor alle mogelijke taxontypes. Het taxontype is niet hoofdlettergevoelig
+#' @param status De status die getest moet worden. Zie twn_statuscodes voor alle 
+#' mogelijke statussen. 
 #'
 #' @return Een logische vector. Als een taxon ontbreekt of niet in de TWN-lijst voorkomt wordt `NA`
 #' geretourneerd.
 #' 
-#' @export
-#'
+#' @name is_taxon_attribute
+#' 
 #' @examples
+#' 
 #' is_taxonlevel(c("Bufo bufo", "Bufo", "Bufonidae", "Buf", NA), "Species")
 #' 
+#' is_taxontype(c("Bufo bufo", "Abies", "Bufonidae", "Buf", NA), "Amphibia")
+#' 
+NULL
+
+
+#' @rdname is_taxon_attribute
+#' @export
 is_taxonlevel <- function(taxa, taxonlevel = NULL) {
   
   if (is.null(taxonlevel)) {
@@ -31,22 +44,9 @@ Zie `twn::taxonlevels` voor alle mogelijke taxonlevels.')
 }
 
 
-#' Test of een taxon een bepaald taxontype heeft
-#' 
-#' Deze functie kijkt of een taxon een bepaald taxontype heeft en retourneert een logische vector.
-#'
-#' @param taxa Een vector met taxonnamen
-#' @param taxontype Het taxontype dat getest moet worden. Zie `unique(twn_lijst$taxontype)` 
-#' voor alle mogelijke taxontypes. Het taxontype is niet hoofdlettergevoelig
-#'
-#' @return Een logische vector. Als een taxon ontbreekt of niet in de TWN-lijst voorkomt wordt `NA`
-#' geretourneerd.
-#' 
+
+#' @rdname is_taxon_attribute
 #' @export
-#'
-#' @examples
-#' is_taxontype(c("Bufo bufo", "Abies", "Bufonidae", "Buf", NA), "Amphibia")
-#' 
 is_taxontype <- function(taxa, taxontype) {
   # ondersteuning voor afkortingen als MACEV?
   
@@ -57,5 +57,16 @@ is_taxontype <- function(taxa, taxontype) {
   
   stringr::str_detect(twn_taxontype(taxa), taxontype)
 }
+
+
+#' @rdname is_taxon_attribute
+#' @export
+is_status <- function(taxa, status) {
+  
+  status <- as.character(status)
+  status <- rlang::arg_match(status, c("10", "20", "30", "80", "91", "92"))
+  twn_status(taxa) == status
+}
+
 
 
