@@ -5,10 +5,7 @@
 \alias{is_taxonlevel}
 \alias{is_taxontype}
 \alias{is_status}
-\title{Test of een taxon een bepaald attribuut heeft
-
-Deze functies kijken of taxa een bepaald taxonlevel, taxontype of status hebben en
-retourneert een logische vector.}
+\title{Test of een taxon een bepaald attribuut heeft.}
 \usage{
 is_taxonlevel(taxa, taxonlevel = NULL)
 
@@ -34,8 +31,6 @@ Een logische vector. Als een taxon ontbreekt of niet in de TWN-lijst voorkomt wo
 geretourneerd.
 }
 \description{
-Test of een taxon een bepaald attribuut heeft
-
 Deze functies kijken of taxa een bepaald taxonlevel, taxontype of status hebben en
 retourneert een logische vector.
 }
@@ -44,5 +39,7 @@ retourneert een logische vector.
 is_taxonlevel(c("Bufo bufo", "Bufo", "Bufonidae", "Buf", NA), "Species")
 
 is_taxontype(c("Bufo bufo", "Abies", "Bufonidae", "Buf", NA), "Amphibia")
+
+is_status(c("Bufo", "Bufo calamita"), 10)
 
 }
