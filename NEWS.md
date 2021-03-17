@@ -4,13 +4,12 @@
 
 - `twn_taxontype()` toegevoegd om het taxontype op te vragen. (NB sommige taxa hebben meer dan 1 taxontype)
 - `get_children()` functie om alle child-taxa van een bepaalde parent te vinden.
-- `is_taxonlevel` toegevoegd. Functie om te checken of taxa een bepaald taxonlevel hebben
+- `is_taxonlevel()`, `is_taxontype()` toegevoegd. Functies om te checken of taxa een bepaald taxonlevel hebben
 
 ## TODO
 
 - `twn_synonyms`
 - `is_status`
-- `is_taxontype`
 
 ## Wijzigingen
 
