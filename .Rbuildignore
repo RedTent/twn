@@ -7,7 +7,7 @@
 docs
 ^codecov\.yml$
 ^README\.Rmd$
-twn_checks
+^twn_checks
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
