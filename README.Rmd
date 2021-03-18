@@ -16,10 +16,10 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.org/RedTent/twn)
-[![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/twn)](https://CRAN.R-project.org/package=twn)
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 ![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/twn)
+<!-- werkt niet naar behoren  [![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master) -->
 <!-- badges: end -->
 
 Het doel van *twn* is tweeledig. Ten eerste maakt *twn* het eenvoudig om de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft *twn* diverse functies die het gemakkelijk maken om de TWN-lijst te gebruiken bij de analyse van ecologische data.
@@ -66,6 +66,8 @@ twn_localname(c("Bufo calamita", "Bufo bufo"))
 
 twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
 
+twn_taxontype(c("Bufo calamita", "Bufo bufo"))
+
 # taxonlevels zijn een geordende factor. Zo is het makkelijk om 
 # alles boven of onder een bepaald taxonomisch niveau te filteren.
 ```
@@ -88,6 +90,15 @@ is_valid_twn(invalid)
 
 ```
 
+Naast de controle is het mogelijk om te controleren op verschillende eigenschappen van elk taxon zoals het taxontype, het taxonlevel en de status.
+
+```{r is-taxon-attribuut}
+is_taxontype(c("Bufo bufo", "Abies"), "Amphibia")
+is_taxonlevel(c("Bufo bufo", "Bufo"), "Species")
+is_status(c("Bufo bufo", "Bufo calamita"), "10")
+```
+
+
 ## Hogere taxonlevels
 
 In sommige gevallen is het handig om soorten te aggregeren naar hogere taxonlevels. *twn* heeft twee functies die hierbij kunnen helpen: `increase_taxonlevel` aggregeert naar een gespecificeerd niveau, `match_parent` aggreggeert o.b.v. een referentielijst. Deze laatste functie is nuttig om soortenlijsten te kunnen matchen. Dit is handig bij het gebruik van ecologische maatlatten en autecologische data.
@@ -102,6 +113,15 @@ match_parent(taxa = taxa, ref_taxa = referentie_taxa)
 
 ```
 
+## Onderliggende taxa
+
+Soms kan het handig zijn om eeen overzicht te maken van de taxa die onder een bepaald 'parent'taxon aanwezig zijn. Dit kan worden gedaan met de functie `twn_children`.
+
+```{r children}
+# Welke taxa vallen er onder de familie van de kranswieren (Characeae)?
+twn_children("Characeae")
+
+```
 
 
 

@@ -7,13 +7,12 @@
 
 [![Travis build
 status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.org/RedTent/twn)
-[![Codecov test
-coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/twn)](https://CRAN.R-project.org/package=twn)
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 ![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/twn)
+<!-- werkt niet naar behoren  [![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master) -->
 <!-- badges: end -->
 
 Het doel van *twn* is tweeledig. Ten eerste maakt *twn* het eenvoudig om
@@ -44,10 +43,10 @@ TWN-lijst wordt getoond bij het laden van de package.
 
 ``` r
 library(twn)
-#> twn gebruikt de TWN-lijst van 2020-08-11
+#> twn gebruikt de TWN-lijst van 2021-03-17
 
 dplyr::glimpse(twn_lijst)
-#> Rows: 26,701
+#> Rows: 26,920
 #> Columns: 11
 #> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophyte...
 #> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nordmann...
@@ -62,7 +61,7 @@ dplyr::glimpse(twn_lijst)
 #> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "1...
 
 attr(twn_lijst, "datum_twn_lijst")
-#> [1] "2020-08-11"
+#> [1] "2021-03-17"
 ```
 
 ## TWN informatie opzoeken
@@ -87,6 +86,9 @@ twn_localname(c("Bufo calamita", "Bufo bufo"))
 twn_taxonlevel(c("Bufo calamita", "Bufo bufo"))
 #> [1] Species Species
 #> 36 Levels: Subforma < Forma < Varietas < Subspecies < Cultivar < ... < Superimperium
+
+twn_taxontype(c("Bufo calamita", "Bufo bufo"))
+#> [1] "Amphibia" "Amphibia"
 
 # taxonlevels zijn een geordende factor. Zo is het makkelijk om 
 # alles boven of onder een bepaald taxonomisch niveau te filteren.
@@ -113,6 +115,19 @@ is_valid_twn(invalid)
 #> [1] FALSE
 ```
 
+Naast de controle is het mogelijk om te controleren op verschillende
+eigenschappen van elk taxon zoals het taxontype, het taxonlevel en de
+status.
+
+``` r
+is_taxontype(c("Bufo bufo", "Abies"), "Amphibia")
+#> [1]  TRUE FALSE
+is_taxonlevel(c("Bufo bufo", "Bufo"), "Species")
+#> [1]  TRUE FALSE
+is_status(c("Bufo bufo", "Bufo calamita"), "10")
+#> [1]  TRUE FALSE
+```
+
 ## Hogere taxonlevels
 
 In sommige gevallen is het handig om soorten te aggregeren naar hogere
@@ -131,4 +146,36 @@ increase_taxonlevel(taxa, "Familia")
 
 match_parent(taxa = taxa, ref_taxa = referentie_taxa)
 #> [1] "Epidalea"  "Bufonidae" "Bufonidae" NA          NA
+```
+
+## Onderliggende taxa
+
+Soms kan het handig zijn om eeen overzicht te maken van de taxa die
+onder een bepaald ’parent’taxon aanwezig zijn. Dit kan worden gedaan met
+de functie `twn_children`
+
+``` r
+# Welke taxa vallen er onder de familie van de kranswieren (Characeae)?
+twn_children("Characeae")
+#>  [1] "Chara"                              "Chara aculeolata"                  
+#>  [3] "Chara aspera"                       "Chara aspera var. aspera"          
+#>  [5] "Chara baltica"                      "Chara canescens"                   
+#>  [7] "Chara connivens"                    "Chara contraria"                   
+#>  [9] "Chara contraria var. contraria"     "Chara contraria var. hispidula"    
+#> [11] "Chara globularis"                   "Chara globularis var. globularis"  
+#> [13] "Chara gymnophylla"                  "Chara hispida"                     
+#> [15] "Chara hispida var. hispida"         "Chara intermedia"                  
+#> [17] "Chara pedunculata"                  "Chara virgata"                     
+#> [19] "Chara vulgaris"                     "Chara vulgaris var. longibracteata"
+#> [21] "Chara vulgaris var. papillata"      "Chara vulgaris var. vulgaris"      
+#> [23] "Nitella"                            "Nitella capillaris"                
+#> [25] "Nitella flexilis"                   "Nitella flexilis var. flexilis"    
+#> [27] "Nitella gracilis"                   "Nitella hyalina"                   
+#> [29] "Nitella mucronata"                  "Nitella mucronata var. gracillima" 
+#> [31] "Nitella mucronata var. mucronata"   "Nitella opaca"                     
+#> [33] "Nitella syncarpa"                   "Nitella tenuissima"                
+#> [35] "Nitella translucens"                "Nitellopsis"                       
+#> [37] "Nitellopsis obtusa"                 "Tolypella"                         
+#> [39] "Tolypella glomerata"                "Tolypella intricata"               
+#> [41] "Tolypella prolifera"
 ```

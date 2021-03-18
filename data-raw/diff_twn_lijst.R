@@ -24,7 +24,10 @@ twn_nieuw <- readxl::read_excel(paste0("data-raw/", twn_bestand_recent)) %>% mut
 
 twn_vorig <- readxl::read_excel(paste0("data-raw/", twn_bestand_vorig)) %>% mutate(date = as.Date(date))
 
+#nieuw per taxontype
 twn_nieuw %>% anti_join(twn_vorig) %>% count(taxontype)
+# nieuw per taxonlevel
 twn_nieuw %>% anti_join(twn_vorig) %>% count(taxonlevel)
+# verschillen
 twn_nieuw %>% anti_join(twn_vorig) %>% View("diff")
 
