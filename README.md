@@ -10,7 +10,7 @@ status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.
 [![CRAN
 status](https://www.r-pkg.org/badges/version/twn)](https://CRAN.R-project.org/package=twn)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 ![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/twn)
 <!-- werkt niet naar behoren  [![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master) -->
 <!-- badges: end -->
@@ -152,7 +152,7 @@ match_parent(taxa = taxa, ref_taxa = referentie_taxa)
 
 Soms kan het handig zijn om eeen overzicht te maken van de taxa die
 onder een bepaald ’parent’taxon aanwezig zijn. Dit kan worden gedaan met
-de functie `twn_children`
+de functie `twn_children`.
 
 ``` r
 # Welke taxa vallen er onder de familie van de kranswieren (Characeae)?
