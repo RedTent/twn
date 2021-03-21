@@ -74,7 +74,7 @@ op https://twnlist.aquadesk.nl/." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ op https://twnlist.aquadesk.nl/." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -96,7 +96,7 @@ op https://twnlist.aquadesk.nl/." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RedTent/twn/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -158,6 +158,8 @@ op <a href='https://twnlist.aquadesk.nl/'>https://twnlist.aquadesk.nl/</a>.</p>
     <p>De centrale TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins
 verouderd zijn. De datum van de gebruikte TWN-lijst is opgeslagen in het attribuut
 <code>datum_twn_lijst</code> en kan worden opgevraagd met de code <code><a href='https://rdrr.io/r/base/attr.html'>attr(twn_lijst, "datum_twn_lijst")</a></code>.</p>
+<p>De auteursnamen bevatten veel non-ASCII-tekens. Deze zijn geconverteerd naar het format uxxxx.
+De originele tekens kunnen verkregen worden met de functie <code><a href='https://rdrr.io/pkg/stringi/man/stri_unescape_unicode.html'>stringi::stri_unescape_unicode()</a></code></p>
 <p>De volgorde van de taxonlevels is op detailniveau (met name lager dan genus) soms enigszins arbitrair.
 Is een Cultivar bijv. een hoger niveau dan een Subspecies? Toch is er voor gekozen om de taxonlevels
 op te nemen als een geordende factor omdat dit nuttig kan zijn o.a. bij het filteren van de lijst.</p>
@@ -176,7 +178,7 @@ op te nemen als een geordende factor omdat dit nuttig kan zijn o.a. bij het filt
 #&gt; </span><span style='color: #555555;'># ... with 4 more variables: literature </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, localname </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, date </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   status </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># de datum van de gebruikte TWN-lijst.</span>
-<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>twn_lijst</span>, <span class='st'>"datum_twn_lijst"</span>)</div><div class='output co'>#&gt; [1] "2020-10-28"</div></span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>twn_lijst</span>, <span class='st'>"datum_twn_lijst"</span>)</div><div class='output co'>#&gt; [1] "2021-03-17"</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

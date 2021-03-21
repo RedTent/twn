@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -44,7 +44,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -58,7 +58,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RedTent/twn/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -94,10 +94,10 @@
 <a href="#twn-lijst" class="anchor"></a>TWN lijst</h2>
 <p><em>twn</em> bevat de complete TWN-lijst (<code>twn_lijst</code>). De datum van de TWN-lijst wordt getoond bij het laden van de package.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">twn</span>)
-<span class="co">#&gt; twn gebruikt de TWN-lijst van 2020-08-11</span>
+<span class="co">#&gt; twn gebruikt de TWN-lijst van 2021-03-17</span>
 
 <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="no">twn_lijst</span>)
-<span class="co">#&gt; Rows: 26,701</span>
+<span class="co">#&gt; Rows: 26,920</span>
 <span class="co">#&gt; Columns: 11</span>
 <span class="co">#&gt; $ taxontype  &lt;chr&gt; "Macrophytes", "Macrophytes", "Macrophytes", "Macrophyte...</span>
 <span class="co">#&gt; $ taxonname  &lt;chr&gt; "Abies", "Abies alba", "Abies concolor", "Abies nordmann...</span>
@@ -112,7 +112,7 @@
 <span class="co">#&gt; $ status     &lt;chr&gt; "10", "10", "10", "10", "10", "10", "91", "10", "10", "1...</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="no">twn_lijst</span>, <span class="st">"datum_twn_lijst"</span>)
-<span class="co">#&gt; [1] "2020-08-11"</span></pre></div>
+<span class="co">#&gt; [1] "2021-03-17"</span></pre></div>
 </div>
 <div id="twn-informatie-opzoeken" class="section level2">
 <h2 class="hasAnchor">
@@ -134,6 +134,9 @@
 <span class="co">#&gt; [1] Species Species</span>
 <span class="co">#&gt; 36 Levels: Subforma &lt; Forma &lt; Varietas &lt; Subspecies &lt; Cultivar &lt; ... &lt; Superimperium</span>
 
+<span class="fu"><a href="reference/twn_info.html">twn_taxontype</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Bufo calamita"</span>, <span class="st">"Bufo bufo"</span>))
+<span class="co">#&gt; [1] "Amphibia" "Amphibia"</span>
+
 <span class="co"># taxonlevels zijn een geordende factor. Zo is het makkelijk om </span>
 <span class="co"># alles boven of onder een bepaald taxonomisch niveau te filteren.</span></pre></div>
 </div>
@@ -153,12 +156,19 @@
 <span class="co">#&gt; [1] TRUE</span>
 <span class="fu"><a href="reference/is_twn.html">is_valid_twn</a></span>(<span class="no">invalid</span>)
 <span class="co">#&gt; [1] FALSE</span></pre></div>
+<p>Naast de controle is het mogelijk om te controleren op verschillende eigenschappen van elk taxon zoals het taxontype, het taxonlevel en de status.</p>
+<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="reference/is_taxon_attribute.html">is_taxontype</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Bufo bufo"</span>, <span class="st">"Abies"</span>), <span class="st">"Amphibia"</span>)
+<span class="co">#&gt; [1]  TRUE FALSE</span>
+<span class="fu"><a href="reference/is_taxon_attribute.html">is_taxonlevel</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Bufo bufo"</span>, <span class="st">"Bufo"</span>), <span class="st">"Species"</span>)
+<span class="co">#&gt; [1]  TRUE FALSE</span>
+<span class="fu"><a href="reference/is_taxon_attribute.html">is_status</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Bufo bufo"</span>, <span class="st">"Bufo calamita"</span>), <span class="st">"10"</span>)
+<span class="co">#&gt; [1]  TRUE FALSE</span></pre></div>
 </div>
 <div id="hogere-taxonlevels" class="section level2">
 <h2 class="hasAnchor">
 <a href="#hogere-taxonlevels" class="anchor"></a>Hogere taxonlevels</h2>
 <p>In sommige gevallen is het handig om soorten te aggregeren naar hogere taxonlevels. <em>twn</em> heeft twee functies die hierbij kunnen helpen: <code>increase_taxonlevel</code> aggregeert naar een gespecificeerd niveau, <code>match_parent</code> aggreggeert o.b.v. een referentielijst. Deze laatste functie is nuttig om soortenlijsten te kunnen matchen. Dit is handig bij het gebruik van ecologische maatlatten en autecologische data.</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="no">taxa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Bufo calamita"</span>, <span class="st">"Bufo bufo"</span>, <span class="st">"Bufo"</span>, <span class="st">"Ezel"</span>, <span class="fl">NA</span>)
+<div class="sourceCode" id="cb7"><pre class="r"><span class="no">taxa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Bufo calamita"</span>, <span class="st">"Bufo bufo"</span>, <span class="st">"Bufo"</span>, <span class="st">"Ezel"</span>, <span class="fl">NA</span>)
 <span class="no">referentie_taxa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Bufonidae"</span>, <span class="st">"Epidalea"</span>)
 
 <span class="fu"><a href="reference/increase_taxonlevel.html">increase_taxonlevel</a></span>(<span class="no">taxa</span>, <span class="st">"Familia"</span>)
@@ -166,6 +176,34 @@
 
 <span class="fu"><a href="reference/match_parent.html">match_parent</a></span>(<span class="kw">taxa</span> <span class="kw">=</span> <span class="no">taxa</span>, <span class="kw">ref_taxa</span> <span class="kw">=</span> <span class="no">referentie_taxa</span>)
 <span class="co">#&gt; [1] "Epidalea"  "Bufonidae" "Bufonidae" NA          NA</span></pre></div>
+</div>
+<div id="onderliggende-taxa" class="section level2">
+<h2 class="hasAnchor">
+<a href="#onderliggende-taxa" class="anchor"></a>Onderliggende taxa</h2>
+<p>Soms kan het handig zijn om eeen overzicht te maken van de taxa die onder een bepaald ’parent’taxon aanwezig zijn. Dit kan worden gedaan met de functie <code>twn_children</code></p>
+<div class="sourceCode" id="cb8"><pre class="r"><span class="co"># Welke taxa vallen er onder de familie van de kranswieren (Characeae)?</span>
+<span class="fu"><a href="reference/twn_children.html">twn_children</a></span>(<span class="st">"Characeae"</span>)
+<span class="co">#&gt;  [1] "Chara"                              "Chara aculeolata"                  </span>
+<span class="co">#&gt;  [3] "Chara aspera"                       "Chara aspera var. aspera"          </span>
+<span class="co">#&gt;  [5] "Chara baltica"                      "Chara canescens"                   </span>
+<span class="co">#&gt;  [7] "Chara connivens"                    "Chara contraria"                   </span>
+<span class="co">#&gt;  [9] "Chara contraria var. contraria"     "Chara contraria var. hispidula"    </span>
+<span class="co">#&gt; [11] "Chara globularis"                   "Chara globularis var. globularis"  </span>
+<span class="co">#&gt; [13] "Chara gymnophylla"                  "Chara hispida"                     </span>
+<span class="co">#&gt; [15] "Chara hispida var. hispida"         "Chara intermedia"                  </span>
+<span class="co">#&gt; [17] "Chara pedunculata"                  "Chara virgata"                     </span>
+<span class="co">#&gt; [19] "Chara vulgaris"                     "Chara vulgaris var. longibracteata"</span>
+<span class="co">#&gt; [21] "Chara vulgaris var. papillata"      "Chara vulgaris var. vulgaris"      </span>
+<span class="co">#&gt; [23] "Nitella"                            "Nitella capillaris"                </span>
+<span class="co">#&gt; [25] "Nitella flexilis"                   "Nitella flexilis var. flexilis"    </span>
+<span class="co">#&gt; [27] "Nitella gracilis"                   "Nitella hyalina"                   </span>
+<span class="co">#&gt; [29] "Nitella mucronata"                  "Nitella mucronata var. gracillima" </span>
+<span class="co">#&gt; [31] "Nitella mucronata var. mucronata"   "Nitella opaca"                     </span>
+<span class="co">#&gt; [33] "Nitella syncarpa"                   "Nitella tenuissima"                </span>
+<span class="co">#&gt; [35] "Nitella translucens"                "Nitellopsis"                       </span>
+<span class="co">#&gt; [37] "Nitellopsis obtusa"                 "Tolypella"                         </span>
+<span class="co">#&gt; [39] "Tolypella glomerata"                "Tolypella intricata"               </span>
+<span class="co">#&gt; [41] "Tolypella prolifera"</span></pre></div>
 </div>
 </div>
   </div>
@@ -200,7 +238,6 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/RedTent/twn"><img src="https://travis-ci.org/RedTent/twn.svg?branch=master" alt="Travis build status"></a></li>
-<li><a href="https://codecov.io/gh/RedTent/twn?branch=master"><img src="https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://CRAN.R-project.org/package=twn"><img src="https://www.r-pkg.org/badges/version/twn" alt="CRAN status"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
 </ul>

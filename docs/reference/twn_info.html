@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RedTent/twn/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -128,7 +128,9 @@
 
 <span class='fu'>twn_localname</span>(<span class='no'>taxa</span>)
 
-<span class='fu'>twn_taxonlevel</span>(<span class='no'>taxa</span>)</pre>
+<span class='fu'>twn_taxonlevel</span>(<span class='no'>taxa</span>)
+
+<span class='fu'>twn_taxontype</span>(<span class='no'>taxa</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,6 +160,7 @@ voorkeurnaam is wordt de originele naam teruggegeven.</p></li>
 <li><p><code>twn_status</code>: Geeft de status(code) van het taxon.</p></li>
 <li><p><code>twn_localname</code>: Geeft de Nederlandse naam van het taxon.</p></li>
 <li><p><code>twn_taxonlevel</code>: Geeft het taxonomische niveau van het taxon.</p></li>
+<li><p><code>twn_taxontype</code>: Geeft het taxontype van het taxon.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
@@ -165,6 +168,9 @@ voorkeurnaam is wordt de originele naam teruggegeven.</p></li>
     <p>De TWN-lijst is niet altijd volledig consistent. Diverse taxa staan
 meerdere malen in de lijst. In dat geval wordt het eerste resultaat met
 de laagste statuscode geretourneerd.</p>
+<p>NB sommige taxa hebben meer dan 1 taxontype. In dat geval zijn de
+taxontypen gecombineerd in een string in alfabetische volgorde
+gescheiden door een spaties.</p>
 <p>Als een taxon niet de voorkeurnaam is dan ontbreekt er vaak informatie
 zoals de parent van het taxon. De functie <code>twn_parent</code> zoekt in dat
 geval de parent van de voorkeurnaam.</p>
@@ -176,7 +182,7 @@ geval de parent van de voorkeurnaam.</p>
     <pre class="examples"><div class='input'><span class='no'>taxa</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Bufo calamita"</span>, <span class='st'>"Bufo"</span>)
 
 <span class='fu'>twn_voorkeurnaam</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "Epidalea calamita" "Bufo"             </div><div class='input'><span class='fu'>twn_parent</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "Epidalea"  "Bufonidae"</div><div class='input'><span class='fu'>twn_status</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "20" "10"</div><div class='input'><span class='fu'>twn_localname</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "Rugstreeppad" NA            </div><div class='input'><span class='fu'>twn_taxonlevel</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] Species Genus  
-#&gt; 36 Levels: Subforma &lt; Forma &lt; Varietas &lt; Subspecies &lt; Cultivar &lt; ... &lt; Superimperium</div><div class='input'>
+#&gt; 36 Levels: Subforma &lt; Forma &lt; Varietas &lt; Subspecies &lt; Cultivar &lt; ... &lt; Superimperium</div><div class='input'><span class='fu'>twn_taxontype</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "Amphibia" "Amphibia"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
