@@ -7,16 +7,22 @@ reference:
       - '`twn_lijst`'
       - '`twn_literatuur`'
       - '`twn_statuscodes`'
+      - '`twn_taxonlevels`'
   - title: TWN informatie
     desc: Functies voor het opzoeken van TWN-informatie
     contents:
-      - '`is_twn`'
       - '`twn_info`'
+      - '`is_twn`'
+      - '`is_taxon_attribute`'
   - title: Verhogen taxonomisch niveau
     desc: Functies om het taxonomische niveau te verhogen
     contents:
       - '`increase_taxonlevel`'
       - '`match_parent`'
+  - title: Diverse
+    desc: Overige functies
+    contents:
+      - '`twn_children`'
   - title: twn
     desc: Beschrijving van het package twn
     contents:
