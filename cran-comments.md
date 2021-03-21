@@ -1,5 +1,5 @@
 ## Test environments
-* local Windows 10 install, R 4.0.3
+* local Windows 10 install, R 4.0.4
 * win-builder (devel and release)
 * ubuntu 16.04 (on travis-ci), R 4.0.2
 
@@ -12,5 +12,3 @@ There were no ERRORs, no WARNINGs, no NOTEs
 There are currently no downstream dependencies for this package.
 
 ## Bugfixes
-
-Fixed two NOTEs that occurred in the previous version (0.1.0)
