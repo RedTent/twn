@@ -12,3 +12,5 @@ There were no ERRORs, no WARNINGs, no NOTEs
 There are currently no downstream dependencies for this package.
 
 ## Bugfixes
+
+Fixed one broken link in README.md
