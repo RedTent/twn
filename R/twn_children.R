@@ -54,6 +54,8 @@ twn_children <- function(parent,
 #'
 #' @return Vector met children
 #'
+#' @keywords internal
+#'
 #' @examples
 #' 
 #' \dontrun{
