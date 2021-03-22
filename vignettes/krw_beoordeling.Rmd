@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r create-data, include = FALSE}
-voorbeeld_data <- tibble::tribble(
+opname <- tibble::tribble(
                                                      ~taxa, ~bedekkingspercentage,
                          "Caltha palustris ssp. palustris",                    2,
                                   "Ceratophyllum demersum",                   10,
@@ -33,11 +33,12 @@ voorbeeld_data <- tibble::tribble(
                                            "Urtica dioica",                    2,
                                     "Utricularia vulgaris",                    2,
                                          "Wolffia arrhiza",                    2,
-                                      "Wolffia columbiana",                    5
+                                      "Wolffia columbiana",                    5,
+                                  "Zannichellia palustris",                    1,
                     )
 
 
-categorieen <- tibble::tribble(
+maatlat_taxa <- tibble::tribble(
                          ~Groep,                          ~Biotaxon.naam,              ~Biotaxon.naam_bron, ~KRWwatertype.code, ~Categorie,
                  "Waterplanten",                      "Alisma gramineum",               "Alisma gramineum",               "M8",         2L,
                  "Waterplanten",                   "Azolla filiculoides",            "Azolla filiculoides",               "M8",         5L,
@@ -244,18 +245,132 @@ constanten <- tibble::tribble(
 
 ```
 
+In dit artikel wordt het gebruik van `twn` uitgewerkt met behulp van een concrete casus: het beoordelen van waterplantenopname aan de KRW-maatlatten. 
 
-```{r setup}
+## De data
 
+We beginnen met de gegevens van een fictieve waterplantenopname. Deze opname is gedaan in een watergang met het watertype M8 en de bedekkingspercentages hebben betrekking op de hele watergang.
+
+
+```{r opname}
 library(twn)
 
-head(voorbeeld_data)
-head(categorieen)
-head(scores)
-print(constanten)
+print(opname)
+
 ```
+
+## Controle taxonnamen
+
+### Zit de naam in de TWN?
+
+Het komt regelmatig voor dat er fouten worden gemaakt met taxonnamen. Deze fouten kunnen leiden tot problemen met de beoordeling. Daarom is het belangrijk om deze namen eerst te controleren. De functie `is_twn()` helpt om te controleren of alle taxa wel in de TWN-lijst voorkomen.
 
 ```{r, message = FALSE}
 library(dplyr)
+
+# Filter alle taxa die niet in de TWN-lijst voorkomen.
+opname %>% 
+  filter(!is_twn(taxa))
+
+```
+
+Zoals te zien is, zijn er twee taxa die blijkbaar niet in de TWN-lijst voorkomen. Dat is in dit geval het gevolg van twee kleine fouten. In *"Hydrocharis morsus ranae"* ontbreekt een streepje en in *"Myosotis scorpioides ssp  scorpioides"* ontbreekt een punt. Als dat gecorrigeerd is, kan nogmaals worden gecontroleerd of er taxa in de opname zitten die niet in de TWN-lijst voorkomen. 
+
+```{r}
+
+# Correctie van fouten in de taxonnaam
+opname <- opname %>% 
+  mutate(taxa = case_when(
+    taxa == "Hydrocharis morsus ranae" ~ "Hydrocharis morsus-ranae",
+    taxa == "Myosotis scorpioides ssp scorpioides" ~ "Myosotis scorpioides ssp. scorpioides",
+    TRUE ~ taxa
+  ))
+
+# Zijn er nu nog taxa die niet in de TWN-lijst voorkomen?
+opname %>% 
+  filter(!is_twn(taxa)) %>% 
+  nrow()
+
+```
+
+### Zijn de namen ook geldig?
+
+Alle taxonnamen in de opname komen nu ook voor in de TWN-lijst. Dat betekent echter niet dat al deze namen ook geldig zijn. Met `twn` zijn verschillende mogelijkheden om deze ongeldige namen op te sporen.
+
+```{r}
+
+# Alle taxa die niet status 10, 20 of 80 hebben
+opname %>% filter(!is_valid_twn(taxa))
+
+# Alle taxa die status 30, 91 of 92 hebben
+opname %>% filter(twn_status(taxa) %in% c("30", "91", "92"))
+
+# Alle taxa die niet status 10 hebben
+opname %>% filter(!is_status(taxa, c("10"))) %>% 
+  mutate(status = twn_status(taxa))
+
+# Er is ook een taxon met de de status 20
+
+```
+
+Het taxon *"Zannichellia palustris"* is door verschillende auteurs niet eenduidig beschreven. Daarom heeft dit taxon in de TWN-lijst een toevoeging gekregen. Ik ga er nu vanuit dat het juiste taxon *"Zannichellia palustris [1]"* is. 
+
+
+```{r}
+opname <- opname %>% 
+  mutate(taxa = case_when(
+    taxa == "Zannichellia palustris" ~ "Zannichellia palustris [1]",
+    TRUE ~ taxa
+  ))
+```
+
+
+## Synoniemen
+
+Er zijn behoorlijk wat taxa die verschillende namen hebben. De TWN-lijst geeft aan welke naam de voorkeur heeft. Omdat synoniemen niet altijd voorkomen in de beoordelingssytemen is het wenselijk om het gebruik van synoniemen te vermijden. 
+
+Bij de controle op de geldigheid van de taxonnamen kwam het taxon *"Scirpus lacustris ssp. lacustris"* al naar voren als een synoniem. De functie `twn_voorkeurnaam()` zoekt de voorkeurnamen van synoniemen en kan gebruikt worden om de namen te wijzigen in de voorkeurnaam.
+
+
+```{r}
+
+# Wat is de voorkeurnaam
+twn_voorkeurnaam("Scirpus lacustris ssp. lacustris")
+
+# Vervang alle namen voor hun voorkeurnaam
+opname <- opname %>% mutate(taxa = twn_voorkeurnaam(taxa))
+
+# Hebben alle taxa status 10? 
+# NB De status mag ook als getal worden opgegeven.
+opname %>% 
+  filter(!is_status(taxa, 10)) %>% 
+  nrow()
+
+```
+
+## Koppelen aan de maatlatlijst
+
+De soortenlijst van de maatlat voor de beoordeling van soortensamenstelling kan worden gedownload uit de aquo-kit. Voor dit voorbeeld is gebruik gemaakt van de maatlat van 2018 voor het watertype M8.
+
+```{r}
+head(maatlat_taxa)
+```
+
+De fictieve opname bevat soorten die niet voorkomen in de soortenlijst van de maatlat. Sommige soorten (bijv. *Urtica dioica - Brandnetel*) zijn voor de maatlat niet relevant. Er zitten echter ook taxa in de opname die wel in de maatlatlijst voorkomen, maar op een hoger taxonniveau zoals *Chara* of *Wolffia*.
+
+```{r}
+# Welke taxa uit de opname ontbreken in de maatlatlijst?
+opname %>% filter(!taxa %in% maatlat_taxa$Biotaxon.naam)
+
+```
+
+De opname kan in de huidige vorm nog niet worden gekoppeld aan de soortenlijst van de maatlat. Speciaal om dit probleem op te lossen is er de functie `twn::match_parent()`. Deze functie zoekt of een taxon op een hoger taxonniveau overeen komt met een taxon uit een referentielijst.
+
+```{r}
+
+# Voeg een kolom toe met namen die gematchd zijn met de namen in de maatlat
+opname <- opname %>% 
+  mutate(maatlat_match = match_parent(taxa, ref_taxa = maatlat_taxa$Biotaxon.naam))
+
 ```
 
