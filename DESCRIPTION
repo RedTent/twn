@@ -32,6 +32,6 @@ Imports:
     rlang,
     stringr,
     stats
-URL: https://github.com/RedTent/twn
+URL: https://redtent.github.io/twn/
 BugReports: https://github.com/RedTent/twn/issues
 VignetteBuilder: knitr
