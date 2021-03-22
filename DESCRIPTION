@@ -22,7 +22,9 @@ Depends:
     R (>= 2.10)
 Suggests: 
     testthat (>= 2.1.0),
-    covr
+    covr,
+    knitr,
+    rmarkdown
 Imports: 
     tibble,
     dplyr,
@@ -32,3 +34,4 @@ Imports:
     stats
 URL: https://github.com/RedTent/twn
 BugReports: https://github.com/RedTent/twn/issues
+VignetteBuilder: knitr
