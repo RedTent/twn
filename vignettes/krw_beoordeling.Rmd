@@ -279,7 +279,9 @@ Zoals te zien is, zijn er twee taxa die blijkbaar niet in de TWN-lijst voorkomen
 ```{r}
 
 # Correctie van fouten in de taxonnaam
+# De originele namen worden gekopieerd naar taxa_orig
 opname <- opname %>% 
+  # mutate(taxa_orig = taxa, .before = taxa) %>% 
   mutate(taxa = case_when(
     taxa == "Hydrocharis morsus ranae" ~ "Hydrocharis morsus-ranae",
     taxa == "Myosotis scorpioides ssp scorpioides" ~ "Myosotis scorpioides ssp. scorpioides",
@@ -354,6 +356,9 @@ De soortenlijst van de maatlat voor de beoordeling van soortensamenstelling kan 
 
 ```{r}
 head(maatlat_taxa)
+
+# Zitten alle taxa van de maatlat wel in de TWN-lijst?
+all(is_valid_twn(maatlat_taxa$Biotaxon.naam))
 ```
 
 De fictieve opname bevat soorten die niet voorkomen in de soortenlijst van de maatlat. Sommige soorten (bijv. *Urtica dioica - Brandnetel*) zijn voor de maatlat niet relevant. Er zitten echter ook taxa in de opname die wel in de maatlatlijst voorkomen, maar op een hoger taxonniveau zoals *Chara* of *Wolffia*.
@@ -374,3 +379,8 @@ opname <- opname %>%
 
 ```
 
+Met behulp van de twn-functies zijn alle taxa in de opname zijn gecontroleerd en gematchd met de taxa in de maatlat. De opname kan nu worden beoordeeld met de KRW-maatlat.
+
+## KRW beoordeling
+
+Hieronder volgt de verdere KRW-beoordeling. Deze wordt vooral toegevoegd om het voorbeeld compleet te maken. Aangezien het primaire doel is om de functionaliteit van `twn` te illustreren wordt hier maar beperkt toelichting op gegeven.
