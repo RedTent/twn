@@ -24,7 +24,8 @@ Suggests:
     testthat (>= 2.1.0),
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    tidyr
 Imports: 
     tibble,
     dplyr,
