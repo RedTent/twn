@@ -245,11 +245,11 @@ constanten <- tibble::tribble(
 
 ```
 
-In dit artikel wordt het gebruik van `twn` uitgewerkt met behulp van een concrete casus: het beoordelen van waterplantenopname aan de KRW-maatlatten. 
+In dit artikel leg ik het gebruik van het package *twn* uitgewerkt met behulp van een concrete casus: het beoordelen van een waterplantenopname aan de KRW-maatlat voor de soortensamenstelling van macrofyten. 
 
 ## De data
 
-We beginnen met de gegevens van een fictieve waterplantenopname. Deze opname is gedaan in een watergang met het watertype M8 en de bedekkingspercentages hebben betrekking op de hele watergang.
+Ik begin met de gegevens van een fictieve waterplantenopname. Deze opname is gedaan in een watergang met het watertype M8 en de bedekkingspercentages hebben betrekking op de hele watergang.
 
 
 ```{r opname}
@@ -274,7 +274,7 @@ opname %>%
 
 ```
 
-Zoals te zien is, zijn er twee taxa die blijkbaar niet in de TWN-lijst voorkomen. Dat is in dit geval het gevolg van twee kleine fouten. In *"Hydrocharis morsus ranae"* ontbreekt een streepje en in *"Myosotis scorpioides ssp  scorpioides"* ontbreekt een punt. Als dat gecorrigeerd is, kan nogmaals worden gecontroleerd of er taxa in de opname zitten die niet in de TWN-lijst voorkomen. 
+Zoals te zien is, zijn er twee taxa die blijkbaar niet in de TWN-lijst voorkomen. Dat is in dit geval het gevolg van twee kleine fouten. In de naam *"Hydrocharis morsus ranae"* ontbreekt een streepje en in de naam *"Myosotis scorpioides ssp  scorpioides"* ontbreekt een punt. Als dat gecorrigeerd is, kan ik nogmaals gecontroleren of er taxa in de opname zitten die niet in de TWN-lijst voorkomen. Als het goed is levert mijn controle 0 rijen op.
 
 ```{r}
 
@@ -297,7 +297,7 @@ opname %>%
 
 ### Zijn de namen ook geldig?
 
-Alle taxonnamen in de opname komen nu ook voor in de TWN-lijst. Dat betekent echter niet dat al deze namen ook geldig zijn. Met `twn` zijn verschillende mogelijkheden om deze ongeldige namen op te sporen.
+Alle taxonnamen in de opname komen nu ook voor in de TWN-lijst. Dat betekent echter niet dat al deze namen ook geldig zijn. Met *twn* kan ik deze ongeldige namen op verschillende manieren opsporen.
 
 ```{r}
 
@@ -315,7 +315,7 @@ opname %>% filter(!is_status(taxa, c("10"))) %>%
 
 ```
 
-Het taxon *"Zannichellia palustris"* is door verschillende auteurs niet eenduidig beschreven. Daarom heeft dit taxon in de TWN-lijst een toevoeging gekregen. Ik ga er nu vanuit dat het juiste taxon *"Zannichellia palustris [1]"* is. 
+Het taxon *"Zannichellia palustris"* is door verschillende auteurs niet eenduidig beschreven. Daarom heeft dit taxon de status 92 gekregen en in de TWN-lijst een toevoeging (bijv. *[1]*) gekregen. Ik ga er nu vanuit dat hier het taxon *"Zannichellia palustris [1]"* bedoeld is. 
 
 
 ```{r}
@@ -329,9 +329,9 @@ opname <- opname %>%
 
 ## Synoniemen
 
-Er zijn behoorlijk wat taxa die verschillende namen hebben. De TWN-lijst geeft aan welke naam de voorkeur heeft. Omdat synoniemen niet altijd voorkomen in de beoordelingssytemen is het wenselijk om het gebruik van synoniemen te vermijden. 
+Er zijn behoorlijk wat soorten meer dan één taxonnaam hebben. De TWN-lijst geeft aan welke naam de voorkeur heeft en welke namen een synoniem zijn. Omdat synoniemen niet altijd voorkomen in de beoordelingssytemen is het wenselijk om het gebruik van synoniemen te vermijden. 
 
-Bij de controle op de geldigheid van de taxonnamen kwam het taxon *"Scirpus lacustris ssp. lacustris"* al naar voren als een synoniem. De functie `twn_voorkeurnaam()` zoekt de voorkeurnamen van synoniemen en kan gebruikt worden om de namen te wijzigen in de voorkeurnaam.
+Bij de controle op de geldigheid van de taxonnamen kwam het taxon *"Scirpus lacustris ssp. lacustris"* al naar voren als een synoniem (status 20). De functie `twn_voorkeurnaam()` zoekt de voorkeurnaam op bij een synoniem. Ik gebruik deze functie om alle taxonnamen om te zetten naar de voorkeurnaam.
 
 
 ```{r}
@@ -352,7 +352,7 @@ opname %>%
 
 ## Koppelen aan de maatlatlijst
 
-De soortenlijst van de maatlat voor de beoordeling van soortensamenstelling kan worden gedownload uit de aquo-kit. Voor dit voorbeeld is gebruik gemaakt van de maatlat van 2018 voor het watertype M8.
+De soortenlijst van de maatlat voor de beoordeling van soortensamenstelling heb ik gedownload uit de aquo-kit. Voor dit voorbeeld heb ik gebruik gemaakt van de maatlat van 2018 voor het watertype M8.(Alle gebruikte tabellen zijn te vinden onderaan in dit artikel)
 
 ```{r}
 head(maatlat_taxa)
@@ -361,29 +361,30 @@ head(maatlat_taxa)
 all(is_valid_twn(maatlat_taxa$Biotaxon.naam))
 ```
 
-De fictieve opname bevat soorten die niet voorkomen in de soortenlijst van de maatlat. Sommige soorten (bijv. *Urtica dioica - Brandnetel*) zijn voor de maatlat niet relevant. Er zitten echter ook taxa in de opname die wel in de maatlatlijst voorkomen, maar op een hoger taxonniveau zoals *Chara* of *Wolffia*.
+De fictieve opname bevat soorten die niet voorkomen in de soortenlijst van de maatlat. Sommige soorten (bijv. *Urtica dioica - Brandnetel*) zijn voor de maatlat niet relevant. Er zitten echter ook taxa in de opname die wel in de maatlatlijst voorkomen, maar op een hoger taxonniveau zoals *Chara* of *Wolffia*. Deze taxa moeten wel meegenomen worden in de beoordeling.
 
 ```{r}
 # Welke taxa uit de opname ontbreken in de maatlatlijst?
 opname %>% filter(!taxa %in% maatlat_taxa$Biotaxon.naam)
-
 ```
 
-De opname kan in de huidige vorm nog niet worden gekoppeld aan de soortenlijst van de maatlat. Speciaal om dit probleem op te lossen is er de functie `twn::match_parent()`. Deze functie zoekt of een taxon op een hoger taxonniveau overeen komt met een taxon uit een referentielijst.
+Er zijn 6 taxa die (nog) niet aan de maatlat gekoppeld kunnen worden waarvan er 4 op een hoger niveau wel in de maatlat voorkomen. Speciaal om dit probleem op te lossen is er de functie `twn::match_parent()`. Deze functie zoekt of een taxon op een hoger taxonniveau overeen komt met een taxon uit een referentielijst. In dit geval is de referentielijst de KRW-maatlat.
 
 ```{r}
 
 # Voeg een kolom toe met namen die gematchd zijn met de namen in de maatlat
 opname <- opname %>% 
-  mutate(taxa_maatlat = match_parent(taxa, ref_taxa = maatlat_taxa$Biotaxon.naam))
-
+  mutate(taxa_maatlat = match_parent(taxa, ref_taxa = maatlat_taxa$Biotaxon.naam)) %>% 
+  print()
 ```
 
-Met behulp van de twn-functies zijn alle taxa in de opname zijn gecontroleerd en gematchd met de taxa in de maatlat. De opname kan nu worden beoordeeld met de KRW-maatlat.
+4 van de 6 taxa zijn alsnog gekoppeld aan de maatlat. De andere taxa komen niet in de maatlat voor en hoeven daarom niet gekoppeld te worden.
+
+Ik heb nu met behulp van de functies in *twn* alle taxa in de opname gecontroleerd en gematchd met de taxa in de maatlat. Ik heb de data nu geschikt gemaakt om te kunnen beoordelen met de KRW-maatlat.
 
 ## KRW beoordeling
 
-Hieronder volgt de verdere KRW-beoordeling. Deze wordt vooral toegevoegd om het voorbeeld compleet te maken. Aangezien het primaire doel is om de functionaliteit van `twn` te illustreren wordt hier maar beperkt toelichting op gegeven.
+Hieronder ga ik verder met de KRW-beoordeling. Ik heb dit deel vooral toegevoegd om het voorbeeld compleet te maken. Aangezien het primaire doel is om de functionaliteit van `twn` te illustreren geef ik hier maar een beperkte uitleg bij. 
 
 ```{r krw-beoordeling}
 # functie zet bedekking om in abundantieklassen
@@ -392,17 +393,28 @@ f_abundantieklasse <- approxfun(c(0, 0.0001, 5, 50), c(0,1,2,3), method = "const
 # koppelen van maatlattabellen aan de opname
 opname_gekoppeld <- 
   opname %>% 
+  # wegfilteren van taxa die niet in de maatlat zijn gevonden
   filter(!is.na(taxa_maatlat)) %>% 
+  # samenvoegen van taxa  die in de maatlat onder dezelfde naam vallen
+  # Wolffia arrhiza en Wolffia columbiana vallen allebei onder Wolffia
+  group_by(taxa_maatlat) %>%
+  summarise(bedekkingspercentage = sum(bedekkingspercentage)) %>%
+  ungroup() %>%
+  # bedekkingen omzetten in abundantieklassen
   mutate(Abundantieklasse = f_abundantieklasse(bedekkingspercentage)) %>% 
+  # toevoegen van maatlatcategorieen en scores
   left_join(maatlat_taxa, by = c("taxa_maatlat" = "Biotaxon.naam")) %>% 
   left_join(scores, by = c("Groep", "Abundantieklasse", "Categorie", "KRWwatertype.code")) %>% 
   select(Groep, taxa_maatlat, Abundantieklasse, Categorie, Score, KRWwatertype.code) %>% 
   arrange(Groep, taxa_maatlat) %>% 
   print()
 
-# formule soortensamenstelling
+# functie voor de ekr formule soortensamenstelling
 ekr_formule <- function(som_score, aantal, constante_a, constante_b){
   ekr <- ((som_score / sqrt(aantal)) - (3 / aantal) + constante_b) / constante_a
+  
+  # EKR dient tussen 0 en 1 te liggen
+  ekr <- case_when(ekr < 0 ~ 0, ekr > 1 ~ 1, TRUE ~ ekr)
   ekr
 }
 
@@ -419,20 +431,23 @@ opname_gekoppeld %>%
   mutate(ekr = ekr_formule(som_score, n, Constante_a, Constante_b)) %>% 
   print()
 
+# berekenen van de ekr macrofyten soortensamenstelling
 deel_ekrs %>% 
   select(Groep, ekr) %>% 
   tidyr::pivot_wider(names_from = Groep, values_from = ekr) %>% 
   mutate(ekr_soortensamenstelling = (2 * Waterplanten + Oeverplanten) / 3, .before = Oeverplanten) %>% 
-  rename(ekr_oeverplanten = Oeverplanten, deel_ekr_waterplanten = Waterplanten) %>% 
-  print
+  rename(deel_ekr_oeverplanten = Oeverplanten, deel_ekr_waterplanten = Waterplanten) %>% 
+  print()
 
 ```
 
+De uiteindelijke EKR-soortensamenstelling voor deze opname is 0.73. Ter vergelijking heb ik ook de EKR berekend zonder eerst de namen op te schonen en te matchen met de maatlat (niet getoond). Als ik dat doe, kan ik maar 8 (i.p.v. 16) taxa koppelen aan de maatlat en is de EKR met 0.50 aanzienlijk lager.  Dat laat zien dat een goede voorbewerking van de soortenlijst erg belangrijk is om tot een goede beoordeling te komen.
+
 ## Tabellen
 
-Om compleet te zijn hieronder nog de gebruikte tabellen.
+Om compleet te zijn heb ik hieronder de gebruikte tabellen weergegeven. Deze kunnen gebruikt worden om bovenstaande code zelf uit te voeren..
 
-```{r data-copy, eval=FALSE}
+```{r data-kopie, eval = FALSE}
 opname <- tibble::tribble(
                                                      ~taxa, ~bedekkingspercentage,
                          "Caltha palustris ssp. palustris",                    2,

@@ -179,3 +179,9 @@ twn_children("Characeae")
 #> [39] "Tolypella glomerata"                "Tolypella intricata"               
 #> [41] "Tolypella prolifera"
 ```
+
+## Lees meer
+
+In de vignette *twn als hulp bij KRW-beoordeling* kun je meer lezen over
+hoe je *twn* in de praktijk kunt gebruiken. Gebruik hiervoor
+`vignette("krw_beoordeling")`.
