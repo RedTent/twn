@@ -27,7 +27,7 @@ Suggests:
     rmarkdown,
     tidyr
 Imports: 
-    tibbl,
+    tibble,
     dplyr,
     crayon,
     rlang,
