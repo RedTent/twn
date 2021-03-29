@@ -1,3 +1,9 @@
+# twn (development version)
+
+##
+
+- Vignette "twn als hulp bij KRW-beoordeling" toegevoegd.
+
 # twn 0.2.0
 
 ## Nieuw
