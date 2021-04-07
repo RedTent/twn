@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -50,6 +50,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/krw_beoordeling.html">twn als hulp bij KRW-beoordeling</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -180,7 +192,7 @@
 <div id="onderliggende-taxa" class="section level2">
 <h2 class="hasAnchor">
 <a href="#onderliggende-taxa" class="anchor"></a>Onderliggende taxa</h2>
-<p>Soms kan het handig zijn om eeen overzicht te maken van de taxa die onder een bepaald ’parent’taxon aanwezig zijn. Dit kan worden gedaan met de functie <code>twn_children</code></p>
+<p>Soms kan het handig zijn om eeen overzicht te maken van de taxa die onder een bepaald ’parent’taxon aanwezig zijn. Dit kan worden gedaan met de functie <code>twn_children</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="co"># Welke taxa vallen er onder de familie van de kranswieren (Characeae)?</span>
 <span class="fu"><a href="reference/twn_children.html">twn_children</a></span>(<span class="st">"Characeae"</span>)
 <span class="co">#&gt;  [1] "Chara"                              "Chara aculeolata"                  </span>
@@ -204,6 +216,11 @@
 <span class="co">#&gt; [37] "Nitellopsis obtusa"                 "Tolypella"                         </span>
 <span class="co">#&gt; [39] "Tolypella glomerata"                "Tolypella intricata"               </span>
 <span class="co">#&gt; [41] "Tolypella prolifera"</span></pre></div>
+</div>
+<div id="lees-meer" class="section level2">
+<h2 class="hasAnchor">
+<a href="#lees-meer" class="anchor"></a>Lees meer</h2>
+<p>In de vignette <em>twn als hulp bij KRW-beoordeling</em> kun je meer lezen over hoe je <em>twn</em> in de praktijk kunt gebruiken. Gebruik hiervoor <code><a href="articles/krw_beoordeling.html">vignette("krw_beoordeling")</a></code>.</p>
 </div>
 </div>
   </div>
@@ -239,7 +256,7 @@
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/RedTent/twn"><img src="https://travis-ci.org/RedTent/twn.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://CRAN.R-project.org/package=twn"><img src="https://www.r-pkg.org/badges/version/twn" alt="CRAN status"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 </ul>
 </div>
 </div>
