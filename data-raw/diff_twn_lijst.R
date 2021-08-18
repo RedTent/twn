@@ -28,6 +28,10 @@ twn_vorig <- readxl::read_excel(paste0("data-raw/", twn_bestand_vorig)) %>% muta
 twn_nieuw %>% anti_join(twn_vorig) %>% count(taxontype)
 # nieuw per taxonlevel
 twn_nieuw %>% anti_join(twn_vorig) %>% count(taxonlevel)
+
+# verschillen per taxontype en taxonlevel
+twn_nieuw %>% anti_join(twn_vorig) %>% count(taxontype, taxonlevel) %>% pivot_wider(names_from = taxontype, values_from = n)
+
 # verschillen
 twn_nieuw %>% anti_join(twn_vorig) %>% View("diff")
 
