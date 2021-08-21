@@ -7,6 +7,8 @@
 #' @param taxa Een vector met taxonnamen.
 #' @param taxonlevel Het gewenste taxonomische niveau. De namen van de taxonomische niveau's zijn 
 #' zoals deze in de TWN-lijst worden gebruikt (Species, Genus, enz.).
+#' @param only_twn Logical. Indien FALSE worden taxa die niet in de TWN-lijst voorkomen genegeerd. 
+#' Indien TRUE dan worden alleen taxa uit de TWN-lijst geretoureerd.
 #'
 #' @return Een vector met taxonnamen.
 #' @export
@@ -18,7 +20,7 @@
 #' - Het taxonomisch niveau van het taxon is al hoger dan het gevraagde niveau 
 #'     -het originele taxon wordt geretourneerd.
 #' - Het taxon komt niet voor in de TWN-lijst 
-#'     - het originele taxon wordt geretourneerd.
+#'     - het originele taxon wordt geretourneerd (tenzij `only_twn = TRUE`)
 #' - Het taxon heeft in de TWN-lijst geen parent op het gevraagde niveau
 #'     - het taxon wat het dichtst onder het gevraagde niveau zit wordt geretourneerd.
 #' - De taxonnaam heeft de waarde `NA`
@@ -29,8 +31,9 @@
 #' taxa <- c("Bufo calamita", "Bufo", "Buf", NA)
 #' 
 #' increase_taxonlevel(taxa, "Familia")
+#' increase_taxonlevel(taxa, "Familia", only_twn = TRUE)
 #' 
-increase_taxonlevel <- function(taxa, taxonlevel = c("Species", "Genus", "Familia", "Ordo", "Classis", "Phylum", "Regnum", "Imperium")) {
+increase_taxonlevel <- function(taxa, taxonlevel = c("Species", "Genus", "Familia", "Ordo", "Classis", "Phylum", "Regnum", "Imperium"), only_twn = FALSE) {
   
   taxonlevel <- rlang::arg_match(taxonlevel, as.character(taxonlevels))
   
@@ -45,5 +48,8 @@ increase_taxonlevel <- function(taxa, taxonlevel = c("Species", "Genus", "Famili
                                          parent,
                                          nieuwe_naam))
   }
+  
+  if(only_twn) df <- dplyr::mutate(df, nieuwe_naam = ifelse(is_twn(nieuwe_naam), nieuwe_naam, NA_character_))
+  
   df$nieuwe_naam
 }

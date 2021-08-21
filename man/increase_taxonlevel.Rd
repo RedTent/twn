@@ -7,7 +7,8 @@
 increase_taxonlevel(
   taxa,
   taxonlevel = c("Species", "Genus", "Familia", "Ordo", "Classis", "Phylum", "Regnum",
-    "Imperium")
+    "Imperium"),
+  only_twn = FALSE
 )
 }
 \arguments{
@@ -15,6 +16,9 @@ increase_taxonlevel(
 
 \item{taxonlevel}{Het gewenste taxonomische niveau. De namen van de taxonomische niveau's zijn
 zoals deze in de TWN-lijst worden gebruikt (Species, Genus, enz.).}
+
+\item{only_twn}{Logical. Indien FALSE worden taxa die niet in de TWN-lijst voorkomen genegeerd.
+Indien TRUE dan worden alleen taxa uit de TWN-lijst geretoureerd.}
 }
 \value{
 Een vector met taxonnamen.
@@ -33,7 +37,7 @@ resultaten mogelijk.
 -het originele taxon wordt geretourneerd.
 \item Het taxon komt niet voor in de TWN-lijst
 \itemize{
-\item het originele taxon wordt geretourneerd.
+\item het originele taxon wordt geretourneerd (tenzij \code{only_twn = TRUE})
 }
 \item Het taxon heeft in de TWN-lijst geen parent op het gevraagde niveau
 \itemize{
@@ -50,5 +54,6 @@ resultaten mogelijk.
 taxa <- c("Bufo calamita", "Bufo", "Buf", NA)
 
 increase_taxonlevel(taxa, "Familia")
+increase_taxonlevel(taxa, "Familia", only_twn = TRUE)
 
 }

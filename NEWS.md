@@ -3,6 +3,11 @@
 ##
 
 - Vignette "twn als hulp bij KRW-beoordeling" toegevoegd.
+- `increase_taxonlevel` heeft een extra argument `only_twn` gekregen.
+
+## TODO
+
+- Checken wat er gebeurd bij afwijkende datatypen en evt tests schrijven (iig factor)
 
 # twn 0.2.0
 
