@@ -2,11 +2,15 @@
 
 
 
-##
+## Wijzigingen
 
-- Nieuwe TWN-lijst en nieuwe literatuurlijst (17-11-2021)
+- Nieuwe TWN-lijst en nieuwe literatuurlijst (27-11-2021)
 - Vignette "twn als hulp bij KRW-beoordeling" toegevoegd.
 - `increase_taxonlevel` heeft een extra argument `only_twn` gekregen.
+
+## Bugfixes
+
+- is_twn() werkt nu ook zonder twn te laden (#8)
 
 ## TODO
 
