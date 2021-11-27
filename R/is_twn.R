@@ -31,12 +31,12 @@ NULL
 #' @rdname is_twn
 #' @export
 is_twn <- function(taxa){
-  taxa %in% twn_lijst$taxonname
+  taxa %in% twn::twn_lijst$taxonname
   
 }
 
 #' @rdname is_twn
 #' @export
 is_valid_twn <- function(taxa){
-  taxa %in% twn_lijst$taxonname & twn_status(taxa) %in% c("10", "20", "80")
+  taxa %in% twn::twn_lijst$taxonname & twn_status(taxa) %in% c("10", "20", "80")
 }
