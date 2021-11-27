@@ -13,6 +13,7 @@ status](https://www.r-pkg.org/badges/version/twn)](https://CRAN.R-project.org/pa
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 ![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/twn)
 <!-- werkt niet naar behoren  [![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master) -->
+[![R-CMD-check](https://github.com/RedTent/twn/workflows/R-CMD-check/badge.svg)](https://github.com/RedTent/twn/actions)
 <!-- badges: end -->
 
 Het doel van *twn* is tweeledig. Ten eerste maakt *twn* het eenvoudig om
@@ -48,17 +49,17 @@ library(twn)
 dplyr::glimpse(twn_lijst)
 #> Rows: 26,920
 #> Columns: 11
-#> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophyte...
-#> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nordmann...
-#> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon et R. ...
-#> $ taxongroup <chr> "Gymnospermae", "Gymnospermae", "Angiospermae", "Gymnosp...
-#> $ taxonlevel <ord> Genus, Species, Species, Species, Species, Species, Spec...
-#> $ parentname <chr> "Pinaceae", "Abies", "Abies", "Abies", "Abies", "Abies",...
-#> $ refername  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ...
-#> $ literature <chr> "M0001", "M0001", NA, "M0001", NA, "M0001", "M0001", "I0...
-#> $ localname  <chr> NA, "Gewone zilverspar", NA, "Kaukasische zilverspar", N...
-#> $ date       <date> 2009-09-11, 2009-12-17, 2009-12-04, 2009-12-17, 2009-12...
-#> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "1...
+#> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophytes",~
+#> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nordmannian~
+#> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon et R. Gle~
+#> $ taxongroup <chr> "Gymnospermae", "Gymnospermae", "Angiospermae", "Gymnosperm~
+#> $ taxonlevel <ord> Genus, Species, Species, Species, Species, Species, Species~
+#> $ parentname <chr> "Pinaceae", "Abies", "Abies", "Abies", "Abies", "Abies", NA~
+#> $ refername  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,~
+#> $ literature <chr> "M0001", "M0001", NA, "M0001", NA, "M0001", "M0001", "I0280~
+#> $ localname  <chr> NA, "Gewone zilverspar", NA, "Kaukasische zilverspar", NA, ~
+#> $ date       <date> 2009-09-11, 2009-12-17, 2009-12-04, 2009-12-17, 2009-12-04~
+#> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "10",~
 
 attr(twn_lijst, "datum_twn_lijst")
 #> [1] "2021-03-17"
@@ -66,7 +67,7 @@ attr(twn_lijst, "datum_twn_lijst")
 
 ## TWN informatie opzoeken
 
-De `twn_lijst` bevat de complete TWN-lijst. De twn\_info-functies
+De `twn_lijst` bevat de complete TWN-lijst. De twn_info-functies
 (`twn_*`) maken het makkelijk om informatie uit de TWN-lijst op te
 zoeken op basis van de taxonnaam.
 
