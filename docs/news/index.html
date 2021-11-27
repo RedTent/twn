@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -126,14 +126,32 @@
       <small>Source: <a href='https://github.com/RedTent/twn/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="twn-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#twn-development-version" class="anchor"></a>twn (development version)<small> Unreleased </small>
+    <div id="twn-021" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.1">
+<a href="#twn-021" class="anchor"></a>twn 0.2.1<small> Unreleased </small>
 </h1>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="wijzigingen" class="section level2">
+<h2 class="hasAnchor">
+<a href="#wijzigingen" class="anchor"></a>Wijzigingen</h2>
 <ul>
+<li>Nieuwe TWN-lijst en nieuwe literatuurlijst (27-11-2021)</li>
 <li>Vignette “twn als hulp bij KRW-beoordeling” toegevoegd.</li>
+<li>
+<code>increase_taxonlevel</code> heeft een extra argument <code>only_twn</code> gekregen.</li>
+</ul>
+</div>
+<div id="bugfixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
+<ul>
+<li>is_twn() werkt nu ook zonder twn te laden (<a href='https://github.com/RedTent/twn/issues/8'>#8</a>)</li>
+</ul>
+</div>
+<div id="todo" class="section level2">
+<h2 class="hasAnchor">
+<a href="#todo" class="anchor"></a>TODO</h2>
+<ul>
+<li>Checken wat er gebeurd bij afwijkende datatypen en evt tests schrijven (iig factor)</li>
 </ul>
 </div>
 </div>
@@ -153,16 +171,16 @@
 <code><a href="../reference/is_taxon_attribute.html">is_taxonlevel()</a></code>, <code><a href="../reference/is_taxon_attribute.html">is_taxontype()</a></code> en <code>is_status</code> toegevoegd. Functies om te checken of taxa een bepaald(e) taxonlevel, taxontype of status hebben.</li>
 </ul>
 </div>
-<div id="wijzigingen" class="section level2">
+<div id="wijzigingen-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#wijzigingen" class="anchor"></a>Wijzigingen</h2>
+<a href="#wijzigingen-1" class="anchor"></a>Wijzigingen</h2>
 <ul>
 <li>Nieuwe TWN-lijst (17-3-2021) 43 wijzigingen t.o.v. de vorige versie.</li>
 </ul>
 </div>
-<div id="todo" class="section level2">
+<div id="todo-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#todo" class="anchor"></a>TODO</h2>
+<a href="#todo-1" class="anchor"></a>TODO</h2>
 <ul>
 <li><code>twn_synonyms</code></li>
 <li>
@@ -175,17 +193,17 @@
 <h1 class="page-header" data-toc-text="0.1.1">
 <a href="#twn-011" class="anchor"></a>twn 0.1.1<small> 2020-10-29 </small>
 </h1>
-<div id="wijzigingen-1" class="section level2">
+<div id="wijzigingen-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#wijzigingen-1" class="anchor"></a>Wijzigingen</h2>
+<a href="#wijzigingen-2" class="anchor"></a>Wijzigingen</h2>
 <ul>
 <li>Nieuwe TWN-lijst en literatuurlijst (28-10-2020)</li>
 <li>Memoise wordt niet meer gebruikt achter de schermen.</li>
 </ul>
 </div>
-<div id="bugfixes" class="section level2">
+<div id="bugfixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>Issue opgelost waarbij functies niet werkten als het package niet geladen was. <a href="https://github.com/RedTent/twn/issues/1#issue-682498150">Issue <a href='https://github.com/RedTent/twn/issues/1'>#1</a></a>
 </li>
@@ -233,7 +251,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

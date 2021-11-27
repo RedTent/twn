@@ -73,7 +73,7 @@ TWN-literatuurreferenties opgenomen." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -134,7 +134,7 @@ TWN-literatuurreferenties opgenomen." />
 TWN-literatuurreferenties opgenomen.</p>
     </div>
 
-    <pre class="usage"><span class='no'>twn_literatuur</span></pre>
+    <pre class="usage"><span class='va'>twn_literatuur</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -153,23 +153,27 @@ TWN-literatuurreferenties opgenomen.</p>
     <p>De centrale TWN-literatuurlijst wordt regelmatig van updates voorzien. Deze
 TWN-literatuurlijst kan daarom enigszins verouderd zijn. De datum van de gebruikte
 TWN-literatuurlijst is opgeslagen in het attribuut <code>datum_twn_literatuur</code> en kan
-worden opgevraagd met de code <code><a href='https://rdrr.io/r/base/attr.html'>attr(twn_literatuur, "datum_twn_literatuur")</a></code>.</p>
+worden opgevraagd met de code <code>attr(twn_literatuur, "datum_twn_literatuur")</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>twn_literatuur</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 3</span><span>
-#&gt;   literature short_reference            full_reference                          
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                   
-#&gt; </span><span style='color: #555555;'>1</span><span> B0001      Sangster, G. et al. (1998) </span><span style='color: #555555;'>"</span><span>Sangster, G., Hazevoet, C.J., Van den ~
-#&gt; </span><span style='color: #555555;'>2</span><span> D0002      Round, F.E. et al. (1990)  </span><span style='color: #555555;'>"</span><span>Round, F.E., Crawford, R.M. &amp; Mann, D.~
-#&gt; </span><span style='color: #555555;'>3</span><span> D0003      Krammer, K. &amp; Lange-Berta~ </span><span style='color: #555555;'>"</span><span>Krammer, K. &amp; Lange-Bertalot, H. (1991~
-#&gt; </span><span style='color: #555555;'>4</span><span> D0004      Krammer, K. &amp; Lange-Berta~ </span><span style='color: #555555;'>"</span><span>Krammer, K. &amp; Lange-Bertalot, H. (2004~
-#&gt; </span><span style='color: #555555;'>5</span><span> D0005      Lange-Bertalot, H. &amp; Kram~ </span><span style='color: #555555;'>"</span><span>Lange-Bertalot, H. &amp; Krammer, K. (1989~
-#&gt; </span><span style='color: #555555;'>6</span><span> D0006      Lange-Bertalot, H. &amp; Metz~ </span><span style='color: #555555;'>"</span><span>Lange-Bertalot, H. &amp; Metzeltin, D. (19~</div><div class='input'>
-<span class='co'># de datum van de gebruikte TWN-literatuurlijst.</span>
-<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>twn_literatuur</span>, <span class='st'>"datum_twn_literatuur"</span>)</div><div class='output co'>#&gt; [1] "2021-03-17"</div><div class='input'>
-
-</div></span></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>twn_literatuur</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   literature short_reference                           full_reference           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> B0001      Sangster, G. et al. (1998)                <span style='color: #949494;'>"</span>Sangster, G., Hazevoet,~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> D0002      Round, F.E. et al. (1990)                 <span style='color: #949494;'>"</span>Round, F.E., Crawford, ~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> D0003      Krammer, K. &amp; Lange-Bertalot, H. (1991a)  <span style='color: #949494;'>"</span>Krammer, K. &amp; Lange-Ber~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> D0004      Krammer, K. &amp; Lange-Bertalot, H. (2004b)  <span style='color: #949494;'>"</span>Krammer, K. &amp; Lange-Ber~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> D0005      Lange-Bertalot, H. &amp; Krammer, K. (1989)   <span style='color: #949494;'>"</span>Lange-Bertalot, H. &amp; Kr~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> D0006      Lange-Bertalot, H. &amp; Metzeltin, D. (1996) <span style='color: #949494;'>"</span>Lange-Bertalot, H. &amp; Me~</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># de datum van de gebruikte TWN-literatuurlijst.</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>twn_literatuur</span>, <span class='st'>"datum_twn_literatuur"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "2021-11-17"</span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -185,7 +189,7 @@ worden opgevraagd met de code <code><a href='https://rdrr.io/r/base/attr.html'>a
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

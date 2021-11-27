@@ -73,7 +73,7 @@ retourneert een logische vector." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -134,11 +134,11 @@ retourneert een logische vector." />
 retourneert een logische vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_taxonlevel</span>(<span class='no'>taxa</span>, <span class='kw'>taxonlevel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>is_taxonlevel</span><span class='op'>(</span><span class='va'>taxa</span>, taxonlevel <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>is_taxontype</span>(<span class='no'>taxa</span>, <span class='no'>taxontype</span>)
+<span class='fu'>is_taxontype</span><span class='op'>(</span><span class='va'>taxa</span>, <span class='va'>taxontype</span><span class='op'>)</span>
 
-<span class='fu'>is_status</span>(<span class='no'>taxa</span>, <span class='no'>status</span>)</pre>
+<span class='fu'>is_status</span><span class='op'>(</span><span class='va'>taxa</span>, <span class='va'>status</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,7 +155,7 @@ Het taxonlevel is niet hoofdlettergevoelig</p></td>
     </tr>
     <tr>
       <th>taxontype</th>
-      <td><p>Het taxontype dat getest moet worden. Zie <code><a href='https://rdrr.io/r/base/unique.html'>unique(twn_lijst$taxontype)</a></code>
+      <td><p>Het taxontype dat getest moet worden. Zie <code>unique(twn_lijst$taxontype)</code>
 voor alle mogelijke taxontypes. Het taxontype is niet hoofdlettergevoelig</p></td>
     </tr>
     <tr>
@@ -171,11 +171,17 @@ mogelijke statussen.</p></td>
 geretourneerd.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>is_taxonlevel</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Bufo bufo"</span>, <span class='st'>"Bufo"</span>, <span class='st'>"Bufonidae"</span>, <span class='st'>"Buf"</span>, <span class='fl'>NA</span>), <span class='st'>"Species"</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE FALSE    NA    NA</div><div class='input'>
-<span class='fu'>is_taxontype</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Bufo bufo"</span>, <span class='st'>"Abies"</span>, <span class='st'>"Bufonidae"</span>, <span class='st'>"Buf"</span>, <span class='fl'>NA</span>), <span class='st'>"Amphibia"</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE  TRUE    NA    NA</div><div class='input'>
-<span class='fu'>is_status</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Bufo"</span>, <span class='st'>"Bufo calamita"</span>), <span class='fl'>10</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='fu'>is_taxonlevel</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Bufo bufo"</span>, <span class='st'>"Bufo"</span>, <span class='st'>"Bufonidae"</span>, <span class='st'>"Buf"</span>, <span class='cn'>NA</span><span class='op'>)</span>, <span class='st'>"Species"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1]  TRUE FALSE FALSE    NA    NA</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>is_taxontype</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Bufo bufo"</span>, <span class='st'>"Abies"</span>, <span class='st'>"Bufonidae"</span>, <span class='st'>"Buf"</span>, <span class='cn'>NA</span><span class='op'>)</span>, <span class='st'>"Amphibia"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1]  TRUE FALSE  TRUE    NA    NA</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>is_status</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Bufo"</span>, <span class='st'>"Bufo calamita"</span><span class='op'>)</span>, <span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1]  TRUE FALSE</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -191,7 +197,7 @@ geretourneerd.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

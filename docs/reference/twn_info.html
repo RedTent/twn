@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -132,17 +132,17 @@
     <p>De <code>twn_*</code> - functies zoeken informatie uit de TWN-lijst op.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>twn_voorkeurnaam</span>(<span class='no'>taxa</span>)
+    <pre class="usage"><span class='fu'>twn_voorkeurnaam</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span>
 
-<span class='fu'>twn_parent</span>(<span class='no'>taxa</span>)
+<span class='fu'>twn_parent</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span>
 
-<span class='fu'>twn_status</span>(<span class='no'>taxa</span>, <span class='kw'>code</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>twn_status</span><span class='op'>(</span><span class='va'>taxa</span>, code <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>twn_localname</span>(<span class='no'>taxa</span>)
+<span class='fu'>twn_localname</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span>
 
-<span class='fu'>twn_taxonlevel</span>(<span class='no'>taxa</span>)
+<span class='fu'>twn_taxonlevel</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span>
 
-<span class='fu'>twn_taxontype</span>(<span class='no'>taxa</span>)</pre>
+<span class='fu'>twn_taxontype</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,11 +191,23 @@ geval de parent van de voorkeurnaam.</p>
     <div class='dont-index'><p>Deze functies werken op basis van de tabel <a href='twn_lijst.html'>twn_lijst</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>taxa</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Bufo calamita"</span>, <span class='st'>"Bufo"</span>)
-
-<span class='fu'>twn_voorkeurnaam</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "Epidalea calamita" "Bufo"             </div><div class='input'><span class='fu'>twn_parent</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "Epidalea"  "Bufonidae"</div><div class='input'><span class='fu'>twn_status</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "20" "10"</div><div class='input'><span class='fu'>twn_localname</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "Rugstreeppad" NA            </div><div class='input'><span class='fu'>twn_taxonlevel</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] Species Genus  
-#&gt; 36 Levels: Subforma &lt; Forma &lt; Varietas &lt; Subspecies &lt; Cultivar &lt; ... &lt; Superimperium</div><div class='input'><span class='fu'>twn_taxontype</span>(<span class='no'>taxa</span>)</div><div class='output co'>#&gt; [1] "Amphibia" "Amphibia"</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>taxa</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Bufo calamita"</span>, <span class='st'>"Bufo"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>twn_voorkeurnaam</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Epidalea calamita" "Bufo"             </span>
+<span class='r-in'><span class='fu'>twn_parent</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Epidalea"  "Bufonidae"</span>
+<span class='r-in'><span class='fu'>twn_status</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "20" "10"</span>
+<span class='r-in'><span class='fu'>twn_localname</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Rugstreeppad" NA            </span>
+<span class='r-in'><span class='fu'>twn_taxonlevel</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] Species Genus  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 Levels: Subforma &lt; Forma &lt; Varietas &lt; Subspecies &lt; Cultivar &lt; ... &lt; Superimperium</span>
+<span class='r-in'><span class='fu'>twn_taxontype</span><span class='op'>(</span><span class='va'>taxa</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Amphibia" "Amphibia"</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -211,7 +223,7 @@ geval de parent van de voorkeurnaam.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

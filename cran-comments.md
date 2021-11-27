@@ -1,7 +1,8 @@
 ## Test environments
-* local Windows 10 install, R 4.0.4
-* win-builder (devel and release)
-* ubuntu 16.04 (on travis-ci), R 4.0.2
+* local Windows 11 install, R 4.1.2
+* macOS (on Github Actions), R 4.1.2
+* ubuntu 20.04 (release and devel on Github Actions), R 4.1.2
+* win-builder (release and devel)
 
 
 ## R CMD check results
@@ -13,4 +14,3 @@ There are currently no downstream dependencies for this package.
 
 ## Bugfixes
 
-Fixed one broken link in README.md
