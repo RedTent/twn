@@ -21,6 +21,8 @@ de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft
 *twn* diverse functies die het gemakkelijk maken om de TWN-lijst te
 gebruiken bij de analyse van ecologische data.
 
+De website voor *twn* is te vinden op <https://redtent.github.io/twn/>
+
 ## Installatie
 
 ‘twn’ is te installeren vanaf CRAN.
