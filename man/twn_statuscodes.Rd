@@ -12,7 +12,7 @@ Dataframe met 2 kolommen
 }
 }
 \source{
-\url{https://www.aquo.nl/index.php/Vraag_\%26_Antwoord_TWN}
+\url{https://www.aquo.nl/index.php/Vraag_en_Antwoord_TWN}
 }
 \usage{
 twn_statuscodes
