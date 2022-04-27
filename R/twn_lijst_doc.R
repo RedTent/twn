@@ -69,7 +69,7 @@
 #'- `omschrijving`- Omschrijving van de betekenis van de statuscode
 #' 
 #' @source 
-#' [https://www.aquo.nl/index.php/Vraag_%26_Antwoord_TWN](https://www.aquo.nl/index.php/Vraag_%26_Antwoord_TWN)
+#' [https://www.aquo.nl/index.php/Vraag_en_Antwoord_TWN](https://www.aquo.nl/index.php/Vraag_en_Antwoord_TWN)
 #'
 #' @examples 
 #' 
