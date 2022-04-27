@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">twn</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RedTent/twn/">
+  <a href="https://github.com/RedTent/twn/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -79,132 +75,161 @@
 
       
 
-      </header><script src="krw_beoordeling_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>twn als hulp bij KRW-beoordeling</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RedTent/twn/blob/master/vignettes/krw_beoordeling.Rmd"><code>vignettes/krw_beoordeling.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RedTent/twn/blob/HEAD/vignettes/krw_beoordeling.Rmd" class="external-link"><code>vignettes/krw_beoordeling.Rmd</code></a></small>
       <div class="hidden name"><code>krw_beoordeling.Rmd</code></div>
 
     </div>
 
     
     
-<p>In dit artikel leg ik het gebruik van het package <em>twn</em> uitgewerkt met behulp van een concrete casus: het beoordelen van een waterplantenopname aan de KRW-maatlat voor de soortensamenstelling van macrofyten.</p>
-<div id="de-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#de-data" class="anchor"></a>De data</h2>
-<p>Ik begin met de gegevens van een fictieve waterplantenopname. Deze opname is gedaan in een watergang met het watertype M8 en de bedekkingspercentages hebben betrekking op de hele watergang.</p>
+<p>In dit artikel leg ik het gebruik van het package <em>twn</em>
+uitgewerkt met behulp van een concrete casus: het beoordelen van een
+waterplantenopname aan de KRW-maatlat voor de soortensamenstelling van
+macrofyten.</p>
+<div class="section level2">
+<h2 id="de-data">De data<a class="anchor" aria-label="anchor" href="#de-data"></a>
+</h2>
+<p>Ik begin met de gegevens van een fictieve waterplantenopname. Deze
+opname is gedaan in een watergang met het watertype M8 en de
+bedekkingspercentages hebben betrekking op de hele watergang.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://redtent.github.io/twn/">twn</a></span><span class="op">)</span>
-<span class="co">#&gt; twn gebruikt de TWN-lijst van 2021-11-27</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://redtent.github.io/twn/" class="external-link">twn</a></span><span class="op">)</span>
+<span class="co">#&gt; twn gebruikt de TWN-lijst van <span style="color: #BB0000;">2022-04-27</span></span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">opname</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 18 x 2</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">opname</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 2</span></span>
 <span class="co">#&gt;    taxa                                 bedekkingspercentage</span>
-<span class="co">#&gt;    &lt;chr&gt;                                               &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 Caltha palustris ssp. palustris                         2</span>
-<span class="co">#&gt;  2 Ceratophyllum demersum                                 10</span>
-<span class="co">#&gt;  3 Chara aspera                                            3</span>
-<span class="co">#&gt;  4 Chara connivens                                         5</span>
-<span class="co">#&gt;  5 Cirsium palustre                                        1</span>
-<span class="co">#&gt;  6 Glyceria maxima                                        15</span>
-<span class="co">#&gt;  7 Hydrocharis morsus ranae                                3</span>
-<span class="co">#&gt;  8 Lemna minor                                            10</span>
-<span class="co">#&gt;  9 Lemna trisulca                                          1</span>
-<span class="co">#&gt; 10 Myosotis scorpioides ssp scorpioides                    1</span>
-<span class="co">#&gt; 11 Scirpus lacustris ssp. lacustris                        2</span>
-<span class="co">#&gt; 12 Stratiotes aloides                                     10</span>
-<span class="co">#&gt; 13 Symphytum officinale                                    1</span>
-<span class="co">#&gt; 14 Urtica dioica                                           2</span>
-<span class="co">#&gt; 15 Utricularia vulgaris                                    2</span>
-<span class="co">#&gt; 16 Wolffia arrhiza                                         2</span>
-<span class="co">#&gt; 17 Wolffia columbiana                                      5</span>
-<span class="co">#&gt; 18 Zannichellia palustris                                  1</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Caltha palustris ssp. palustris                         2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Ceratophyllum demersum                                 10</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Chara aspera                                            3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Chara connivens                                         5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Cirsium palustre                                        1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Glyceria maxima                                        15</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Hydrocharis morsus ranae                                3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Lemna minor                                            10</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Lemna trisulca                                          1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Myosotis scorpioides ssp scorpioides                    1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Scirpus lacustris ssp. lacustris                        2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Stratiotes aloides                                     10</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Symphytum officinale                                    1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Urtica dioica                                           2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Utricularia vulgaris                                    2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">16</span> Wolffia arrhiza                                         2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">17</span> Wolffia columbiana                                      5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">18</span> Zannichellia palustris                                  1</span></code></pre></div>
 </div>
-<div id="controle-taxonnamen" class="section level2">
-<h2 class="hasAnchor">
-<a href="#controle-taxonnamen" class="anchor"></a>Controle taxonnamen</h2>
-<div id="zit-de-naam-in-de-twn" class="section level3">
-<h3 class="hasAnchor">
-<a href="#zit-de-naam-in-de-twn" class="anchor"></a>Zit de naam in de TWN?</h3>
-<p>Het komt regelmatig voor dat er fouten worden gemaakt met taxonnamen. Deze fouten kunnen leiden tot problemen met de beoordeling. Daarom is het belangrijk om deze namen eerst te controleren. De functie <code><a href="../reference/is_twn.html">is_twn()</a></code> helpt om te controleren of alle taxa wel in de TWN-lijst voorkomen.</p>
+<div class="section level2">
+<h2 id="controle-taxonnamen">Controle taxonnamen<a class="anchor" aria-label="anchor" href="#controle-taxonnamen"></a>
+</h2>
+<div class="section level3">
+<h3 id="zit-de-naam-in-de-twn">Zit de naam in de TWN?<a class="anchor" aria-label="anchor" href="#zit-de-naam-in-de-twn"></a>
+</h3>
+<p>Het komt regelmatig voor dat er fouten worden gemaakt met taxonnamen.
+Deze fouten kunnen leiden tot problemen met de beoordeling. Daarom is
+het belangrijk om deze namen eerst te controleren. De functie
+<code><a href="../reference/is_twn.html">is_twn()</a></code> helpt om te controleren of alle taxa wel in de
+TWN-lijst voorkomen.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
 <span class="co"># Filter alle taxa die niet in de TWN-lijst voorkomen.</span>
-<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_twn.html">is_twn</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_twn.html">is_twn</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span>
 <span class="co">#&gt;   taxa                                 bedekkingspercentage</span>
-<span class="co">#&gt;   &lt;chr&gt;                                               &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Hydrocharis morsus ranae                                3</span>
-<span class="co">#&gt; 2 Myosotis scorpioides ssp scorpioides                    1</span></code></pre></div>
-<p>Zoals te zien is, zijn er twee taxa die blijkbaar niet in de TWN-lijst voorkomen. Dat is in dit geval het gevolg van twee kleine fouten. In de naam <em>“Hydrocharis morsus ranae”</em> ontbreekt een streepje en in de naam <em>“Myosotis scorpioides ssp scorpioides”</em> ontbreekt een punt. Als dat gecorrigeerd is, kan ik nogmaals gecontroleren of er taxa in de opname zitten die niet in de TWN-lijst voorkomen. Als het goed is levert mijn controle 0 rijen op.</p>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Hydrocharis morsus ranae                                3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Myosotis scorpioides ssp scorpioides                    1</span></code></pre></div>
+<p>Zoals te zien is, zijn er twee taxa die blijkbaar niet in de
+TWN-lijst voorkomen. Dat is in dit geval het gevolg van twee kleine
+fouten. In de naam <em>“Hydrocharis morsus ranae”</em> ontbreekt een
+streepje en in de naam <em>“Myosotis scorpioides ssp scorpioides”</em>
+ontbreekt een punt. Als dat gecorrigeerd is, kan ik nogmaals
+gecontroleren of er taxa in de opname zitten die niet in de TWN-lijst
+voorkomen. Als het goed is levert mijn controle 0 rijen op.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Correctie van fouten in de taxonnaam</span>
 <span class="co"># De originele namen worden gekopieerd naar taxa_orig</span>
-<span class="va">opname</span> <span class="op">&lt;-</span> <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">opname</span> <span class="op">&lt;-</span> <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># mutate(taxa_orig = taxa, .before = taxa) %&gt;% </span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>taxa <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>taxa <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span>
     <span class="va">taxa</span> <span class="op">==</span> <span class="st">"Hydrocharis morsus ranae"</span> <span class="op">~</span> <span class="st">"Hydrocharis morsus-ranae"</span>,
     <span class="va">taxa</span> <span class="op">==</span> <span class="st">"Myosotis scorpioides ssp scorpioides"</span> <span class="op">~</span> <span class="st">"Myosotis scorpioides ssp. scorpioides"</span>,
     <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">taxa</span>
   <span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Zijn er nu nog taxa die niet in de TWN-lijst voorkomen?</span>
-<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_twn.html">is_twn</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_twn.html">is_twn</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 </div>
-<div id="zijn-de-namen-ook-geldig" class="section level3">
-<h3 class="hasAnchor">
-<a href="#zijn-de-namen-ook-geldig" class="anchor"></a>Zijn de namen ook geldig?</h3>
-<p>Alle taxonnamen in de opname komen nu ook voor in de TWN-lijst. Dat betekent echter niet dat al deze namen ook geldig zijn. Met <em>twn</em> kan ik deze ongeldige namen op verschillende manieren opsporen.</p>
+<div class="section level3">
+<h3 id="zijn-de-namen-ook-geldig">Zijn de namen ook geldig?<a class="anchor" aria-label="anchor" href="#zijn-de-namen-ook-geldig"></a>
+</h3>
+<p>Alle taxonnamen in de opname komen nu ook voor in de TWN-lijst. Dat
+betekent echter niet dat al deze namen ook geldig zijn. Met <em>twn</em>
+kan ik deze ongeldige namen op verschillende manieren opsporen.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Alle taxa die niet status 10, 20 of 80 hebben</span>
-<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_twn.html">is_valid_twn</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 2</span>
+<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_twn.html">is_valid_twn</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span>
 <span class="co">#&gt;   taxa                   bedekkingspercentage</span>
-<span class="co">#&gt;   &lt;chr&gt;                                 &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Zannichellia palustris                    1</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Zannichellia palustris                    1</span>
 
 <span class="co"># Alle taxa die status 30, 91 of 92 hebben</span>
-<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="../reference/twn_info.html">twn_status</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"30"</span>, <span class="st">"91"</span>, <span class="st">"92"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 2</span>
+<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="../reference/twn_info.html">twn_status</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"30"</span>, <span class="st">"91"</span>, <span class="st">"92"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span>
 <span class="co">#&gt;   taxa                   bedekkingspercentage</span>
-<span class="co">#&gt;   &lt;chr&gt;                                 &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Zannichellia palustris                    1</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Zannichellia palustris                    1</span>
 
 <span class="co"># Alle taxa die niet status 10 hebben</span>
-<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_taxon_attribute.html">is_status</a></span><span class="op">(</span><span class="va">taxa</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"10"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>status <span class="op">=</span> <span class="fu"><a href="../reference/twn_info.html">twn_status</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 x 3</span>
+<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_taxon_attribute.html">is_status</a></span><span class="op">(</span><span class="va">taxa</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"10"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>status <span class="op">=</span> <span class="fu"><a href="../reference/twn_info.html">twn_status</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span>
 <span class="co">#&gt;   taxa                             bedekkingspercentage status</span>
-<span class="co">#&gt;   &lt;chr&gt;                                           &lt;dbl&gt; &lt;chr&gt; </span>
-<span class="co">#&gt; 1 Scirpus lacustris ssp. lacustris                    2 20    </span>
-<span class="co">#&gt; 2 Zannichellia palustris                              1 92</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Scirpus lacustris ssp. lacustris                    2 20    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Zannichellia palustris                              1 92</span>
 
 <span class="co"># Er is ook een taxon met de de status 20</span></code></pre></div>
-<p>Het taxon <em>“Zannichellia palustris”</em> is door verschillende auteurs niet eenduidig beschreven. Daarom heeft dit taxon de status 92 gekregen en in de TWN-lijst een toevoeging (bijv. <em>[1]</em>) gekregen. Ik ga er nu vanuit dat hier het taxon <em>“Zannichellia palustris [1]”</em> bedoeld is.</p>
+<p>Het taxon <em>“Zannichellia palustris”</em> is door verschillende
+auteurs niet eenduidig beschreven. Daarom heeft dit taxon de status 92
+gekregen en in de TWN-lijst een toevoeging (bijv. <em>[1]</em>)
+gekregen. Ik ga er nu vanuit dat hier het taxon <em>“Zannichellia
+palustris [1]”</em> bedoeld is.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">opname</span> <span class="op">&lt;-</span> <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>taxa <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">opname</span> <span class="op">&lt;-</span> <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>taxa <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span>
     <span class="va">taxa</span> <span class="op">==</span> <span class="st">"Zannichellia palustris"</span> <span class="op">~</span> <span class="st">"Zannichellia palustris [1]"</span>,
     <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">taxa</span>
   <span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="synoniemen" class="section level2">
-<h2 class="hasAnchor">
-<a href="#synoniemen" class="anchor"></a>Synoniemen</h2>
-<p>Er zijn behoorlijk wat soorten meer dan één taxonnaam hebben. De TWN-lijst geeft aan welke naam de voorkeur heeft en welke namen een synoniem zijn. Omdat synoniemen niet altijd voorkomen in de beoordelingssytemen is het wenselijk om het gebruik van synoniemen te vermijden.</p>
-<p>Bij de controle op de geldigheid van de taxonnamen kwam het taxon <em>“Scirpus lacustris ssp. lacustris”</em> al naar voren als een synoniem (status 20). De functie <code><a href="../reference/twn_info.html">twn_voorkeurnaam()</a></code> zoekt de voorkeurnaam op bij een synoniem. Ik gebruik deze functie om alle taxonnamen om te zetten naar de voorkeurnaam.</p>
+<div class="section level2">
+<h2 id="synoniemen">Synoniemen<a class="anchor" aria-label="anchor" href="#synoniemen"></a>
+</h2>
+<p>Er zijn behoorlijk wat soorten meer dan één taxonnaam hebben. De
+TWN-lijst geeft aan welke naam de voorkeur heeft en welke namen een
+synoniem zijn. Omdat synoniemen niet altijd voorkomen in de
+beoordelingssytemen is het wenselijk om het gebruik van synoniemen te
+vermijden.</p>
+<p>Bij de controle op de geldigheid van de taxonnamen kwam het taxon
+<em>“Scirpus lacustris ssp. lacustris”</em> al naar voren als een
+synoniem (status 20). De functie <code><a href="../reference/twn_info.html">twn_voorkeurnaam()</a></code> zoekt
+de voorkeurnaam op bij een synoniem. Ik gebruik deze functie om alle
+taxonnamen om te zetten naar de voorkeurnaam.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Wat is de voorkeurnaam</span>
@@ -212,169 +237,198 @@
 <span class="co">#&gt; [1] "Schoenoplectus lacustris"</span>
 
 <span class="co"># Vervang alle namen voor hun voorkeurnaam</span>
-<span class="va">opname</span> <span class="op">&lt;-</span> <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>taxa <span class="op">=</span> <span class="fu"><a href="../reference/twn_info.html">twn_voorkeurnaam</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span>
+<span class="va">opname</span> <span class="op">&lt;-</span> <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>taxa <span class="op">=</span> <span class="fu"><a href="../reference/twn_info.html">twn_voorkeurnaam</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Hebben alle taxa status 10? </span>
 <span class="co"># NB De status mag ook als getal worden opgegeven.</span>
-<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_taxon_attribute.html">is_status</a></span><span class="op">(</span><span class="va">taxa</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_taxon_attribute.html">is_status</a></span><span class="op">(</span><span class="va">taxa</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 </div>
-<div id="koppelen-aan-de-maatlatlijst" class="section level2">
-<h2 class="hasAnchor">
-<a href="#koppelen-aan-de-maatlatlijst" class="anchor"></a>Koppelen aan de maatlatlijst</h2>
-<p>De soortenlijst van de maatlat voor de beoordeling van soortensamenstelling heb ik gedownload uit de aquo-kit. Voor dit voorbeeld heb ik gebruik gemaakt van de maatlat van 2018 voor het watertype M8.(Alle gebruikte tabellen zijn te vinden onderaan in dit artikel)</p>
+<div class="section level2">
+<h2 id="koppelen-aan-de-maatlatlijst">Koppelen aan de maatlatlijst<a class="anchor" aria-label="anchor" href="#koppelen-aan-de-maatlatlijst"></a>
+</h2>
+<p>De soortenlijst van de maatlat voor de beoordeling van
+soortensamenstelling heb ik gedownload uit de aquo-kit. Voor dit
+voorbeeld heb ik gebruik gemaakt van de maatlat van 2018 voor het
+watertype M8.(Alle gebruikte tabellen zijn te vinden onderaan in dit
+artikel)</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">maatlat_taxa</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 5</span>
-<span class="co">#&gt;   Groep        Biotaxon.naam      Biotaxon.naam_bron  KRWwatertype.co~ Categorie</span>
-<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;                &lt;int&gt;</span>
-<span class="co">#&gt; 1 Waterplanten Alisma gramineum   Alisma gramineum    M8                       2</span>
-<span class="co">#&gt; 2 Waterplanten Azolla filiculoid~ Azolla filiculoides M8                       5</span>
-<span class="co">#&gt; 3 Waterplanten Baldellia ranuncu~ Baldellia ranuncul~ M8                       1</span>
-<span class="co">#&gt; 4 Waterplanten Callitriche        Callitriche         M8                       3</span>
-<span class="co">#&gt; 5 Waterplanten Callitriche brutia Callitriche brutia  M8                       3</span>
-<span class="co">#&gt; 6 Waterplanten Callitriche herma~ Callitriche hermap~ M8                       3</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">maatlat_taxa</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span>
+<span class="co">#&gt;   Groep        Biotaxon.naam         Biotaxon.naam_b… KRWwatertype.co… Categorie</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Waterplanten Alisma gramineum      Alisma gramineum M8                       2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Waterplanten Azolla filiculoides   Azolla filiculo… M8                       5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Waterplanten Baldellia ranunculoi… Baldellia ranun… M8                       1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Waterplanten Callitriche           Callitriche      M8                       3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Waterplanten Callitriche brutia    Callitriche bru… M8                       3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Waterplanten Callitriche hermaphr… Callitriche her… M8                       3</span>
 
 <span class="co"># Zitten alle taxa van de maatlat wel in de TWN-lijst?</span>
-<span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="../reference/is_twn.html">is_valid_twn</a></span><span class="op">(</span><span class="va">maatlat_taxa</span><span class="op">$</span><span class="va">Biotaxon.naam</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="../reference/is_twn.html">is_valid_twn</a></span><span class="op">(</span><span class="va">maatlat_taxa</span><span class="op">$</span><span class="va">Biotaxon.naam</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
-<p>De fictieve opname bevat soorten die niet voorkomen in de soortenlijst van de maatlat. Sommige soorten (bijv. <em>Urtica dioica - Brandnetel</em>) zijn voor de maatlat niet relevant. Er zitten echter ook taxa in de opname die wel in de maatlatlijst voorkomen, maar op een hoger taxonniveau zoals <em>Chara</em> of <em>Wolffia</em>. Deze taxa moeten wel meegenomen worden in de beoordeling.</p>
+<p>De fictieve opname bevat soorten die niet voorkomen in de
+soortenlijst van de maatlat. Sommige soorten (bijv. <em>Urtica dioica -
+Brandnetel</em>) zijn voor de maatlat niet relevant. Er zitten echter
+ook taxa in de opname die wel in de maatlatlijst voorkomen, maar op een
+hoger taxonniveau zoals <em>Chara</em> of <em>Wolffia</em>. Deze taxa
+moeten wel meegenomen worden in de beoordeling.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Welke taxa uit de opname ontbreken in de maatlatlijst?</span>
-<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">taxa</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">maatlat_taxa</span><span class="op">$</span><span class="va">Biotaxon.naam</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">taxa</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">maatlat_taxa</span><span class="op">$</span><span class="va">Biotaxon.naam</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 2</span></span>
 <span class="co">#&gt;   taxa                            bedekkingspercentage</span>
-<span class="co">#&gt;   &lt;chr&gt;                                          &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Caltha palustris ssp. palustris                    2</span>
-<span class="co">#&gt; 2 Chara connivens                                    5</span>
-<span class="co">#&gt; 3 Cirsium palustre                                   1</span>
-<span class="co">#&gt; 4 Urtica dioica                                      2</span>
-<span class="co">#&gt; 5 Wolffia arrhiza                                    2</span>
-<span class="co">#&gt; 6 Wolffia columbiana                                 5</span></code></pre></div>
-<p>Er zijn 6 taxa die (nog) niet aan de maatlat gekoppeld kunnen worden waarvan er 4 op een hoger niveau wel in de maatlat voorkomen. Speciaal om dit probleem op te lossen is er de functie <code><a href="../reference/match_parent.html">twn::match_parent()</a></code>. Deze functie zoekt of een taxon op een hoger taxonniveau overeen komt met een taxon uit een referentielijst. In dit geval is de referentielijst de KRW-maatlat.</p>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Caltha palustris ssp. palustris                    2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Chara connivens                                    5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Cirsium palustre                                   1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Urtica dioica                                      2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Wolffia arrhiza                                    2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Wolffia columbiana                                 5</span></code></pre></div>
+<p>Er zijn 6 taxa die (nog) niet aan de maatlat gekoppeld kunnen worden
+waarvan er 4 op een hoger niveau wel in de maatlat voorkomen. Speciaal
+om dit probleem op te lossen is er de functie
+<code><a href="../reference/match_parent.html">twn::match_parent()</a></code>. Deze functie zoekt of een taxon op een
+hoger taxonniveau overeen komt met een taxon uit een referentielijst. In
+dit geval is de referentielijst de KRW-maatlat.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Voeg een kolom toe met namen die gematchd zijn met de namen in de maatlat</span>
-<span class="va">opname</span> <span class="op">&lt;-</span> <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>taxa_maatlat <span class="op">=</span> <span class="fu"><a href="../reference/match_parent.html">match_parent</a></span><span class="op">(</span><span class="va">taxa</span>, ref_taxa <span class="op">=</span> <span class="va">maatlat_taxa</span><span class="op">$</span><span class="va">Biotaxon.naam</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 18 x 3</span>
+<span class="va">opname</span> <span class="op">&lt;-</span> <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>taxa_maatlat <span class="op">=</span> <span class="fu"><a href="../reference/match_parent.html">match_parent</a></span><span class="op">(</span><span class="va">taxa</span>, ref_taxa <span class="op">=</span> <span class="va">maatlat_taxa</span><span class="op">$</span><span class="va">Biotaxon.naam</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 3</span></span>
 <span class="co">#&gt;    taxa                                  bedekkingspercentage taxa_maatlat      </span>
-<span class="co">#&gt;    &lt;chr&gt;                                                &lt;dbl&gt; &lt;chr&gt;             </span>
-<span class="co">#&gt;  1 Caltha palustris ssp. palustris                          2 Caltha palustris  </span>
-<span class="co">#&gt;  2 Ceratophyllum demersum                                  10 Ceratophyllum dem~</span>
-<span class="co">#&gt;  3 Chara aspera                                             3 Chara aspera      </span>
-<span class="co">#&gt;  4 Chara connivens                                          5 Chara             </span>
-<span class="co">#&gt;  5 Cirsium palustre                                         1 &lt;NA&gt;              </span>
-<span class="co">#&gt;  6 Glyceria maxima                                         15 Glyceria maxima   </span>
-<span class="co">#&gt;  7 Hydrocharis morsus-ranae                                 3 Hydrocharis morsu~</span>
-<span class="co">#&gt;  8 Lemna minor                                             10 Lemna minor       </span>
-<span class="co">#&gt;  9 Lemna trisulca                                           1 Lemna trisulca    </span>
-<span class="co">#&gt; 10 Myosotis scorpioides ssp. scorpioides                    1 Myosotis scorpioi~</span>
-<span class="co">#&gt; 11 Schoenoplectus lacustris                                 2 Schoenoplectus la~</span>
-<span class="co">#&gt; 12 Stratiotes aloides                                      10 Stratiotes aloides</span>
-<span class="co">#&gt; 13 Symphytum officinale                                     1 Symphytum officin~</span>
-<span class="co">#&gt; 14 Urtica dioica                                            2 &lt;NA&gt;              </span>
-<span class="co">#&gt; 15 Utricularia vulgaris                                     2 Utricularia vulga~</span>
-<span class="co">#&gt; 16 Wolffia arrhiza                                          2 Wolffia           </span>
-<span class="co">#&gt; 17 Wolffia columbiana                                       5 Wolffia           </span>
-<span class="co">#&gt; 18 Zannichellia palustris [1]                               1 Zannichellia palu~</span></code></pre></div>
-<p>4 van de 6 taxa zijn alsnog gekoppeld aan de maatlat. De andere taxa komen niet in de maatlat voor en hoeven daarom niet gekoppeld te worden.</p>
-<p>Ik heb nu met behulp van de functies in <em>twn</em> alle taxa in de opname gecontroleerd en gematchd met de taxa in de maatlat. Ik heb de data nu geschikt gemaakt om te kunnen beoordelen met de KRW-maatlat.</p>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Caltha palustris ssp. palustris                          2 Caltha palustris  </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Ceratophyllum demersum                                  10 Ceratophyllum dem…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Chara aspera                                             3 Chara aspera      </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Chara connivens                                          5 Chara             </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Cirsium palustre                                         1 <span style="color: #BB0000;">NA</span>                </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Glyceria maxima                                         15 Glyceria maxima   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Hydrocharis morsus-ranae                                 3 Hydrocharis morsu…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Lemna minor                                             10 Lemna minor       </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Lemna trisulca                                           1 Lemna trisulca    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Myosotis scorpioides ssp. scorpioides                    1 Myosotis scorpioi…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Schoenoplectus lacustris                                 2 Schoenoplectus la…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Stratiotes aloides                                      10 Stratiotes aloides</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Symphytum officinale                                     1 Symphytum officin…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Urtica dioica                                            2 <span style="color: #BB0000;">NA</span>                </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Utricularia vulgaris                                     2 Utricularia vulga…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">16</span> Wolffia arrhiza                                          2 Wolffia           </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">17</span> Wolffia columbiana                                       5 Wolffia           </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">18</span> Zannichellia palustris [1]                               1 Zannichellia palu…</span></code></pre></div>
+<p>4 van de 6 taxa zijn alsnog gekoppeld aan de maatlat. De andere taxa
+komen niet in de maatlat voor en hoeven daarom niet gekoppeld te
+worden.</p>
+<p>Ik heb nu met behulp van de functies in <em>twn</em> alle taxa in de
+opname gecontroleerd en gematchd met de taxa in de maatlat. Ik heb de
+data nu geschikt gemaakt om te kunnen beoordelen met de KRW-maatlat.</p>
 </div>
-<div id="krw-beoordeling" class="section level2">
-<h2 class="hasAnchor">
-<a href="#krw-beoordeling" class="anchor"></a>KRW beoordeling</h2>
-<p>Hieronder ga ik verder met de KRW-beoordeling. Ik heb dit deel vooral toegevoegd om het voorbeeld compleet te maken. Aangezien het primaire doel is om de functionaliteit van <code>twn</code> te illustreren geef ik hier maar een beperkte uitleg bij.</p>
+<div class="section level2">
+<h2 id="krw-beoordeling">KRW beoordeling<a class="anchor" aria-label="anchor" href="#krw-beoordeling"></a>
+</h2>
+<p>Hieronder ga ik verder met de KRW-beoordeling. Ik heb dit deel vooral
+toegevoegd om het voorbeeld compleet te maken. Aangezien het primaire
+doel is om de functionaliteit van <code>twn</code> te illustreren geef
+ik hier maar een beperkte uitleg bij.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># functie zet bedekking om in abundantieklassen</span>
-<span class="va">f_abundantieklasse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/approxfun.html">approxfun</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.0001</span>, <span class="fl">5</span>, <span class="fl">50</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"constant"</span><span class="op">)</span>
+<span class="va">f_abundantieklasse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/approxfun.html" class="external-link">approxfun</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.0001</span>, <span class="fl">5</span>, <span class="fl">50</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"constant"</span><span class="op">)</span>
 
 <span class="co"># koppelen van maatlattabellen aan de opname</span>
 <span class="va">opname_gekoppeld</span> <span class="op">&lt;-</span> 
-  <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># wegfilteren van taxa die niet in de maatlat zijn gevonden</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">taxa_maatlat</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">taxa_maatlat</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># samenvoegen van taxa  die in de maatlat onder dezelfde naam vallen</span>
   <span class="co"># Wolffia arrhiza en Wolffia columbiana vallen allebei onder Wolffia</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">taxa_maatlat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>bedekkingspercentage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">bedekkingspercentage</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">taxa_maatlat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>bedekkingspercentage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">bedekkingspercentage</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># bedekkingen omzetten in abundantieklassen</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Abundantieklasse <span class="op">=</span> <span class="fu">f_abundantieklasse</span><span class="op">(</span><span class="va">bedekkingspercentage</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Abundantieklasse <span class="op">=</span> <span class="fu">f_abundantieklasse</span><span class="op">(</span><span class="va">bedekkingspercentage</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># toevoegen van maatlatcategorieen en scores</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">maatlat_taxa</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"taxa_maatlat"</span> <span class="op">=</span> <span class="st">"Biotaxon.naam"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">scores</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Groep"</span>, <span class="st">"Abundantieklasse"</span>, <span class="st">"Categorie"</span>, <span class="st">"KRWwatertype.code"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Groep</span>, <span class="va">taxa_maatlat</span>, <span class="va">Abundantieklasse</span>, <span class="va">Categorie</span>, <span class="va">Score</span>, <span class="va">KRWwatertype.code</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Groep</span>, <span class="va">taxa_maatlat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 15 x 6</span>
-<span class="co">#&gt;    Groep        taxa_maatlat   Abundantieklasse Categorie Score KRWwatertype.co~</span>
-<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;                     &lt;dbl&gt;     &lt;int&gt; &lt;int&gt; &lt;chr&gt;           </span>
-<span class="co">#&gt;  1 Oeverplanten Caltha palust~                1         2     5 M8              </span>
-<span class="co">#&gt;  2 Oeverplanten Glyceria maxi~                2         4     0 M8              </span>
-<span class="co">#&gt;  3 Oeverplanten Myosotis scor~                1         3     2 M8              </span>
-<span class="co">#&gt;  4 Oeverplanten Schoenoplectu~                1         2     5 M8              </span>
-<span class="co">#&gt;  5 Oeverplanten Symphytum off~                1         4     1 M8              </span>
-<span class="co">#&gt;  6 Waterplanten Ceratophyllum~                2         4     0 M8              </span>
-<span class="co">#&gt;  7 Waterplanten Chara                         2         2     4 M8              </span>
-<span class="co">#&gt;  8 Waterplanten Chara aspera                  1         1     3 M8              </span>
-<span class="co">#&gt;  9 Waterplanten Hydrocharis m~                1         5     0 M8              </span>
-<span class="co">#&gt; 10 Waterplanten Lemna minor                   2         5    -1 M8              </span>
-<span class="co">#&gt; 11 Waterplanten Lemna trisulca                1         4     1 M8              </span>
-<span class="co">#&gt; 12 Waterplanten Stratiotes al~                2         3     2 M8              </span>
-<span class="co">#&gt; 13 Waterplanten Utricularia v~                1         2     3 M8              </span>
-<span class="co">#&gt; 14 Waterplanten Wolffia                       2         5    -1 M8              </span>
-<span class="co">#&gt; 15 Waterplanten Zannichellia ~                1         4     1 M8</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">maatlat_taxa</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"taxa_maatlat"</span> <span class="op">=</span> <span class="st">"Biotaxon.naam"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">scores</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Groep"</span>, <span class="st">"Abundantieklasse"</span>, <span class="st">"Categorie"</span>, <span class="st">"KRWwatertype.code"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">Groep</span>, <span class="va">taxa_maatlat</span>, <span class="va">Abundantieklasse</span>, <span class="va">Categorie</span>, <span class="va">Score</span>, <span class="va">KRWwatertype.code</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">Groep</span>, <span class="va">taxa_maatlat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 6</span></span>
+<span class="co">#&gt;    Groep        taxa_maatlat   Abundantieklasse Categorie Score KRWwatertype.co…</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Oeverplanten Caltha palust…                1         2     5 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Oeverplanten Glyceria maxi…                2         4     0 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Oeverplanten Myosotis scor…                1         3     2 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Oeverplanten Schoenoplectu…                1         2     5 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Oeverplanten Symphytum off…                1         4     1 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Waterplanten Ceratophyllum…                2         4     0 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Waterplanten Chara                         2         2     4 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Waterplanten Chara aspera                  1         1     3 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Waterplanten Hydrocharis m…                1         5     0 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Waterplanten Lemna minor                   2         5    -<span style="color: #BB0000;">1</span> M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Waterplanten Lemna trisulca                1         4     1 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Waterplanten Stratiotes al…                2         3     2 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Waterplanten Utricularia v…                1         2     3 M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Waterplanten Wolffia                       2         5    -<span style="color: #BB0000;">1</span> M8              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Waterplanten Zannichellia …                1         4     1 M8</span>
 
 <span class="co"># functie voor de ekr formule soortensamenstelling</span>
 <span class="va">ekr_formule</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">som_score</span>, <span class="va">aantal</span>, <span class="va">constante_a</span>, <span class="va">constante_b</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">ekr</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">(</span><span class="va">som_score</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">aantal</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">3</span> <span class="op">/</span> <span class="va">aantal</span><span class="op">)</span> <span class="op">+</span> <span class="va">constante_b</span><span class="op">)</span> <span class="op">/</span> <span class="va">constante_a</span>
+  <span class="va">ekr</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">(</span><span class="va">som_score</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">aantal</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">3</span> <span class="op">/</span> <span class="va">aantal</span><span class="op">)</span> <span class="op">+</span> <span class="va">constante_b</span><span class="op">)</span> <span class="op">/</span> <span class="va">constante_a</span>
   
   <span class="co"># EKR dient tussen 0 en 1 te liggen</span>
-  <span class="va">ekr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">ekr</span> <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">~</span> <span class="fl">0</span>, <span class="va">ekr</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">~</span> <span class="fl">1</span>, <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">ekr</span><span class="op">)</span>
+  <span class="va">ekr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">ekr</span> <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">~</span> <span class="fl">0</span>, <span class="va">ekr</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">~</span> <span class="fl">1</span>, <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">ekr</span><span class="op">)</span>
   <span class="va">ekr</span>
 <span class="op">}</span>
 
 <span class="co"># Bereken de ekr voor waterplanten en oeverplanten</span>
 <span class="va">deel_ekrs</span> <span class="op">&lt;-</span> 
-<span class="va">opname_gekoppeld</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Groep</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">opname_gekoppeld</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>   
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Groep</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># berekenen van som score en aantal scorende soorten</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
-            som_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Score</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>,
+            som_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Score</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># toevoegen constanten</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">constanten</span>, by <span class="op">=</span> <span class="st">"Groep"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">constanten</span>, by <span class="op">=</span> <span class="st">"Groep"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># berekenen deel EKR's</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ekr <span class="op">=</span> <span class="fu">ekr_formule</span><span class="op">(</span><span class="va">som_score</span>, <span class="va">n</span>, <span class="va">Constante_a</span>, <span class="va">Constante_b</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 x 7</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>ekr <span class="op">=</span> <span class="fu">ekr_formule</span><span class="op">(</span><span class="va">som_score</span>, <span class="va">n</span>, <span class="va">Constante_a</span>, <span class="va">Constante_b</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 7</span></span>
 <span class="co">#&gt;   Groep            n som_score KRWwatertype.code Constante_a Constante_b   ekr</span>
-<span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;int&gt;       &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Oeverplanten     5        13 M8                          8          -2 0.402</span>
-<span class="co">#&gt; 2 Waterplanten    10        12 M8                          5           1 0.899</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Oeverplanten     5        13 M8                          8          -<span style="color: #BB0000;">2</span> 0.402</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Waterplanten    10        12 M8                          5           1 0.899</span>
 
 <span class="co"># berekenen van de ekr macrofyten soortensamenstelling</span>
-<span class="va">deel_ekrs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Groep</span>, <span class="va">ekr</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">Groep</span>, values_from <span class="op">=</span> <span class="va">ekr</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ekr_soortensamenstelling <span class="op">=</span> <span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">Waterplanten</span> <span class="op">+</span> <span class="va">Oeverplanten</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3</span>, .before <span class="op">=</span> <span class="va">Oeverplanten</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>deel_ekr_oeverplanten <span class="op">=</span> <span class="va">Oeverplanten</span>, deel_ekr_waterplanten <span class="op">=</span> <span class="va">Waterplanten</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 3</span>
+<span class="va">deel_ekrs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">Groep</span>, <span class="va">ekr</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">Groep</span>, values_from <span class="op">=</span> <span class="va">ekr</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>ekr_soortensamenstelling <span class="op">=</span> <span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">Waterplanten</span> <span class="op">+</span> <span class="va">Oeverplanten</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3</span>, .before <span class="op">=</span> <span class="va">Oeverplanten</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>deel_ekr_oeverplanten <span class="op">=</span> <span class="va">Oeverplanten</span>, deel_ekr_waterplanten <span class="op">=</span> <span class="va">Waterplanten</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span>
 <span class="co">#&gt;   ekr_soortensamenstelling deel_ekr_oeverplanten deel_ekr_waterplanten</span>
-<span class="co">#&gt;                      &lt;dbl&gt;                 &lt;dbl&gt;                 &lt;dbl&gt;</span>
-<span class="co">#&gt; 1                    0.733                 0.402                 0.899</span></code></pre></div>
-<p>De uiteindelijke EKR-soortensamenstelling voor deze opname is 0.73. Ter vergelijking heb ik ook de EKR berekend zonder eerst de namen op te schonen en te matchen met de maatlat (niet getoond). Als ik dat doe, kan ik maar 8 (i.p.v. 16) taxa koppelen aan de maatlat en is de EKR met 0.50 aanzienlijk lager. Dat laat zien dat een goede voorbewerking van de soortenlijst erg belangrijk is om tot een goede beoordeling te komen.</p>
+<span class="co">#&gt;                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    0.733                 0.402                 0.899</span></code></pre></div>
+<p>De uiteindelijke EKR-soortensamenstelling voor deze opname is 0.73.
+Ter vergelijking heb ik ook de EKR berekend zonder eerst de namen op te
+schonen en te matchen met de maatlat (niet getoond). Als ik dat doe, kan
+ik maar 8 (i.p.v. 16) taxa koppelen aan de maatlat en is de EKR met 0.50
+aanzienlijk lager. Dat laat zien dat een goede voorbewerking van de
+soortenlijst erg belangrijk is om tot een goede beoordeling te
+komen.</p>
 </div>
-<div id="tabellen" class="section level2">
-<h2 class="hasAnchor">
-<a href="#tabellen" class="anchor"></a>Tabellen</h2>
-<p>Om compleet te zijn heb ik hieronder de gebruikte tabellen weergegeven. Deze kunnen gebruikt worden om bovenstaande code zelf uit te voeren..</p>
+<div class="section level2">
+<h2 id="tabellen">Tabellen<a class="anchor" aria-label="anchor" href="#tabellen"></a>
+</h2>
+<p>Om compleet te zijn heb ik hieronder de gebruikte tabellen
+weergegeven. Deze kunnen gebruikt worden om bovenstaande code zelf uit
+te voeren..</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">opname</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">opname</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
                                                      <span class="op">~</span><span class="va">taxa</span>, <span class="op">~</span><span class="va">bedekkingspercentage</span>,
                          <span class="st">"Caltha palustris ssp. palustris"</span>,                    <span class="fl">2</span>,
                                   <span class="st">"Ceratophyllum demersum"</span>,                   <span class="fl">10</span>,
@@ -397,7 +451,7 @@
                     <span class="op">)</span>
 
 
-<span class="va">maatlat_taxa</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<span class="va">maatlat_taxa</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
                          <span class="op">~</span><span class="va">Groep</span>,                          <span class="op">~</span><span class="va">Biotaxon.naam</span>,              <span class="op">~</span><span class="va">Biotaxon.naam_bron</span>, <span class="op">~</span><span class="va">KRWwatertype.code</span>, <span class="op">~</span><span class="va">Categorie</span>,
                  <span class="st">"Waterplanten"</span>,                      <span class="st">"Alisma gramineum"</span>,               <span class="st">"Alisma gramineum"</span>,               <span class="st">"M8"</span>,         <span class="fl">2L</span>,
                  <span class="st">"Waterplanten"</span>,                   <span class="st">"Azolla filiculoides"</span>,            <span class="st">"Azolla filiculoides"</span>,               <span class="st">"M8"</span>,         <span class="fl">5L</span>,
@@ -560,7 +614,7 @@
                  <span class="st">"Oeverplanten"</span>,                   <span class="st">"Veronica scutellata"</span>,            <span class="st">"Veronica scutellata"</span>,               <span class="st">"M8"</span>,         <span class="fl">3L</span>
                  <span class="op">)</span>
 
-<span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
                     <span class="op">~</span><span class="va">Groep</span>, <span class="op">~</span><span class="va">KRWwatertype.code</span>, <span class="op">~</span><span class="va">Abundantieklasse</span>, <span class="op">~</span><span class="va">Categorie</span>, <span class="op">~</span><span class="va">Score</span>,
             <span class="st">"Waterplanten"</span>,               <span class="st">"M8"</span>,               <span class="fl">1L</span>,         <span class="fl">1L</span>,     <span class="fl">3L</span>,
             <span class="st">"Waterplanten"</span>,               <span class="st">"M8"</span>,               <span class="fl">1L</span>,         <span class="fl">2L</span>,     <span class="fl">3L</span>,
@@ -594,7 +648,7 @@
             <span class="st">"Oeverplanten"</span>,               <span class="st">"M8"</span>,               <span class="fl">3L</span>,         <span class="fl">5L</span>,    <span class="op">-</span><span class="fl">9L</span>
             <span class="op">)</span>
 
-<span class="va">constanten</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<span class="va">constanten</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
                         <span class="op">~</span><span class="va">Groep</span>, <span class="op">~</span><span class="va">KRWwatertype.code</span>, <span class="op">~</span><span class="va">Constante_a</span>, <span class="op">~</span><span class="va">Constante_b</span>,
                 <span class="st">"Waterplanten"</span>,               <span class="st">"M8"</span>,           <span class="fl">5L</span>,           <span class="fl">1L</span>,
                 <span class="st">"Oeverplanten"</span>,               <span class="st">"M8"</span>,           <span class="fl">8L</span>,          <span class="op">-</span><span class="fl">2L</span>
@@ -613,11 +667,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Johan van Tent.</p>
+  <p></p>
+<p>Developed by Johan van Tent.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -625,6 +681,8 @@
 
   
 
+
+  
 
   </body>
 </html>
