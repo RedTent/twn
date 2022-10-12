@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<img src="https://github.com/RedTent/twn/raw/master/inst/extdata/twn_hex.png" style="float:right; height:200px;padding:10px;">
+
 # twn - TWN-lijst voor R
 
 <!-- badges: start -->
@@ -51,17 +53,17 @@ library(twn)
 dplyr::glimpse(twn_lijst)
 #> Rows: 27,294
 #> Columns: 11
-#> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophytes",…
-#> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nordmannian…
-#> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon et R. Gle…
-#> $ taxongroup <chr> "Gymnospermae", "Gymnospermae", "Angiospermae", "Gymnosperm…
-#> $ taxonlevel <ord> Genus, Species, Species, Species, Species, Species, Species…
-#> $ parentname <chr> "Pinaceae", "Abies", "Abies", "Abies", "Abies", "Abies", NA…
-#> $ refername  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-#> $ literature <chr> "M0001", "M0001", NA, "M0001", NA, "M0001", "M0001", "I0280…
-#> $ localname  <chr> NA, "Gewone zilverspar", NA, "Kaukasische zilverspar", NA, …
-#> $ date       <date> 2009-09-11, 2009-12-17, 2009-12-04, 2009-12-17, 2009-12-04…
-#> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "10",…
+#> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophytes",~
+#> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nordmannian~
+#> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon et R. Gle~
+#> $ taxongroup <chr> "Gymnospermae", "Gymnospermae", "Angiospermae", "Gymnosperm~
+#> $ taxonlevel <ord> Genus, Species, Species, Species, Species, Species, Species~
+#> $ parentname <chr> "Pinaceae", "Abies", "Abies", "Abies", "Abies", "Abies", NA~
+#> $ refername  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,~
+#> $ literature <chr> "M0001", "M0001", NA, "M0001", NA, "M0001", "M0001", "I0280~
+#> $ localname  <chr> NA, "Gewone zilverspar", NA, "Kaukasische zilverspar", NA, ~
+#> $ date       <date> 2009-09-11, 2009-12-17, 2009-12-04, 2009-12-17, 2009-12-04~
+#> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "10",~
 
 attr(twn_lijst, "datum_twn_lijst")
 #> [1] "2022-04-27"

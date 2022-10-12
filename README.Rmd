@@ -12,7 +12,11 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
+<img src="https://github.com/RedTent/twn/raw/master/inst/extdata/twn_hex.png" style="float:right; height:200px;padding:10px;">
+
 # twn - TWN-lijst voor R
+
+
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.org/RedTent/twn)
@@ -22,6 +26,8 @@ knitr::opts_chunk$set(
 <!-- werkt niet naar behoren  [![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master) -->
 [![R-CMD-check](https://github.com/RedTent/twn/workflows/R-CMD-check/badge.svg)](https://github.com/RedTent/twn/actions)
 <!-- badges: end -->
+
+
 
 Het doel van *twn* is tweeledig. Ten eerste maakt *twn* het eenvoudig om de TWN-lijst in R te kunnen raadplegen en gebruiken. Ten tweede heeft *twn* diverse functies die het gemakkelijk maken om de TWN-lijst te gebruiken bij de analyse van ecologische data.
 
