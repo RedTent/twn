@@ -38,7 +38,8 @@ taxonlevel_volgorde <- readr::read_csv2("data-raw/volgorde_taxonlevels.csv") %>%
 
 twn_lijst <- twn_orig %>% 
   mutate(taxonlevel = factor(taxonlevel, levels = taxonlevel_volgorde, ordered = TRUE),
-         author = stringi::stri_escape_unicode(author))
+         author = stringi::stri_escape_unicode(author)) %>% 
+  mutate(status = as.character(status))
 
 attr(twn_lijst, "datum_twn_lijst") <- datum_twn_bestand_recent
 
