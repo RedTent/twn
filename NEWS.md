@@ -1,4 +1,4 @@
-# twn (development version)
+# twn 0.2.3
 
 - Nieuwe TWN-lijst en literatuurlijst (15-11-2022)
 
