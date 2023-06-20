@@ -1,5 +1,5 @@
 
-use_data(
+usethis::use_data(
   opzoektabel_twn_voorkeur,
   opzoektabel_twn_parent,
   opzoektabel_twn_status,
