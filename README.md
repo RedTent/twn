@@ -7,8 +7,6 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.org/RedTent/twn.svg?branch=master)](https://travis-ci.org/RedTent/twn)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/twn)](https://CRAN.R-project.org/package=twn)
 [![Lifecycle:
