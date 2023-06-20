@@ -2,6 +2,8 @@
 
 - Nieuwe TWN-lijst en literatuurlijst (20-06-2023)
 
+NB de vorige versie van de TWN-lijst had een grote hoeveelheid verkeerde datums.
+
 # twn 0.2.3
 
 - Nieuwe TWN-lijst en literatuurlijst (15-11-2022)
