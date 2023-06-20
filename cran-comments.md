@@ -1,7 +1,7 @@
 ## Test environments
-* local Windows 11 install, R 4.2.2
-* macOS (on Github Actions), R 4.2.2
-* ubuntu 20.04 (release and devel on Github Actions), R 4.2.2
+* local Windows 11 install, R 4.3.0
+* macOS (on Github Actions), R 4.3.1
+* ubuntu 20.04 (release and devel on Github Actions), R 4.3.1
 * win-builder (release and devel)
 
 
