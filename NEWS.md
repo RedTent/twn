@@ -1,5 +1,7 @@
 # twn 0.2.4
 
+- Nieuwe TWN-lijst en literatuurlijst (20-06-2023)
+
 # twn 0.2.3
 
 - Nieuwe TWN-lijst en literatuurlijst (15-11-2022)
