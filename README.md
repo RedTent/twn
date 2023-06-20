@@ -16,6 +16,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 ![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/twn)
 <!-- werkt niet naar behoren  [![Codecov test coverage](https://codecov.io/gh/RedTent/twn/branch/master/graph/badge.svg)](https://codecov.io/gh/RedTent/twn?branch=master) -->
 [![R-CMD-check](https://github.com/RedTent/twn/workflows/R-CMD-check/badge.svg)](https://github.com/RedTent/twn/actions)
+[![R-CMD-check](https://github.com/RedTent/twn/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/RedTent/twn/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Het doel van *twn* is tweeledig. Ten eerste maakt *twn* het eenvoudig om
@@ -48,25 +49,25 @@ TWN-lijst wordt getoond bij het laden van de package.
 
 ``` r
 library(twn)
-#> twn gebruikt de TWN-lijst van 2022-04-27
+#> twn gebruikt de TWN-lijst van 2023-06-20
 
 dplyr::glimpse(twn_lijst)
-#> Rows: 27,294
+#> Rows: 28,044
 #> Columns: 11
-#> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophytes",~
-#> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nordmannian~
-#> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon et R. Gle~
-#> $ taxongroup <chr> "Gymnospermae", "Gymnospermae", "Angiospermae", "Gymnosperm~
-#> $ taxonlevel <ord> Genus, Species, Species, Species, Species, Species, Species~
-#> $ parentname <chr> "Pinaceae", "Abies", "Abies", "Abies", "Abies", "Abies", NA~
-#> $ refername  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,~
-#> $ literature <chr> "M0001", "M0001", NA, "M0001", NA, "M0001", "M0001", "I0280~
-#> $ localname  <chr> NA, "Gewone zilverspar", NA, "Kaukasische zilverspar", NA, ~
-#> $ date       <date> 2009-09-11, 2009-12-17, 2009-12-04, 2009-12-17, 2009-12-04~
-#> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "10",~
+#> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophytes",…
+#> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies nordmannian…
+#> $ author     <chr> "P. Miller 1754", "C. Linnaeus 1753", "(G. Gordon et R. Gle…
+#> $ taxongroup <chr> "Gymnospermae", "Gymnospermae", "Angiospermae", "Gymnosperm…
+#> $ taxonlevel <ord> Genus, Species, Species, Species, Species, Species, Species…
+#> $ parentname <chr> "Pinaceae", "Abies", "Abies", "Abies", "Abies", "Abies", NA…
+#> $ refername  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+#> $ literature <chr> "M0001", "M0001", NA, "M0001", NA, "M0001", "M0001", "I0280…
+#> $ localname  <chr> NA, "Gewone zilverspar", NA, "Kaukasische zilverspar", NA, …
+#> $ date       <date> 2009-09-11, 2009-12-17, 2009-12-04, 2009-12-17, 2009-12-04…
+#> $ status     <chr> "10", "10", "10", "10", "10", "10", "91", "10", "10", "10",…
 
 attr(twn_lijst, "datum_twn_lijst")
-#> [1] "2022-04-27"
+#> [1] "2023-06-20"
 ```
 
 ## TWN informatie opzoeken
