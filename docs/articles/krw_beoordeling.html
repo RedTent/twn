@@ -8,8 +8,8 @@
 <meta name="description" content="twn">
 <title>twn als hulp bij KRW-beoordeling • twn</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="twn als hulp bij KRW-beoordeling">
 <meta property="og:description" content="twn">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">twn</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +92,7 @@ opname is gedaan in een watergang met het watertype M8 en de
 bedekkingspercentages hebben betrekking op de hele watergang.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://redtent.github.io/twn/" class="external-link">twn</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; twn gebruikt de TWN-lijst van <span style="color: #BB0000;">2022-11-15</span></span></span>
+<span><span class="co">#&gt; twn gebruikt de TWN-lijst van <span style="color: #BB0000;">2024-04-23</span></span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">opname</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 2</span></span></span>
@@ -130,6 +130,7 @@ het belangrijk om deze namen eerst te controleren. De functie
 TWN-lijst voorkomen.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.3.2</span></span>
 <span></span>
 <span><span class="co"># Filter alle taxa die niet in de TWN-lijst voorkomen.</span></span>
 <span><span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -174,26 +175,29 @@ kan ik deze ongeldige namen op verschillende manieren opsporen.</p>
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Alle taxa die niet status 10, 20 of 80 hebben</span></span>
 <span><span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_twn.html">is_valid_twn</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
-<span><span class="co">#&gt;   taxa                   bedekkingspercentage</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Zannichellia palustris                    1</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
+<span><span class="co">#&gt;   taxa                            bedekkingspercentage</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Caltha palustris ssp. palustris                    2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Zannichellia palustris                             1</span></span>
 <span></span>
 <span><span class="co"># Alle taxa die status 30, 91 of 92 hebben</span></span>
 <span><span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="../reference/twn_info.html">twn_status</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"30"</span>, <span class="st">"91"</span>, <span class="st">"92"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
-<span><span class="co">#&gt;   taxa                   bedekkingspercentage</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Zannichellia palustris                    1</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
+<span><span class="co">#&gt;   taxa                            bedekkingspercentage</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Caltha palustris ssp. palustris                    2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Zannichellia palustris                             1</span></span>
 <span></span>
 <span><span class="co"># Alle taxa die niet status 10 hebben</span></span>
 <span><span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_taxon_attribute.html">is_status</a></span><span class="op">(</span><span class="va">taxa</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"10"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>status <span class="op">=</span> <span class="fu"><a href="../reference/twn_info.html">twn_status</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 3</span></span></span>
 <span><span class="co">#&gt;   taxa                             bedekkingspercentage status</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Scirpus lacustris ssp. lacustris                    2 20    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Zannichellia palustris                              1 92</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Caltha palustris ssp. palustris                     2 91    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Scirpus lacustris ssp. lacustris                    2 20    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Zannichellia palustris                              1 92</span></span>
 <span></span>
 <span><span class="co"># Er is ook een taxon met de de status 20</span></span></code></pre></div>
 <p>Het taxon <em>“Zannichellia palustris”</em> is door verschillende
@@ -236,7 +240,7 @@ taxonnamen om te zetten naar de voorkeurnaam.</p>
 <span><span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_taxon_attribute.html">is_status</a></span><span class="op">(</span><span class="va">taxa</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 2</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="koppelen-aan-de-maatlatlijst">Koppelen aan de maatlatlijst<a class="anchor" aria-label="anchor" href="#koppelen-aan-de-maatlatlijst"></a>
@@ -270,15 +274,16 @@ moeten wel meegenomen worden in de beoordeling.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Welke taxa uit de opname ontbreken in de maatlatlijst?</span></span>
 <span><span class="va">opname</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">taxa</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">maatlat_taxa</span><span class="op">$</span><span class="va">Biotaxon.naam</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 2</span></span></span>
-<span><span class="co">#&gt;   taxa                            bedekkingspercentage</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Caltha palustris ssp. palustris                    2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Chara connivens                                    5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Cirsium palustre                                   1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Urtica dioica                                      2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Wolffia arrhiza                                    2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Wolffia columbiana                                 5</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 2</span></span></span>
+<span><span class="co">#&gt;   taxa                                    bedekkingspercentage</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Caltha palustris ssp. palustris                            2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Chara connivens                                            5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Cirsium palustre                                           1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Urtica dioica                                              2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Wolffia arrhiza                                            2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Wolffia columbiana                                         5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Zannichellia palustris subsp. palustris                    1</span></span></code></pre></div>
 <p>Er zijn 6 taxa die (nog) niet aan de maatlat gekoppeld kunnen worden
 waarvan er 4 op een hoger niveau wel in de maatlat voorkomen. Speciaal
 om dit probleem op te lossen is er de functie
@@ -292,26 +297,26 @@ dit geval is de referentielijst de KRW-maatlat.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>taxa_maatlat <span class="op">=</span> <span class="fu"><a href="../reference/match_parent.html">match_parent</a></span><span class="op">(</span><span class="va">taxa</span>, ref_taxa <span class="op">=</span> <span class="va">maatlat_taxa</span><span class="op">$</span><span class="va">Biotaxon.naam</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 3</span></span></span>
-<span><span class="co">#&gt;    taxa                                  bedekkingspercentage taxa_maatlat      </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Caltha palustris ssp. palustris                          2 Caltha palustris  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Ceratophyllum demersum                                  10 Ceratophyllum dem…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Chara aspera                                             3 Chara aspera      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Chara connivens                                          5 Chara             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Cirsium palustre                                         1 <span style="color: #BB0000;">NA</span>                </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Glyceria maxima                                         15 Glyceria maxima   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Hydrocharis morsus-ranae                                 3 Hydrocharis morsu…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Lemna minor                                             10 Lemna minor       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Lemna trisulca                                           1 Lemna trisulca    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Myosotis scorpioides ssp. scorpioides                    1 Myosotis scorpioi…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Schoenoplectus lacustris                                 2 Schoenoplectus la…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Stratiotes aloides                                      10 Stratiotes aloides</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Symphytum officinale                                     1 Symphytum officin…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Urtica dioica                                            2 <span style="color: #BB0000;">NA</span>                </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Utricularia vulgaris                                     2 Utricularia vulga…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> Wolffia arrhiza                                          2 Wolffia           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> Wolffia columbiana                                       5 Wolffia           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> Zannichellia palustris [1]                               1 Zannichellia palu…</span></span></code></pre></div>
+<span><span class="co">#&gt;    taxa                                    bedekkingspercentage taxa_maatlat    </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Caltha palustris ssp. palustris                            2 Caltha palustris</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Ceratophyllum demersum                                    10 Ceratophyllum d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Chara aspera                                               3 Chara aspera    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Chara connivens                                            5 Chara           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Cirsium palustre                                           1 <span style="color: #BB0000;">NA</span>              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Glyceria maxima                                           15 Glyceria maxima </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Hydrocharis morsus-ranae                                   3 Hydrocharis mor…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Lemna minor                                               10 Lemna minor     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Lemna trisulca                                             1 Lemna trisulca  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Myosotis scorpioides ssp. scorpioides                      1 Myosotis scorpi…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Schoenoplectus lacustris                                   2 Schoenoplectus …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Stratiotes aloides                                        10 Stratiotes aloi…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Symphytum officinale                                       1 Symphytum offic…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Urtica dioica                                              2 <span style="color: #BB0000;">NA</span>              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Utricularia vulgaris                                       2 Utricularia vul…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> Wolffia arrhiza                                            2 Wolffia         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> Wolffia columbiana                                         5 Wolffia         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> Zannichellia palustris subsp. palustris                    1 <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>4 van de 6 taxa zijn alsnog gekoppeld aan de maatlat. De andere taxa
 komen niet in de maatlat voor en hoeven daarom niet gekoppeld te
 worden.</p>
@@ -348,7 +353,7 @@ ik hier maar een beperkte uitleg bij.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">Groep</span>, <span class="va">taxa_maatlat</span>, <span class="va">Abundantieklasse</span>, <span class="va">Categorie</span>, <span class="va">Score</span>, <span class="va">KRWwatertype.code</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">Groep</span>, <span class="va">taxa_maatlat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 6</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 14 × 6</span></span></span>
 <span><span class="co">#&gt;    Groep        taxa_maatlat  Abundantieklasse Categorie Score KRWwatertype.code</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Oeverplanten Caltha palus…                1         2     5 M8               </span></span>
@@ -364,8 +369,7 @@ ik hier maar een beperkte uitleg bij.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Waterplanten Lemna trisul…                1         4     1 M8               </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Waterplanten Stratiotes a…                2         3     2 M8               </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Waterplanten Utricularia …                1         2     3 M8               </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Waterplanten Wolffia                      2         5    -<span style="color: #BB0000;">1</span> M8               </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Waterplanten Zannichellia…                1         4     1 M8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Waterplanten Wolffia                      2         5    -<span style="color: #BB0000;">1</span> M8</span></span>
 <span></span>
 <span><span class="co"># functie voor de ekr formule soortensamenstelling</span></span>
 <span><span class="va">ekr_formule</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">som_score</span>, <span class="va">aantal</span>, <span class="va">constante_a</span>, <span class="va">constante_b</span><span class="op">)</span><span class="op">{</span></span>
@@ -392,7 +396,7 @@ ik hier maar een beperkte uitleg bij.</p>
 <span><span class="co">#&gt;   Groep            n som_score KRWwatertype.code Constante_a Constante_b   ekr</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Oeverplanten     5        13 M8                          8          -<span style="color: #BB0000;">2</span> 0.402</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Waterplanten    10        12 M8                          5           1 0.899</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Waterplanten     9        11 M8                          5           1 0.867</span></span>
 <span></span>
 <span><span class="co"># berekenen van de ekr macrofyten soortensamenstelling</span></span>
 <span><span class="va">deel_ekrs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -404,7 +408,7 @@ ik hier maar een beperkte uitleg bij.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
 <span><span class="co">#&gt;   ekr_soortensamenstelling deel_ekr_oeverplanten deel_ekr_waterplanten</span></span>
 <span><span class="co">#&gt;                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    0.733                 0.402                 0.899</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    0.712                 0.402                 0.867</span></span></code></pre></div>
 <p>De uiteindelijke EKR-soortensamenstelling voor deze opname is 0.73.
 Ter vergelijking heb ik ook de EKR berekend zonder eerst de namen op te
 schonen en te matchen met de maatlat (niet getoond). Als ik dat doe, kan
