@@ -1,6 +1,7 @@
 template:
   bootstrap: 5
 
+url: https://redtent.github.io/twn
 reference:
   - title: TWN data
     desc: Datatabellen van de TWN-lijst

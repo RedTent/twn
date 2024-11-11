@@ -1,66 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/krw_beoordeling.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/increase_taxonlevel.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/is_taxon_attribute.html</loc>
-  </url>
-  <url>
-    <loc>/reference/is_twn.html</loc>
-  </url>
-  <url>
-    <loc>/reference/match_parent.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twn.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twn_children.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twn_children_rec.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twn_info.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twn_lijst.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twn_literatuur.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twn_statuscodes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twn_taxonlevels.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://redtent.github.io/twn/404.html</loc></url>
+<url><loc>https://redtent.github.io/twn/articles/index.html</loc></url>
+<url><loc>https://redtent.github.io/twn/articles/krw_beoordeling.html</loc></url>
+<url><loc>https://redtent.github.io/twn/authors.html</loc></url>
+<url><loc>https://redtent.github.io/twn/index.html</loc></url>
+<url><loc>https://redtent.github.io/twn/LICENSE-text.html</loc></url>
+<url><loc>https://redtent.github.io/twn/LICENSE.html</loc></url>
+<url><loc>https://redtent.github.io/twn/news/index.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/increase_taxonlevel.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/index.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/is_taxon_attribute.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/is_twn.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/match_parent.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/twn.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/twn_children.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/twn_children_rec.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/twn_info.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/twn_lijst.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/twn_literatuur.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/twn_statuscodes.html</loc></url>
+<url><loc>https://redtent.github.io/twn/reference/twn_taxonlevels.html</loc></url>
 </urlset>
+
