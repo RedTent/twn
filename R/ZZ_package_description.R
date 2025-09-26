@@ -12,9 +12,8 @@
 #' 
 #' Voor meer informatie zie de package website: [https://redtent.github.io/twn/](https://redtent.github.io/twn/)
 #'
-#' @docType package
 #' @name twn
-NULL
+"_PACKAGE"
 
 
 
