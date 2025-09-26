@@ -159,6 +159,14 @@ opzoektabel_twn_taxontype <-
   tibble::deframe()
 
 
+opzoektabel_twn_datum <- 
+  twn_lijst %>% 
+  dplyr::arrange(status) %>%
+  dplyr::select(taxonname, date) %>%
+  # dplyr::filter(!is.na(date)) %>%
+  dplyr::distinct() %>%
+  tibble::deframe()
+
 # save in sysdata ---------------------------------------------------------
 print("x")
 # Het gebruik van sysdata.R borgt dat er geen interne bestanden verloren gaan.
