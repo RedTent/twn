@@ -29,7 +29,7 @@ Dataframe met 12 kolommen
 }
 }
 \source{
-\url{https://twnlist.aquadesk.nl/}
+\url{https://taxainfo.nl/}
 }
 \usage{
 twn_lijst
@@ -37,7 +37,7 @@ twn_lijst
 \description{
 De TWN-lijst bevat de standaardlijst met namen van taxa zoals deze worden gebruikt binnen het
 Nederlandse waterbeheer. Deze dataset bevat de complete TWN-lijst zoals deze aangeboden wordt
-op \url{https://twnlist.aquadesk.nl/}.
+op \url{https://taxainfo.nl/}.
 }
 \note{
 De centrale TWN-lijst wordt regelmatig van updates voorzien. Deze TWN-lijst kan daarom enigszins

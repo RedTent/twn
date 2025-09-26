@@ -11,9 +11,6 @@ Dataframe met 2 kolommen
 \item \code{omschrijving}- Omschrijving van de betekenis van de statuscode
 }
 }
-\source{
-\url{https://www.aquo.nl/index.php/Vraag_en_Antwoord_TWN}
-}
 \usage{
 twn_statuscodes
 }
