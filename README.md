@@ -46,10 +46,10 @@ TWN-lijst wordt getoond bij het laden van de package.
 
 ``` r
 library(twn)
-#> twn gebruikt de TWN-lijst van 2024-11-11
+#> twn gebruikt de TWN-lijst van 2025-09-26
 
 dplyr::glimpse(twn_lijst)
-#> Rows: 29,167
+#> Rows: 29,412
 #> Columns: 11
 #> $ taxontype  <chr> "Macrophytes", "Macrophytes", "Macrophytes", "Macrophytes",…
 #> $ taxonname  <chr> "Abies", "Abies alba", "Abies concolor", "Abies grandis", "…
@@ -64,7 +64,7 @@ dplyr::glimpse(twn_lijst)
 #> $ status     <chr> "10", "10", "10", "10", "20", "10", "10", "10", "91", "10",…
 
 attr(twn_lijst, "datum_twn_lijst")
-#> [1] "2024-11-11"
+#> [1] "2025-09-26"
 ```
 
 ## TWN informatie opzoeken
