@@ -288,5 +288,5 @@ twn_lijst %>%
   select(taxontype, taxonname, parentname, parent_status) %>% 
   my_datatable()
     
-  ```
+```
 
