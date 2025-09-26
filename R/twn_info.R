@@ -4,15 +4,21 @@
 #'
 #' @details Deze functies accepteren een vector met taxonnamen en retourneren de
 #'   betreffende informatie uit de TWN-lijst. Als de taxonnaam niet in de
-#'   TWN-lijst voorkomt retourneert de functie `NA`
+#'   TWN-lijst voorkomt retourneert de functie `NA`.
 #'
-#'   - `twn_voorkeurnaam`: Geeft de voorkeurnaam van het taxon. Als het al de
+#'   - `twn_voorkeurnaam()`: Geeft de voorkeurnaam van het taxon. Als het al de
 #'   voorkeurnaam is wordt de originele naam teruggegeven.
-#'   - `twn_parent`: Geeft de parent van het taxon. 
-#'   - `twn_status`: Geeft de status(code) van het taxon. 
-#'   - `twn_localname`: Geeft de Nederlandse naam van het taxon. 
-#'   - `twn_taxonlevel`: Geeft het taxonomische niveau van het taxon.
-#'   - `twn_taxontype`: Geeft het taxontype van het taxon. 
+#'   - `twn_refername()`: Alias voor `twn_voorkeurnaam()`.
+#'   - `twn_parent()`: Geeft de parent van het taxon. 
+#'   - `twn_ouder()`: Alias voor `twn_parent()`.
+#'   - `twn_status()`: Geeft de status(code) van het taxon. 
+#'   - `twn_localname()`: Geeft de Nederlandse naam van het taxon. 
+#'   - `twn_nednaam()`: Alias voor `twn_localname()`.
+#'   - `twn_taxonlevel()`: Geeft het taxonomische niveau van het taxon.
+#'   - `twn_taxonniveau()`: Alias voor `twn_taxonlevel()`
+#'   - `twn_taxontype()`: Geeft het taxontype van het taxon. 
+#'   - `twn_datum()`: Geeft de datum meest recente wijziging van het taxon.
+#'   - `twn_date()`: Alias voor `twn_datum()`.
 #'
 #' @param taxa Een vector met taxonnamen.
 #' @param code Logisch. Geeft aan of de code of de omschrijving wordt geretourneerd.
@@ -41,6 +47,7 @@
 #' twn_localname(taxa)
 #' twn_taxonlevel(taxa)
 #' twn_taxontype(taxa)
+#' twn_datum(taxa)
 #'
 #' @name twn_info
 #' @seealso Deze functies werken op basis van de tabel [twn_lijst]
@@ -56,9 +63,17 @@ twn_voorkeurnaam <- function(taxa){
 
 #' @rdname twn_info
 #' @export
+twn_refername <- twn_voorkeurnaam 
+
+#' @rdname twn_info
+#' @export
 twn_parent <- function(taxa){
   unname(opzoektabel_twn_parent[as.character(taxa)])
 }
+
+#' @rdname twn_info
+#' @export
+twn_ouder <- twn_parent
 
 #' @rdname twn_info
 #' @export
@@ -75,12 +90,30 @@ twn_localname <- function(taxa){
 
 #' @rdname twn_info
 #' @export
+twn_nednaam <- twn_localname 
+
+#' @rdname twn_info
+#' @export
 twn_taxonlevel <- function(taxa){
   unname(opzoektabel_twn_taxonlevel[as.character(taxa)])
 }
 
 #' @rdname twn_info
 #' @export
+twn_taxonniveau <- twn_taxonlevel
+
+#' @rdname twn_info
+#' @export
 twn_taxontype <- function(taxa){
   unname(opzoektabel_twn_taxontype[as.character(taxa)])
 }
+
+#' @rdname twn_info
+#' @export
+twn_datum <- function(taxa){
+  unname(opzoektabel_twn_datum[as.character(taxa)])
+}
+
+#' @rdname twn_info
+#' @export
+twn_date <- twn_datum

@@ -2,6 +2,7 @@
 % Please edit documentation in R/ZZ_package_description.R
 \docType{package}
 \name{twn}
+\alias{twn-package}
 \alias{twn}
 \title{Een package voor de TWN-lijst}
 \description{
@@ -16,4 +17,16 @@ Zie ook:
 }
 
 Voor meer informatie zie de package website: \url{https://redtent.github.io/twn/}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://redtent.github.io/twn/}
+  \item Report bugs at \url{https://github.com/RedTent/twn/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Johan van Tent \email{tentvanjohan@hotmail.com}
+
 }

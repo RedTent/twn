@@ -3,24 +3,42 @@
 \name{twn_info}
 \alias{twn_info}
 \alias{twn_voorkeurnaam}
+\alias{twn_refername}
 \alias{twn_parent}
+\alias{twn_ouder}
 \alias{twn_status}
 \alias{twn_localname}
+\alias{twn_nednaam}
 \alias{twn_taxonlevel}
+\alias{twn_taxonniveau}
 \alias{twn_taxontype}
+\alias{twn_datum}
+\alias{twn_date}
 \title{Opzoeken van de TWN informatie}
 \usage{
 twn_voorkeurnaam(taxa)
 
+twn_refername(taxa)
+
 twn_parent(taxa)
+
+twn_ouder(taxa)
 
 twn_status(taxa, code = TRUE)
 
 twn_localname(taxa)
 
+twn_nednaam(taxa)
+
 twn_taxonlevel(taxa)
 
+twn_taxonniveau(taxa)
+
 twn_taxontype(taxa)
+
+twn_datum(taxa)
+
+twn_date(taxa)
 }
 \arguments{
 \item{taxa}{Een vector met taxonnamen.}
@@ -37,15 +55,21 @@ De \verb{twn_*} - functies zoeken informatie uit de TWN-lijst op.
 \details{
 Deze functies accepteren een vector met taxonnamen en retourneren de
 betreffende informatie uit de TWN-lijst. Als de taxonnaam niet in de
-TWN-lijst voorkomt retourneert de functie \code{NA}
+TWN-lijst voorkomt retourneert de functie \code{NA}.
 \itemize{
-\item \code{twn_voorkeurnaam}: Geeft de voorkeurnaam van het taxon. Als het al de
+\item \code{twn_voorkeurnaam()}: Geeft de voorkeurnaam van het taxon. Als het al de
 voorkeurnaam is wordt de originele naam teruggegeven.
-\item \code{twn_parent}: Geeft de parent van het taxon.
-\item \code{twn_status}: Geeft de status(code) van het taxon.
-\item \code{twn_localname}: Geeft de Nederlandse naam van het taxon.
-\item \code{twn_taxonlevel}: Geeft het taxonomische niveau van het taxon.
-\item \code{twn_taxontype}: Geeft het taxontype van het taxon.
+\item \code{twn_refername()}: Alias voor \code{twn_voorkeurnaam()}.
+\item \code{twn_parent()}: Geeft de parent van het taxon.
+\item \code{twn_ouder()}: Alias voor \code{twn_parent()}.
+\item \code{twn_status()}: Geeft de status(code) van het taxon.
+\item \code{twn_localname()}: Geeft de Nederlandse naam van het taxon.
+\item \code{twn_nednaam()}: Alias voor \code{twn_localname()}.
+\item \code{twn_taxonlevel()}: Geeft het taxonomische niveau van het taxon.
+\item \code{twn_taxonniveau()}: Alias voor \code{twn_taxonlevel()}
+\item \code{twn_taxontype()}: Geeft het taxontype van het taxon.
+\item \code{twn_datum()}: Geeft de datum meest recente wijziging van het taxon.
+\item \code{twn_date()}: Alias voor \code{twn_datum()}.
 }
 }
 \note{
@@ -70,6 +94,7 @@ twn_status(taxa)
 twn_localname(taxa)
 twn_taxonlevel(taxa)
 twn_taxontype(taxa)
+twn_datum(taxa)
 
 }
 \seealso{
