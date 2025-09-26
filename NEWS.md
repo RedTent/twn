@@ -1,3 +1,9 @@
+# twn 0.2.6
+
+- Nieuwe TWN-lijst en literatuurlijst (26-09-2025)
+- `twn_datum()` toegevoegd voor de meest recente TWN-wijzigingsdatum van het taxon. (#5)
+- aliassen toegevoegd voor bestaande twn_info functies: `twn_refername()`, `twn_ouder()`, `twn_nednaam()`, `twn_date()`, `twn_taxonniveau()`.
+
 # twn 0.2.5
 
 - Nieuwe TWN-lijst en literatuurlijst (11-11-2024)
