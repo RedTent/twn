@@ -4,7 +4,7 @@
 #' 
 #' De TWN-lijst bevat de standaardlijst met namen van taxa zoals deze worden gebruikt binnen het 
 #' Nederlandse waterbeheer. Deze dataset bevat de complete TWN-lijst zoals deze aangeboden wordt 
-#' op [https://twnlist.aquadesk.nl/](https://twnlist.aquadesk.nl/). 
+#' op [https://taxainfo.nl/](https://taxainfo.nl/). 
 #' 
 #' @format 
 #' 
@@ -42,7 +42,7 @@
 #' 
 #' 
 #' @source 
-#' [https://twnlist.aquadesk.nl/](https://twnlist.aquadesk.nl/)
+#' [https://taxainfo.nl/](https://taxainfo.nl/)
 #' 
 #'
 #' @examples 
@@ -68,8 +68,6 @@
 #'- `status`  - TWN-statuscode
 #'- `omschrijving`- Omschrijving van de betekenis van de statuscode
 #' 
-#' @source 
-#' [https://www.aquo.nl/index.php/Vraag_en_Antwoord_TWN](https://www.aquo.nl/index.php/Vraag_en_Antwoord_TWN)
 #'
 #' @examples 
 #' 
@@ -100,7 +98,7 @@
 #' worden opgevraagd met de code `attr(twn_literatuur, "datum_twn_literatuur")`.
 #'
 #' @source 
-#' [https://twnlist.aquadesk.nl/](https://twnlist.aquadesk.nl/)
+#' [https://taxainfo.nl/](https://taxainfo.nl/)
 #'
 #' @examples 
 #' 
