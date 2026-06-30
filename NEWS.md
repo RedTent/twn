@@ -1,3 +1,5 @@
+# twn 0.2.7
+
 # twn 0.2.6
 
 - Nieuwe TWN-lijst en literatuurlijst (26-09-2025)

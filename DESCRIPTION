@@ -1,6 +1,6 @@
 Package: twn
 Title: Taxa Waterbeheer Nederland voor R
-Version: 0.2.6
+Version: 0.2.7
 Authors@R: 
     person(given = "Johan",
            family = "van Tent",
@@ -17,12 +17,11 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+RoxygenNote: 8.0.0
 Depends: 
     R (>= 3.5)
 Suggests: 
     testthat (>= 2.1.0),
-    covr,
     knitr,
     rmarkdown,
     tidyr,

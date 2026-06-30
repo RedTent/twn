@@ -1,0 +1,4 @@
+# Licentie
+
+    YEAR: 2019
+    COPYRIGHT HOLDER: Johan van Tent
