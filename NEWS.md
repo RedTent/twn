@@ -1,3 +1,7 @@
+# twn (development version)
+
+- Tussentijdse nieuwe TWN-lijst en literatuurlijst (6-11-2026)
+
 # twn 0.2.7
 
 # twn 0.2.6
